@@ -50,33 +50,36 @@ ul li:last-child{
     line-height: 0.75rem;
     font-weight: 600;
     color:rgb(146,145,143);
-    font-size: 0.2rem;
+    font-size: 0.26rem;
+    font-weight: bold;
 }
-.tabContent .showTab li:nth-child(2) span{
-    font-size: 0.05rem;
-    -webkit-transform-origin-x: 0;
-    -webkit-transform: scale(0.5833333333333334);
-}
-.minFontSize{
-    font-size: 0.05rem;
-    -webkit-transform-origin-x: 0;
-    -webkit-transform: scale(0.5833333333333334);
+.tabContent .showTab li:nth-child(2){
+
 }
 .tabContent .showTab li:last-child{
     background: url("../img/手机版后台界面- 蓝色-18.png") no-repeat;
     background-size: 0.2rem 0.2rem;
     background-position: 0.15rem 0.27rem;
 }
+
 .tabContent .hideTab ul li{
     border-right: 1px solid rgb(177,225,248);
     border-bottom: 1px solid rgb(177,225,248);
 }
 .tabContent .hideTab ul:first-child li{
     background: rgb(204,236,252);
-
+    font-size: 0.35rem;
+    font-weight: 300;
     border-bottom:none;
 }
 .tabContent .hideTab ul:first-child li:last-child{
     background: none;
+}
+.tabContent .hideTab ul:last-child li{
+    font-size: 0.27rem;
+}
+.tabContent .hideTab ul:last-child li:nth-child(4){
+    line-height: 0.37rem;
+
 }
 
