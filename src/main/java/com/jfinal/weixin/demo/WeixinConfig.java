@@ -52,9 +52,9 @@ public class WeixinConfig extends JFinalConfig {
         me.add("/", IndexController.class, "/index");
         me.add("/oauth2", RedirectUri.class);
         me.add("/login", LoginController.class, "/index");
-        me.add("/test", WeChatAPIs.class, "/index");
         me.add("/anytest", TestController.class, "/index");
 
+        me.add("/test", WeChatAPIs.class, "/index");
         me.add("/api", WeixinApiController.class, "/api");
         me.add("/pay", WeixinPayController.class);
         me.add("/user", UserController.class);

@@ -13,7 +13,7 @@ import static com.jfinal.weixin.sdk.api.ApiConfigKit.getApiConfig;
 /**
  * Created by zengriyong on 16/11/10.
  */
-//no use
+//test
 public class WeChatAuthenticationSupport implements Interceptor {
 
     @Override
