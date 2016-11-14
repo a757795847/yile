@@ -1,0 +1,82 @@
+html{
+    -webkit-text-size-adjust: none;
+}
+body,ul,li{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+ul li{
+    font-size: 0.4rem;
+    float: left;
+    height: 0.65rem;
+    line-height: 0.65rem;
+    font-weight: 600;
+    box-sizing:border-box;
+    border-right: 1px solid rgb(127,201,242);
+    border-bottom: 1px solid rgb(127,201,242);
+}
+ul li:last-child{
+    border-right:none;
+}
+#tabHeader li{
+    background-color:rgb(155,217,245);
+    text-align: center;
+    font-family: 'Microsoft Yahei';
+}
+
+#tabHeader li:first-child,.tabContent li:first-child{
+    width: 2rem;
+}
+#tabHeader li:nth-child(2),.tabContent li:nth-child(2){
+    width: 3rem;
+}
+#tabHeader li:nth-child(3),.tabContent li:nth-child(3){
+    width: 0.9rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#tabHeader li:nth-child(4),.tabContent li:nth-child(4){
+    width: 3.6rem;
+}
+#tabHeader li:last-child,.tabContent li:last-child{
+    width: 0.5rem;
+}
+.tabContent li{
+    text-align: center;
+    font-family: 'Microsoft Yahei';
+    height: 0.75rem;
+    line-height: 0.75rem;
+    font-weight: 600;
+    color:rgb(146,145,143);
+    font-size: 0.2rem;
+}
+.tabContent .showTab li:nth-child(2) span{
+    font-size: 0.05rem;
+    -webkit-transform-origin-x: 0;
+    -webkit-transform: scale(0.5833333333333334);
+}
+.minFontSize{
+    font-size: 0.05rem;
+    -webkit-transform-origin-x: 0;
+    -webkit-transform: scale(0.5833333333333334);
+}
+.tabContent .showTab li:last-child{
+    background: url("../img/手机版后台界面- 蓝色-18.png") no-repeat;
+    background-size: 0.2rem 0.2rem;
+    background-position: 0.15rem 0.27rem;
+}
+.tabContent .hideTab ul li{
+    border-right: 1px solid rgb(177,225,248);
+    border-bottom: 1px solid rgb(177,225,248);
+}
+.tabContent .hideTab ul:first-child li{
+    background: rgb(204,236,252);
+
+    border-bottom:none;
+}
+.tabContent .hideTab ul:first-child li:last-child{
+    background: none;
+}
+
