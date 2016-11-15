@@ -11,7 +11,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
-import com.jfinal.weixin.controller.LoginController;
+import com.jfinal.weixin.controller.login.LoginController;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.jfinal.weixin.share.ShareController;
 import com.jfinal.weixin.test.TestController;
@@ -64,9 +64,9 @@ public class WeixinConfig extends JFinalConfig {
 
     public void configPlugin(Plugins me) {
         C3p0Plugin cp = new C3p0Plugin(
-                "jdbc:mysql://114.215.194.215:3306/jfinal_demo?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull",
-                "root",
-                "123"
+                "jdbc:mysql://114.215.194.215:3306/vmdb?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull",
+                "vmdbreader",
+                "5825b631"
         );
         me.add(cp);
         ActiveRecordPlugin arp = new ActiveRecordPlugin(cp);
