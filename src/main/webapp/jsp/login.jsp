@@ -20,39 +20,40 @@
     <meta http-equiv="description" content="This is my page">
 </head>
 <body>
-    <h1>${test}login.jsp</h1>
-    <form action="#" method="post">
-        <input type="text" name="username" id="user">
-        <input type="text" name="password" id="pass">
-        <button id="btn" type="submit">提交</button>
-    </form>
-    <script src="../js/jquery.min.js"></script>
-    <script type="text/javascript">
-        $('#btn').on('click',function(){
-            username = $('#user').val();
-            password = $('#pass').val();
-            $.ajax({
-                type:'POST',
-                url:'',
-                data:{
-                    'username':username,
-                    'password':password
-                },
-                dataType:'json',
-                success:function(data){
-                    console.log(data);
+<h1>${test}</h1>
+<%--<form action="/login" method="post">--%>
+<input type="text" name="username" id="user">
+<input type="text" name="password" id="pass">
+<img src="/captcha">&nbsp;<input type="text" name="captcha" value=""/>
+<button id="btn" type="submit">提交</button>
+<%--</form>--%>
+<script src="../js/jquery.min.js"></script>
+<script type="text/javascript">
+    $('#btn').on('click', function () {
+        username = $('#user').val();
+        password = $('#pass').val();
+        console.log(username)
+        console.log(password)
+        $.ajax({
+            type: 'POST',
+            url: '/login',
+            data: {
+                'username': username,
+                'password': password
+            },
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                location.href = data.requestPathA;
+            },
+            error: function (jqXHR) {
+                if (jqXHR.status == 400) {
 
-                },
-                error:function(jqXHR){
-                    if(jqXHR.status == 400){
-
-                    }
                 }
-            })
+            }
         })
+    })
 
-    </script>
-    
-
+</script>
 </body>
 </html>
