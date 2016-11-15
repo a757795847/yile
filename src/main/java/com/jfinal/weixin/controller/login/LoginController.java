@@ -1,5 +1,7 @@
-package com.jfinal.weixin.controller;
+package com.jfinal.weixin.controller.login;
 
+import com.jfinal.aop.Before;
+import com.jfinal.interceptor.LoginValidator;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
@@ -37,5 +39,12 @@ public class LoginController extends ApiController {
         }
 
     }
+
+//    @Before(LoginValidator.class)
+    public void login(){
+        System.out.println("html");
+        render("login.html");
+    }
+
 
 }

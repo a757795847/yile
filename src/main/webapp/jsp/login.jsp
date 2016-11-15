@@ -20,6 +20,6 @@
     <meta http-equiv="description" content="This is my page">
 </head>
 <body>
-    <h1>${test}</h1>
+    <h1>${test}login.jsp</h1>
 </body>
 </html>
