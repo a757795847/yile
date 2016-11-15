@@ -7,6 +7,7 @@ $(document).ready(function(){
     $('#btn').on('click', function () {
         var username = $('#username').val();
         var password = $('#password').val();
+        var code=$("#code").val();
         console.log(username)
         console.log(password)
         $.ajax({
@@ -14,7 +15,8 @@ $(document).ready(function(){
             url: '/login',
             data: {
                 'username': username,
-                'password': password
+                'password': password,
+                'captcha':code
             },
             dataType: 'json',
             success: function (data) {
