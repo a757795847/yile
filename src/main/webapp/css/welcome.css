@@ -11,6 +11,7 @@ li {list-style-type:none;}
     margin-left:12%;
 }
 .form-group input{
+    outline:none;
     width:100%;
     font-size:1rem;
     height:2.25rem;
@@ -48,6 +49,7 @@ li {list-style-type:none;}
     border-radius:7px;
 }
 #yanzheng input{
+    outline:none;
     padding-left:2.25rem;
     width:34%;
     font-size:1rem;
