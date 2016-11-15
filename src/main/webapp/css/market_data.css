@@ -61,7 +61,9 @@ ul li:last-child{
     background-size: 0.2rem 0.2rem;
     background-position: 0.15rem 0.27rem;
 }
-
+.hideTab{
+    display: none;
+}
 .tabContent .hideTab ul li{
     border-right: 1px solid rgb(177,225,248);
     border-bottom: 1px solid rgb(177,225,248);
