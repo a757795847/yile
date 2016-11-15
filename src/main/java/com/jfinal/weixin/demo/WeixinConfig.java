@@ -11,7 +11,9 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
+import com.jfinal.weixin.controller.HomePageController;
 import com.jfinal.weixin.controller.login.LoginController;
+import com.jfinal.weixin.controller.market.MarketDataController;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.jfinal.weixin.share.ShareController;
 import com.jfinal.weixin.test.TestController;
@@ -51,15 +53,21 @@ public class WeixinConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/", IndexController.class, "/index");
         me.add("/oauth2", RedirectUri.class);
-        me.add("/login", LoginController.class, "/index");
+        me.add("/login", LoginController.class, "/jsp");
+        me.add("/home", HomePageController.class);
+
+
         me.add("/anytest", TestController.class, "/index");
+        me.add("/market", MarketDataController.class, "/views");
+
+
+
 
         me.add("/test", WeChatAPIs.class, "/index");
         me.add("/api", WeixinApiController.class, "/api");
         me.add("/pay", WeixinPayController.class);
         me.add("/user", UserController.class);
         me.add("/jssdk", ShareController.class, "_front");
-
     }
 
     public void configPlugin(Plugins me) {

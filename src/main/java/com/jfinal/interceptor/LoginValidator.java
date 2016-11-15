@@ -1,5 +1,7 @@
 package com.jfinal.interceptor;
 
+import com.jfinal.aop.Interceptor;
+import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
 import com.jfinal.kit.StrKit;
 import com.jfinal.validate.Validator;
@@ -8,28 +10,29 @@ import com.jfinal.validate.Validator;
 /**
  * Created by zengriyong on 16/11/14.
  */
-public class LoginValidator extends Validator {
+public class LoginValidator implements Interceptor {
 
-    private static final String msg = "message";
-
-    protected void validate(Controller c) {
-        setShortCircuit(true);
-        validateRequired("user_name", msg, "请您输入用户名!");
-        validateRequired("password", msg, "请您输入密码!");
-        validateRequired("randomCode", msg, "请您输入验证码!");
-
-        String inputRandomCode = c.getPara("randomCode");
-        if (StrKit.isBlank(inputRandomCode))
-            inputRandomCode = inputRandomCode.toUpperCase();
-
-        String systemRandomCode = c.getCookie("systemRandomCode");
-//        if (RandomCodeService.validate(inputRandomCode, systemRandomCode) == false) {
-//            addError(msg, "验证码输入不正确,请重新输入!");
-//        }
-    }
-
-    protected void handleError(Controller c) {
-        c.keepPara();
-        c.render("/common/login.html");
+    @Override
+    public void intercept(Invocation inv) {
+        Controller controller = inv.getController();
+        if (controller.getSession() == null) {
+            inv.getController().redirect("/login");
+        } else {
+            String username = controller.getPara("username");
+            String password = controller.getPara("password");
+            System.out.println("username: " + username);
+            System.out.println("password: " + password);
+            //todo 进行数据库查询
+            if (username != null && password != null) {
+                //用户名密码正确时,进入首页
+                System.out.println("LoginValidator_1111");
+                inv.getController().redirect("/home");
+//                inv.invoke();
+            } else {
+//                inv.getController().redirect("/login");
+                //用户名密码错误时,重新进入login页面
+                inv.invoke();
+            }
+        }
     }
 }
