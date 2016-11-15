@@ -51,8 +51,9 @@ public class LoginController extends ApiController {
 //            setAttr("test", "成功登录");
 //            render("/jsp/login.jsp?1213");
         } else {
-            setAttr("test", "用户名或密码错误");
-            render("/jsp/login.jsp");
+//            setAttr("test", "用户名或密码错误");
+//            renderJson("error", requestPathA);
+            render("/views/pepsi/login.html");
         }
 
     }
