@@ -13,6 +13,7 @@ import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.weixin.controller.HomePageController;
 import com.jfinal.weixin.controller.login.LoginController;
+import com.jfinal.weixin.controller.login.VerificationCodeController;
 import com.jfinal.weixin.controller.market.MarketDataController;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.jfinal.weixin.share.ShareController;
@@ -53,8 +54,9 @@ public class WeixinConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/", IndexController.class, "/index");
         me.add("/oauth2", RedirectUri.class);
-        me.add("/login", LoginController.class, "/jsp");
+        me.add("/login", LoginController.class);
         me.add("/home", HomePageController.class);
+        me.add("/captcha", VerificationCodeController.class); //验证码
 
 
         me.add("/anytest", TestController.class, "/index");
