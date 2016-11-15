@@ -1,11 +1,9 @@
-html {
-    -webkit-text-size-adjust: none;
-}
 
 body, ul, li {
     list-style: none;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 ul li {
@@ -67,10 +65,9 @@ ul li:last-child {
     font-weight: bold;
 }
 
-.tabContent .showTab li:last-child {
-    background: url("../img/手机版后台界面- 蓝色-18.png") no-repeat;
-    background-size: 0.2rem 0.2rem;
-    background-position: 0.15rem 0.27rem;
+.tabContent .showTab li:last-child img{
+    width:0.2rem;
+    height: 0.2rem;
 }
 
 .hideTab {
@@ -78,13 +75,12 @@ ul li:last-child {
     top: 0;
     left: 0;
     opacity: 0;
-    transition: opacity .25s ease .1s;
+    transition: opacity .25s;
 }
 
 .hideTab li {
     height: 0;
-    overflow: hidden;
-    transition: height .25s ease .1s;
+    margin-top: -1px;
 }
 
 .tabContent .hideTab ul li {
