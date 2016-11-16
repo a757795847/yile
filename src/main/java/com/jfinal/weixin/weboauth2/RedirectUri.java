@@ -38,6 +38,8 @@ public class RedirectUri extends ApiController {
             System.out.println("snsAccessToken: " + snsAccessToken);
             String openId = snsAccessToken.getOpenid();
             String token = snsAccessToken.getAccessToken();
+            System.out.println("openId"+ openId);
+            System.out.println("token"+ token);
 
             //此处写sql查询出来的sqlOpenId
             String sqlOpenId = "";

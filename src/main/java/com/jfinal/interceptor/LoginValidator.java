@@ -20,8 +20,10 @@ public class LoginValidator implements Interceptor {
         } else {
             String username = controller.getPara("username");
             String password = controller.getPara("password");
+            String captcha = controller.getPara("captcha");
             System.out.println("username: " + username);
             System.out.println("password: " + password);
+            System.out.println("captcha: " + captcha);
             //todo 进行数据库查询
             if (username != null && password != null) {
                 //用户名密码正确时,进入首页
