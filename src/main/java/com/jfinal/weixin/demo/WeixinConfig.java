@@ -57,7 +57,7 @@ public class WeixinConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/", IndexController.class, "/index");
         me.add("/oauth2", RedirectUri.class);
-        me.add("/login", LoginController.class);
+        me.add("/login", LoginController.class,"/views/pepsi");
         me.add("/home", HomePageController.class, "/views/pepsi");
         me.add("/captcha", VerificationCodeController.class); //验证码
         me.add("/device", DeviceController.class, "/views/pepsi");//上位机
