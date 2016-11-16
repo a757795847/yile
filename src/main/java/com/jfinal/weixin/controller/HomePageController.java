@@ -24,7 +24,7 @@ public class HomePageController extends ApiController {
     public void index() {
         //根据userId 获取 vmmisuser 表中的 vmcustomerid 和 authority
         //根据vmcustomerid 获取 vmcustomerinfo 表中的 proxy
-        // 如果authority != 4 并且 proxy = 1, 才可以添加上位机(往session中添加字段AllowsAdd, true为允许,false为不允许)
+        // 如果authority != 4 并且 proxy = 1, 才可以添加上位机(往session中添加字段allowsAdd, true为允许,false为不允许)
         String userId = getSessionAttr("userId");
         Vmmisuser user = Vmmisuser.dao.findByIdLoadColumns(userId, "vmcustomerid, authority");
 
@@ -38,15 +38,13 @@ public class HomePageController extends ApiController {
             String proxy = vmcustomerinfo.getProxy().toString();
             System.out.println("proxy: " + proxy);
 
-            if (StrKit.notBlank(proxy) && "1".equals(proxy) && authority != "4"){
-                renderJson("msg_error", "验证码错误");
-
+            if (StrKit.notBlank(proxy) && "1".equals(proxy) && authority != "4") {
+                setSessionAttr("allowsAdd", true);
+            } else {
+                setSessionAttr("allowsAdd", false);
             }
-
+            render("/views/pepsi/Index.jsp");
         }
-
-
-        render("/views/pepsi/Index.jsp");
     }
 
 }
