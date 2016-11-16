@@ -58,6 +58,7 @@ public class WeixinConfig extends JFinalConfig {
         me.add("/login", LoginController.class);
         me.add("/home", HomePageController.class);
         me.add("/captcha", VerificationCodeController.class); //验证码
+//        me.add("/addswj", );
 
 
         me.add("/anytest", TestController.class, "/index");

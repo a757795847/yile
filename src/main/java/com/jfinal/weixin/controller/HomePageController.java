@@ -44,6 +44,9 @@ public class HomePageController extends ApiController {
                 setSessionAttr("allowsAdd", false);
             }
             render("/views/pepsi/Index.jsp");
+        } else {
+            //Todo 如果没有找到vmcustomerid。。。
+
         }
     }
 
