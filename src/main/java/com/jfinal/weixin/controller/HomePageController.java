@@ -34,7 +34,8 @@ public class HomePageController extends ApiController {
         System.out.println("vmcustomerid: " + user.getVmcustomerid() + ", authority: " + user.getAuthority());
 
         if (StrKit.notBlank(vmcustomerid)) {
-            Vmcustomerinfo vmcustomerinfo = Vmcustomerinfo.dao.findById(user.getVmcustomerid());
+            Vmcustomerinfo vmcustomerinfo = Vmcustomerinfo.dao.findById(vmcustomerid);
+            System.out.println("vmcustomerinfo: " + vmcustomerinfo);
             String proxy = vmcustomerinfo.getProxy().toString();
             System.out.println("proxy: " + proxy);
 
@@ -43,7 +44,7 @@ public class HomePageController extends ApiController {
             } else {
                 setSessionAttr("allowsAdd", false);
             }
-            render("/views/pepsi/Index.jsp");
+            render("index.jsp");
         } else {
             //Todo 如果没有找到vmcustomerid。。。
 

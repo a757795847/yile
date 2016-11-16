@@ -81,7 +81,7 @@ public class LoginController extends ApiController {
         } else if (users1.size() > 0 && StrKit.isBlank(inputRandomCode)) {
             renderJson("msg_null", "请输入验证码！");
         } else {
-            render("/views/pepsi/login.jsp");
+            render("login.jsp");
 
         }
 

@@ -16,6 +16,7 @@ import com.jfinal.weixin.controller.HomePageController;
 import com.jfinal.weixin.controller.login.LoginController;
 import com.jfinal.weixin.controller.login.VerificationCodeController;
 import com.jfinal.weixin.controller.market.MarketDataController;
+import com.jfinal.weixin.models.Vmcustomerinfo;
 import com.jfinal.weixin.models.Vmmisuser;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.jfinal.weixin.share.ShareController;
@@ -56,11 +57,11 @@ public class WeixinConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/", IndexController.class, "/index");
         me.add("/oauth2", RedirectUri.class);
-        me.add("/login", LoginController.class);
-        me.add("/home", HomePageController.class);
+        me.add("/login", LoginController.class,"/views/pepsi");
+        me.add("/home", HomePageController.class, "/views/pepsi");
         me.add("/captcha", VerificationCodeController.class); //验证码
-        me.add("/device", DeviceController.class);//上位机
-        me.add("/addDevice", DeviceController.class);//上位机
+        me.add("/device", DeviceController.class, "/views/pepsi");//上位机
+        me.add("/addDevice", DeviceController.class);//上位机post
 
 
 
@@ -89,6 +90,7 @@ public class WeixinConfig extends JFinalConfig {
         me.add(arp);
 
         arp.addMapping("vmmisuser", "userid", Vmmisuser.class);
+        arp.addMapping("vmcustomerinfo", "id", Vmcustomerinfo.class);
 //        arp.addMapping("user", "id", User.class);
 
 //        C3p0Plugin c3p0Plugin = new C3p0Plugin(PropKit.get("jdbc:mysql://localhost/jfinal_demo"), PropKit.get("root"), PropKit.get("123"), PropKit.get("driver"));

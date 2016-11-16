@@ -17,7 +17,7 @@ public class DeviceController extends ApiController {
 
     @Before(UserAuthInterceptor.class)
     public void index() {
-        render("/views/pepsi/Onmachine.jsp");
+        render("onmachine.jsp");
     }
 
 }
