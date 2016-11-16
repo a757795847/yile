@@ -1,7 +1,8 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta name="format-detection" content="telephone=no"/>
     <title>Title</title>
@@ -18,13 +19,13 @@
 </div>
 <div class="col-xs-8" id="Form">
     <div class="form-group">
-        <img src="../../img/02.png" alt="">
+        <img src="../../img/02.png" class="user">
         <input id="username" class="form-control" type="text" size="15"
                placeholder="登录名"/>
 
     </div>
     <div class="form-group">
-        <img src="../../img/03.png" alt="">
+        <img src="../../img/03.png" class="pass">
         <input id="password" class="form-control" type="password" size="15"
                placeholder="密码"/>
     </div>
@@ -39,7 +40,7 @@
             <label for="polaris-checkbox-1">记住密码</label>
         </li>
         <li>
-            <input type="checkbox" id="polaris-checkbox-2" checked>
+            <input type="checkbox" id="polaris-checkbox-2">
             <label for="polaris-checkbox-2">自动登录</label>
         </li>
     </ul>
