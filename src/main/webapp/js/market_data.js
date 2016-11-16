@@ -26,12 +26,12 @@
             })
             hideTab.css({
                 'opacity':1,
-                'top':'1.5rem',
+                'top':'2.8125rem',
                 'position':'initial',
                 'transition': 'opacity .25s',
             });
             hideTab.find('li').css({
-                'height':'0.75rem',
+                'height':'1.406rem',
                 'transition':'height .25s'
             })
 
@@ -46,14 +46,15 @@
     })
 
 
-    var loading = false;  //状态标记
-    $(document.body).infinite().on("infinite", function() {
-        console.log('到底啦');
-        if(loading) return;
-        loading = true;
-        setTimeout(function() {
-            $("#list").append("<p> 我是新加载的内容 </p>");
-            loading = false;
-        }, 1500);   //模拟延迟
-    });
+    // var loading = false;  //状态标记
+    // $(document.body).infinite().on("infinite", function() {
+    //     console.log('到底啦');
+    //     if(loading) return;
+    //     loading = true;
+    //     setTimeout(function() {
+    //         $("#list").append("<p> 我是新加载的内容 </p>");
+    //         loading = false;
+    //     }, 1500);   //模拟延迟
+    // });
+    
 })(jQuery)

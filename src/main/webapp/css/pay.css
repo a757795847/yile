@@ -1,34 +1,29 @@
-#tabHeader li {
-    background-color: rgb(155, 217, 245);
-    text-align: center;
-    font-family: 'Microsoft Yahei';
+
+.tabHeader li:first-child, .tabContent li:first-child {
+    width: 30%;
 }
 
-#tabHeader li:first-child, .tabContent li:first-child {
-    width: 3rem;
+.tabHeader li:nth-child(2), .tabContent li:nth-child(2) {
+    width: 30%;
 }
 
-#tabHeader li:nth-child(2), .tabContent li:nth-child(2) {
-    width: 3rem;
-}
-
-#tabHeader li:nth-child(3), .tabContent li:nth-child(3) {
-    width: 0.9rem;
+.tabHeader li:nth-child(3), .tabContent li:nth-child(3) {
+    width: 9%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
 }
 
-#tabHeader li:nth-child(4), .tabContent li:nth-child(4) {
-    width: 2.6rem;
+.tabHeader li:nth-child(4), .tabContent li:nth-child(4) {
+    width: 26%;
 }
 
-#tabHeader li:last-child, .tabContent li:last-child {
-    width: 0.5rem;
+.tabHeader li:last-child, .tabContent li:last-child {
+    width: 5%;
 }
 .tabContent li:first-child {
-    font-size: 0.24rem;
-    line-height: 0.375rem;
+    font-size: 0.45rem;
+    line-height: 0.703rem;
 }
 .hideTab {
     position: absolute;
@@ -40,7 +35,7 @@
 
 .hideTab li {
     height: 0;
-    margin-top: -1px;
+
 }
 
 .tabContent .hideTab ul li {
@@ -54,10 +49,10 @@
 
 .tabContent .hideTab ul:first-child li {
     background: rgb(204, 236, 252);
-    font-size: 0.3rem;
+    font-size: 0.563rem;
     font-weight: 300;
     border-bottom: none;
-    line-height: 0.75rem;
+    line-height: 1.41rem;
 }
 
 .tabContent .hideTab ul:first-child li:last-child {
@@ -65,23 +60,36 @@
 }
 
 .tabContent .hideTab ul:last-child li {
-    font-size: 0.27rem;
+    font-size: 0.51rem;
 }
 .tabContent .hideTab ul:last-child li:first-child,.tabContent .hideTab ul:last-child li:nth-child(2){
-    line-height: 0.375rem;
+    line-height: 0.72rem;
     word-wrap: break-word;
-    padding: 0 0.15rem;
+    padding: 0 0.281rem;
 }
 .tabContent .hideTab ul:last-child li:nth-child(4) {
-    line-height: 0.75rem;
+    line-height: 1.41rem;
 }
 .tabContent .showTab .minName{
-    font-size: 0.3rem;
-    line-height: 0.75rem;
+    font-size: 0.56rem;
+    line-height: 1.41rem;
 }
 
 .tabContent .hideTab .retreat{
     background: url("../img/stop.png") no-repeat;
-    background-size: 0.3rem 0.3rem;
-    background-position: 0.35rem;
+    background-size: 0.563rem 0.563rem;
+    background-position: 0.66rem;
+}
+@media (min-width: 320px) and (max-width: 320px) {
+    .tabContent .hideTab ul:first-child li {
+        font-size: 0.5rem;
+    }
+    html body .tabContent .minWord {
+        font-size: 0.43rem!important;
+    }
+    .tabContent .hideTab .retreat{
+        background: url("../img/stop.png") no-repeat;
+        background-size: 0.563rem 0.563rem;
+        background-position: 0.3rem;
+    }
 }

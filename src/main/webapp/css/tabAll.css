@@ -1,0 +1,93 @@
+body, ul, li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul li {
+    font-size: 0.656rem;
+    float: left;
+    height: 1.41rem;
+    line-height: 1.41rem;
+    font-weight: 600;
+    box-sizing: border-box;
+    border-right: 1px solid rgb(127, 201, 242);
+    border-bottom: 1px solid rgb(127, 201, 242);
+}
+
+ul li:last-child {
+    border-right: none;
+}
+
+.tabHeader li {
+    background-color: rgb(155, 217, 245);
+    text-align: center;
+    font-family: 'Microsoft Yahei';
+}
+.tabContent {
+    position: relative;
+}
+
+.tabContent li {
+    text-align: center;
+    font-family: 'Microsoft Yahei';
+    height: 1.41rem;
+    line-height: 1.41rem;
+    font-weight: 600;
+    font-size: 0.488rem;
+    font-weight: bold;
+    padding: 0 0.1rem;
+}
+.tabContent li{
+    position: relative;
+    z-index: 100;
+}
+.tabContent .showTab li:last-child img{
+    width:0.375rem;
+    height: 0.375rem;
+}
+
+.hideTab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .25s;
+}
+
+.hideTab li {
+    color: rgb(146, 145, 143);
+    height: 0;
+    margin-top: -1px;
+    z-index: 1;
+}
+.tabContent .hideTab ul:nth-child(odd) li {
+    background: rgb(204, 236, 252);
+    font-size: 0.6rem;
+    font-weight: 300;
+    border-bottom: none;
+}
+
+.tabContent .hideTab ul:nth-child(odd) li:last-child {
+    background: none;
+}
+
+.tabContent .hideTab ul li {
+    border-right: 1px solid rgb(177, 225, 248);
+    border-bottom: 1px solid rgb(127, 201, 242);
+}
+
+.tabContent .hideTab ul li:last-child {
+    border-right: none;
+}
+html body .tabContent .minWord {
+    padding: 0 0.1875rem;
+    line-height: 0.7rem!important;
+    font-size: 0.5rem!important;
+    font-weight: bold;
+}
+.tabContent .smWord {
+    line-height: 0.4875rem;
+    font-size: 0.375rem!important;
+}
