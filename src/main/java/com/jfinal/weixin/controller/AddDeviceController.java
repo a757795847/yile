@@ -9,15 +9,17 @@ import com.jfinal.weixin.util.WeixinUtil;
 /**
  * Created by zengriyong on 16/11/16.
  */
-public class DeviceController extends ApiController {
+public class AddDeviceController extends ApiController {
 
     public ApiConfig getApiConfig() {
         return WeixinUtil.getApiConfig();
     }
 
-    @Before(UserAuthInterceptor.class)
     public void index() {
-        render("/views/pepsi/Onmachine.jsp");
+        String deviceId = getPara("deviceId");
+        String deviceModel = getPara("deviceModel");
+        String deviceData = getPara("deviceData");
+        render("");
     }
 
 }
