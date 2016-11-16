@@ -73,12 +73,12 @@
 			<artifactId>kaptcha</artifactId>
 			<version>0.0.9</version>
 		</dependency>
-		<dependency>
-			<groupId>org.bouncycastle</groupId>
-			<artifactId>bcprov-jdk14</artifactId>
-			<version>1.55</version>
-			<type>jar</type>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.bouncycastle</groupId>-->
+			<!--<artifactId>bcprov-jdk14</artifactId>-->
+			<!--<version>1.55</version>-->
+			<!--<type>jar</type>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<build>
