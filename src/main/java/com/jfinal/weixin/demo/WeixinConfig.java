@@ -15,6 +15,7 @@ import com.jfinal.weixin.controller.HomePageController;
 import com.jfinal.weixin.controller.login.LoginController;
 import com.jfinal.weixin.controller.login.VerificationCodeController;
 import com.jfinal.weixin.controller.market.MarketDataController;
+import com.jfinal.weixin.models.Vmmisuser;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
 import com.jfinal.weixin.share.ShareController;
 import com.jfinal.weixin.test.TestController;
@@ -79,8 +80,11 @@ public class WeixinConfig extends JFinalConfig {
                 "5825b631"
         );
         me.add(cp);
+
         ActiveRecordPlugin arp = new ActiveRecordPlugin(cp);
         me.add(arp);
+
+        arp.addMapping("vmmisuser", "userid", Vmmisuser.class);
 //        arp.addMapping("user", "id", User.class);
 
 //        C3p0Plugin c3p0Plugin = new C3p0Plugin(PropKit.get("jdbc:mysql://localhost/jfinal_demo"), PropKit.get("root"), PropKit.get("123"), PropKit.get("driver"));
