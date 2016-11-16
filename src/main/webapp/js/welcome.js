@@ -24,11 +24,24 @@ $(document).ready(function(){
             },
             dataType: 'json',
             success: function (data) {
-                console.log(data);
-                if(data==msg_error){
+                if(data.msg_error=='验证码错误'){
+                    console.log('验证码错误');
+                }else if(data.psd_beyond=='该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！'){
+                    alert(data.psd_beyond);
+                }else if(data.user_disable=='该用户已被停用!'){
+                    alert(data.user_disable);
+                }else{
+                    alert(data.msg_nul);
 
                 }
-                location.href = data.requestPathA;
+
+
+
+                // if(data.msg_error){
+
+                // }
+
+                // location.href = data.requestPathA;
             },
             error: function (jqXHR) {
                 if (jqXHR.status == 400) {
