@@ -4,8 +4,12 @@
 <html lang="en">
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="../../css/Onmachine.css">
 </head>
 <body>
-
+<header>
+    <a href=""><img src="../../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <a href=""><img src="../../img/08.png" class="img-responsive" id="Rightimg"></a>
+</header>
 </body>
 </html>
