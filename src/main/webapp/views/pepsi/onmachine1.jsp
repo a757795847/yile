@@ -14,6 +14,7 @@
 <header>
     <a href=""><img src="../../img/07.png" class="img-responsive" id="Leftimg"></a>
         <p>新增上位机</p>
+    <p></p>
     <a href=""><img src="../../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
 </body>
