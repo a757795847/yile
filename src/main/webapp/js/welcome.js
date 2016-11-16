@@ -8,6 +8,8 @@ $(document).ready(function(){
         var username = $('#username').val();
         var password = $('#password').val();
         var code=$("#code").val();
+        var remember = $("#polaris-checkbox-1").is(":checked");
+        var automatic = $("#polaris-checkbox-2").is(":checked");
         console.log(username)
         console.log(password)
         $.ajax({
@@ -16,7 +18,9 @@ $(document).ready(function(){
             data: {
                 'username': username,
                 'password': password,
-                'captcha':code
+                'captcha':code,
+                'AutomaticLogin':automatic,
+                'RememberPwd':remember
             },
             dataType: 'json',
             success: function (data) {
