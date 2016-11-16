@@ -25,6 +25,9 @@ $(document).ready(function(){
             dataType: 'json',
             success: function (data) {
                 console.log(data);
+                if(data==msg_error){
+
+                }
                 location.href = data.requestPathA;
             },
             error: function (jqXHR) {
