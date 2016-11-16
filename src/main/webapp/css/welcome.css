@@ -25,11 +25,18 @@ li {list-style-type:none;}
     margin-top:0.5rem;
 
 }
-.form-group img{
+.user{
     width:1rem;
     position: absolute;
-    top: 36%;
+    top:29%;
     left: 7%;
+
+}
+.pass{
+    position: absolute;
+    width: 0.75rem;
+    top: 41%;
+    left: 8%;
 
 }
 #code{
