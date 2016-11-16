@@ -21,7 +21,11 @@ public class AddDeviceController extends ApiController {
         String deviceData = getPara("deviceData");
         //TODO 把这三个数据存入数据库中
 
-        render("");
+        if (true) {
+
+        } else {
+
+        }
     }
 
 }
