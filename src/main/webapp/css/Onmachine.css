@@ -19,3 +19,41 @@ header{
 
 
 }
+.index{
+
+
+}
+.weui_tabbar{
+    height: 2.75rem;
+    background-color: #fff;
+
+}
+.weui_tabbar_item.weui_bar_item_on img{
+    margin-top: 0.25rem;
+    margin-left: 33%;
+    height: 1.75rem;
+    width: 1.5rem;
+
+}
+.weui_tabbar_item img{
+    margin-top: 0.25rem;
+    margin-left:23%;
+    height:1.75rem;
+    width:2.5rem;
+
+
+}
+.weui_tabbar_item.weui_bar_item_on b{
+    float: right;
+    border: 1px solid rgb(209,209,209);
+    height: 1.75rem;
+    margin-top: 0.25rem;
+}
+.weui_tabbar_item b{
+    float: right;
+    border: 1px solid rgb(209,209,209);
+    height: 1.75rem;
+    margin-top: 0.25rem;
+
+
+}

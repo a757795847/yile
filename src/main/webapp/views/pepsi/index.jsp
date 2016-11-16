@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,7 +28,7 @@
     </div>
 
     <div class="weui_tabbar">
-        <a href="index.html" class="weui_tabbar_item weui_bar_item_on">
+        <a href="index.jsp" class="weui_tabbar_item weui_bar_item_on">
             <div>
                 <img src="../../img/09.png" class="img-responsive">
                 <b></b>
@@ -50,6 +52,6 @@
             </div>
         </a>
     </div>
-    </div>
+
 </body>
 </html>
