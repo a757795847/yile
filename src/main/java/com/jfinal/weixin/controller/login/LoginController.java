@@ -1,7 +1,6 @@
 package com.jfinal.weixin.controller.login;
 
 import com.jfinal.aop.Before;
-import com.jfinal.interceptor.LoginValidator;
 import com.jfinal.interceptor.UserAuthInterceptor;
 import com.jfinal.kit.StrKit;
 import com.jfinal.others.MyCaptchaRender;
@@ -51,6 +50,7 @@ public class LoginController extends ApiController {
             //正常登录
             String RememberPwd = getPara("RememberPwd");
             if (StrKit.notBlank(RememberPwd)) {
+
                 //记住密码
                 setCookie("username", userName, 1209600);
                 setCookie("password", password, 1209600);
@@ -81,7 +81,7 @@ public class LoginController extends ApiController {
         } else if (users1.size() > 0 && StrKit.isBlank(inputRandomCode)) {
             renderJson("msg_null", "请输入验证码！");
         } else {
-            render("/views/pepsi/login.html");
+            render("/views/pepsi/login.jsp");
 
         }
 
