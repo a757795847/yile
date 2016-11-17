@@ -11,9 +11,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
-import com.jfinal.weixin.controller.AddDeviceController;
-import com.jfinal.weixin.controller.DeviceController;
-import com.jfinal.weixin.controller.HomePageController;
+import com.jfinal.weixin.controller.*;
 import com.jfinal.weixin.controller.login.LoginController;
 import com.jfinal.weixin.controller.login.VerificationCodeController;
 import com.jfinal.weixin.controller.market.MarketDataController;
@@ -58,18 +56,17 @@ public class WeixinConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/", IndexController.class, "/index");
         me.add("/oauth2", RedirectUri.class);
-        me.add("/login", LoginController.class,"/views/pepsi");
+        me.add("/login", LoginController.class, "/views/pepsi");
         me.add("/home", HomePageController.class, "/views/pepsi");
         me.add("/captcha", VerificationCodeController.class); //验证码
         me.add("/device", DeviceController.class, "/views/pepsi");//上位机
         me.add("/addDevice", AddDeviceController.class);//上位机post
-
+//        me.add("/generalStatus", GeneralStatusController.class, "/index");//总体状态及销售记录
+        me.add("/nonCash", NonCashController.class);//非现金支付
 
 
         me.add("/anytest", TestController.class, "/index");
         me.add("/market", MarketDataController.class, "/views");
-
-
 
 
         me.add("/test", WeChatAPIs.class, "/index");
