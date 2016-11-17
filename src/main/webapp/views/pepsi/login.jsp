@@ -44,7 +44,7 @@
         </li>
     </ul>
 
-    <button type="button" class="btn btn-default" id="btn">登录</button>
+    <button type="button" id="btn">登录</button>
 
 </div>
 <script src="../../js/jquery.min.js"></script>

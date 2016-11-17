@@ -1,8 +1,15 @@
 header{
     height:2rem;
     background-color:rgb(32,159,234);
+    line-height:2rem;
 
 
+}
+header p{
+    float:left;
+    margin-left: 25%;
+    font-size: 1rem;
+    color: #fff;
 }
 #Leftimg{
     float:left;
@@ -19,8 +26,69 @@ header{
 
 
 }
-.index{
+#index{
+    height: 28.5rem;
+    width: 18.75rem;
+    background:url("../img/17.png") no-repeat;
+    background-size: 19rem 28.25rem;
+    padding-top: 6%;
+    padding-left: 16%
 
+}
+#content{
+    position: relative;
+
+}
+#content h3{
+    color:rgb(11,161,232);
+    margin-top: 3%;
+
+}
+#content input{
+    margin-top: 2%;
+    height: 2.25rem;
+    background-color: rgb(155,217,245);
+    width: 66%;
+    border-radius: 4px;
+    padding-left: 3%;
+    font-size: 0.75rem;
+
+}
+.form{
+    margin-top: 3%;
+
+}
+.form h5 {
+    margin-top: 2%;
+}
+#content span{
+    position: absolute;
+    top: 27%;
+    right: 34%;
+    color: rgb(95,134,151);
+
+}
+#content select{
+    margin-top: 2%;
+    width: 69%;
+    height: 2.25rem;
+    background-color: rgb(155,217,245);
+    border-radius: 4px;
+    padding-left: 3%;
+    border: none;
+    outline: none;
+    font-size: 0.75rem;
+
+}
+#content button{
+    width: 69%;
+    height: 2.25rem;
+    background-color: rgb(32,157,231);
+    border-radius: 6px;
+    border: none;
+    margin-top: 15%;
+    font-size: 1rem;
+    color: #fff;
 
 }
 .weui_tabbar{
