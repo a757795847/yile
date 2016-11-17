@@ -20,6 +20,7 @@ public class AddDeviceController extends ApiController {
         String deviceId = getPara("deviceId");
         String deviceModel = getPara("deviceModel");
         String deviceData = getPara("deviceData");
+        System.out.println("deviceId: " + deviceId + ", deviceModel: " + deviceModel + ", deviceData: " + deviceData);
         if (StrKit.notBlank(deviceId) && StrKit.notBlank(deviceModel) && StrKit.notBlank(deviceData)) {
             //TODO 把这三个数据存入数据库中
 
