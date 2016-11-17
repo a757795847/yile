@@ -1,49 +1,49 @@
 header{
+    position:relative;
     height:2rem;
     background-color:rgb(32,159,234);
     line-height:2rem;
+    text-align: center;
 
 
 }
 header p{
-    float:left;
-    margin-left: 25%;
     font-size: 1rem;
     color: #fff;
 }
 #Leftimg{
-    float:left;
-    width:1.25rem;
-    margin-top: 0.5rem;
-    margin-left: 1rem;
+    width:8%;
+    position:absolute;
+    top:17%;
+    left:3%;
 
 }
 #Rightimg{
-    float:right;
-    width:1rem;
-    margin-top:3%;
-    margin-right: 1rem;
+    width:7%;
+    position:absolute;
+    top:20%;
+    right:3%;
 
 
 }
-#index{
-    height: 28.5rem;
-    width: 18.75rem;
-    background:url("../img/17.png") no-repeat;
+
+#index {
+    height:28.5rem;
+    background: url("../img/17.png") no-repeat;
     background-size: 19rem 28.25rem;
-    padding-top: 6%;
-    padding-left: 16%
+}
+@media screen and (max-width: 320px){
+    #index{
+        height:23.75rem;
+        background-size: 16rem 23.25rem;
+    }
 
 }
-#content{
-    position: relative;
+h4{
+    margin-left:15%;
 
 }
-#content h3{
-    color:rgb(11,161,232);
-    margin-top: 3%;
 
-}
 #content input{
     margin-top: 2%;
     height: 2.25rem;
@@ -53,6 +53,9 @@ header p{
     padding-left: 3%;
     font-size: 0.75rem;
 
+}
+#content div{
+    text-align:center;
 }
 .form{
     margin-top: 3%;
@@ -124,4 +127,11 @@ header p{
     margin-top: 0.25rem;
 
 
+}
+
+#Rightimg {
+    transition: All 0.4s ease-in-out;
+    }
+.transform{
+    transform: rotate(360deg);
 }
