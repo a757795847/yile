@@ -11,6 +11,7 @@ import com.jfinal.kit.PropKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.c3p0.C3p0Plugin;
 import com.jfinal.render.ViewType;
+import com.jfinal.weixin.controller.AddDeviceController;
 import com.jfinal.weixin.controller.DeviceController;
 import com.jfinal.weixin.controller.HomePageController;
 import com.jfinal.weixin.controller.login.LoginController;
@@ -61,7 +62,7 @@ public class WeixinConfig extends JFinalConfig {
         me.add("/home", HomePageController.class, "/views/pepsi");
         me.add("/captcha", VerificationCodeController.class); //验证码
         me.add("/device", DeviceController.class, "/views/pepsi");//上位机
-        me.add("/addDevice", DeviceController.class);//上位机post
+        me.add("/addDevice", AddDeviceController.class);//上位机post
 
 
 
