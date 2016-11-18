@@ -25,7 +25,7 @@
 
     </div>
     <div class="form-group">
-        <img src="../../img/03.png" class="pass">
+         <img src="../../img/03.png" class="pass">
         <input id="password" class="form-control" type="password" size="15"
                placeholder="密码"/>
     </div>

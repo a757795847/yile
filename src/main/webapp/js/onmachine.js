@@ -3,11 +3,16 @@ $("#calendar").calendar();  //打开弹窗
 /*$("#calendar").calendar("setValue", ["2012-12-12"]);  //设置日期
 $("#calendar").calendar("destroy");  //销毁*/
 
-$("#Rightimg").click(function(){
-    $("#Rightimg").addClass("transform");
 
+$("#Rightimg").on('click',function(){
+    $("#Rightimg").addClass("transform");
+    $("#Rightimg").remove("transform");
+   /* setTimeout(function(){
+        $("#Rightimg").addClass("transform");
+    },1000);*/
 
 });
+
 $("#btn").click(function(){
     var deviceId=$("#equipment").val();
     var deviceModel=$("#model").val();
@@ -38,5 +43,23 @@ $("#btn").click(function(){
 
         }
     })
+
+});
+$(document).ready(function(){
+    $.ajax({
+        type: 'GET',
+        url: '/device/name',
+        dataType: 'json',
+        success: function (data){
+          console.log(data);
+            $("#title").html(data.dname);
+
+
+
+
+
+        }
+    })
+
 
 });

@@ -19,12 +19,10 @@ header p{
 
 }
 #Rightimg{
-    width:7%;
+    width:6%;
     position:absolute;
     top:20%;
     right:3%;
-
-
 }
 
 #index {
@@ -43,7 +41,17 @@ h4{
     margin-left:15%;
 
 }
+#title{
+    color:rgb(0,146,232);
+}
+.caption{
+    position:relative;
+}
 
+#content{
+    padding-top:3%;
+
+}
 #content input{
     margin-top: 2%;
     height: 2.25rem;
@@ -54,7 +62,7 @@ h4{
     font-size: 0.75rem;
 
 }
-#content div{
+.form div{
     text-align:center;
 }
 .form{
@@ -63,11 +71,12 @@ h4{
 }
 .form h5 {
     margin-top: 2%;
+    margin-left:15%;
 }
 #content span{
     position: absolute;
-    top: 27%;
-    right: 34%;
+    top: 33%;
+    right: 18%;
     color: rgb(95,134,151);
 
 }
@@ -89,49 +98,71 @@ h4{
     background-color: rgb(32,157,231);
     border-radius: 6px;
     border: none;
+    margin-left:15%;
     margin-top: 15%;
     font-size: 1rem;
     color: #fff;
 
 }
-.weui_tabbar{
-    height: 2.75rem;
-    background-color: #fff;
 
-}
-.weui_tabbar_item.weui_bar_item_on img{
-    margin-top: 0.25rem;
-    margin-left: 33%;
-    height: 1.75rem;
-    width: 1.5rem;
-
-}
-.weui_tabbar_item img{
-    margin-top: 0.25rem;
-    margin-left:23%;
-    height:1.75rem;
-    width:2.5rem;
-
-
-}
-.weui_tabbar_item.weui_bar_item_on b{
-    float: right;
-    border: 1px solid rgb(209,209,209);
-    height: 1.75rem;
-    margin-top: 0.25rem;
-}
-.weui_tabbar_item b{
-    float: right;
-    border: 1px solid rgb(209,209,209);
-    height: 1.75rem;
-    margin-top: 0.25rem;
-
-
-}
 
 #Rightimg {
-    transition: All 0.4s ease-in-out;
+    transition: All 1s ease;
     }
 .transform{
     transform: rotate(360deg);
+}
+.nav{
+    height:2.75rem;
+    border-top:1px solid #ddd;
+    width:100%;
+    margin: auto;
+    padding:0;
+    font-size:14px;
+    position:fixed;
+    z-index:999;
+    bottom:0px;
+    left:0;
+    right:0;
+}
+.nav li{
+    width:25%;
+    float:left;
+    list-style:none;
+    text-align:center;
+
+}
+.img1{
+    width: 33%;
+    margin-top: 9%;
+
+}
+.img2{
+    width: 51%;
+    margin-top: 12%;
+
+}
+.img3{
+    width: 60%;
+    margin-top: 14%;
+
+}
+.img4{
+    width: 59%;
+    margin-top: 16%;
+}
+.nav li b{
+    float: right;
+    margin-top: 14%;
+    height: 1.5rem;
+    border: 1px solid #ddd;
+
+}
+.link{
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid red;
+
 }

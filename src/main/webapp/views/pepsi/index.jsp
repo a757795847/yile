@@ -27,31 +27,12 @@
         <div><a href="">非现金支付</a></div>
     </div>
 
-    <div class="weui_tabbar">
-        <a href="index.jsp" class="weui_tabbar_item weui_bar_item_on">
-            <div>
-                <img src="../../img/09.png" class="img-responsive">
-                <b></b>
-            </div>
-        </a>
-        <a href="" class="weui_tabbar_item">
-            <div>
-                <img src="../../img/10.png" class="img-responsive">
-                <b></b>
-            </div>
-        </a>
-        <a href="#tab3" class="weui_tabbar_item">
-            <div>
-                <img src="../../img/11.png" class="img-responsive">
-                <b></b>
-            </div>
-        </a>
-        <a href="#tab4" class="weui_tabbar_item cash">
-            <div>
-                <img src="../../img/12.png" class="img-responsive">
-            </div>
-        </a>
-    </div>
+    <ul class="nav">
+        <li><a href="/home"><img src="../../img/16.png" class="img1"></a> <b></b></li>
+        <li><a href="#"><img src="../../img/10.png" class="img2"></a> <b></b></li>
+        <li><a href="/device"><img src="../../img/11.png" class="img3"></a> <b></b></li>
+        <li><a href="#"><img src="../../img/12.png" class="img4"></a></li>
+    </ul>
 
 </body>
 </html>
