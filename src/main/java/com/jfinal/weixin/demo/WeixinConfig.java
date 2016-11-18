@@ -56,7 +56,7 @@ public class WeixinConfig extends JFinalConfig {
     public void configRoute(Routes me) {
         me.add("/", IndexController.class, "/index");
         me.add("/oauth2", RedirectUri.class);
-        me.add("/login", LoginController.class, "/views/pepsi");
+//        me.add("/login", LoginController.class, "/views/pepsi");
         me.add("/home", HomePageController.class, "/views/pepsi");
         me.add("/captcha", VerificationCodeController.class); //验证码
         me.add("/device", DeviceController.class, "/views/pepsi");//上位机
@@ -89,24 +89,8 @@ public class WeixinConfig extends JFinalConfig {
 
         arp.addMapping("vmmisuser", "userid", Vmmisuser.class);
         arp.addMapping("vmcustomerinfo", "id", Vmcustomerinfo.class);
-//        arp.addMapping("user", "id", User.class);
 
-//        C3p0Plugin c3p0Plugin = new C3p0Plugin(PropKit.get("jdbc:mysql://localhost/jfinal_demo"), PropKit.get("root"), PropKit.get("123"), PropKit.get("driver"));
-//        ActiveRecordPlugin arp = new ActiveRecordPlugin(c3p0Plugin);
-//        arp.setShowSql(true);
-//        arp.addMapping("user", "id", User.class);
-//        me.add(c3p0Plugin);
-//        me.add(arp);
-//        arp.setDialect(new PostgreSqlDialect());
 
-        // C3p0Plugin c3p0Plugin = new C3p0Plugin(PropKit.get("jdbcUrl"), PropKit.get("user"), PropKit.get("password").trim());
-        // me.add(c3p0Plugin);
-
-        // EhCachePlugin ecp = new EhCachePlugin();
-        // me.add(ecp);
-
-        // RedisPlugin redisPlugin = new RedisPlugin("weixin", "127.0.0.1");
-        // me.add(redisPlugin);
     }
 
     public void configInterceptor(Interceptors me) {
