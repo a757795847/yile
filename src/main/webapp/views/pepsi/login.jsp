@@ -25,14 +25,13 @@
 
     </div>
     <div class="form-group">
-        <img src="../../img/03.png" class="pass">
+         <img src="../../img/03.png" class="pass">
         <input id="password" class="form-control" type="password" size="15"
                placeholder="密码"/>
     </div>
     <div id="yanzheng">
         <input  id="code" type="text"class="form-control" placeholder="验证码"><b></b>
         <img src="/captcha" class="Image">
-
     </div>
     <ul class="list">
         <li>
@@ -45,7 +44,7 @@
         </li>
     </ul>
 
-    <button type="button" class="btn btn-default" id="btn">登录</button>
+    <button type="button" id="btn">登录</button>
 
 </div>
 <script src="../../js/jquery.min.js"></script>
