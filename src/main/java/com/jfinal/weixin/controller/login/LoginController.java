@@ -26,9 +26,9 @@ public class LoginController extends ApiController {
         return WeixinUtil.getApiConfig();
     }
 
-    @ActionKey("/login")
+//    @ActionKey("/login")
     @Before(UserAuthInterceptor.class)
-    public void login() {
+    public void index() {
         render("/views/pepsi/login.jsp");
     }
 
