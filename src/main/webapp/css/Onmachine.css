@@ -113,6 +113,7 @@ h4{
     transform: rotate(360deg);
 }
 .nav{
+    background: #fff;
     height:2.75rem;
     border-top:1px solid #ddd;
     width:100%;

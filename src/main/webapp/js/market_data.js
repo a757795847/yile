@@ -1,60 +1,27 @@
-(function($){
-    $(document.body).infinite(50);
-    $('.tabContent').on('touchstart',function(){
-        function showTab(){
-            $('.showBtn').find('img').css({
-                'transform':'rotateX(0deg)',
-                'transform-origin':'50% 50%'
-            })
-            $('.hideTab').css({
-                'opacity':0,
-                'transition':'opacity 0s'
-            })
-            $('.hideTab li').css({
-                'height':0,
-                'transition':'height 0.2s'
-            })
+(function ($) {
+    tab('#content');
+    var market = '';
+    for(var i=0;i<22;i++){
+        market += '<div class="tabContent"><div class="showTab"><ul><li>EBFA2C161971</li><li>2016-07-20 08:20:03</li><li>轨道</li><li>62</li>';
+        market += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>名称</li><li>进价</li>';
+        market += '<li>价格</li><li>支付方式</li><li></li></ul><ul><li>雪碧330ml</li><li>1.92</li><li>3.0</li>';
+        market += '<li class="minWord">支付宝:4007762001<br/>201610086139752107</li><li></li></ul></div></div>';
 
-        }
+    }
 
-        var hideTab = $(this).find('.hideTab');
-        if(hideTab.css('opacity') == 0){
-            showTab();
-            $(this).find('img').css({
-                'transform':'rotateX(180deg)',
-                'transform-origin':'50% 50%'
-            })
-            hideTab.css({
-                'opacity':1,
-                'top':'2.8125rem',
-                'position':'initial',
-                'transition': 'opacity .25s',
-            });
-            hideTab.find('li').css({
-                'height':'1.406rem',
-                'transition':'height .25s'
-            })
+    //$('.weui-infinite-scroll').before(market);
 
-        }else{
-            $(this).find('img').css({
-                'transform':'rotateX(0deg)',
-                'transform-origin':'50% 50%'
-            })
-            showTab();
-        }
+    var loading = false;  //状态标记
+    $(document.body).infinite(60).on("infinite", function() {
+        console.log('到底啦');
+        if(loading) return;
+        loading = true;
+        setTimeout(function() {
+            $('.weui-infinite-scroll').before(market);
 
-    })
-
-
-    // var loading = false;  //状态标记
-    // $(document.body).infinite().on("infinite", function() {
-    //     console.log('到底啦');
-    //     if(loading) return;
-    //     loading = true;
-    //     setTimeout(function() {
-    //         $("#list").append("<p> 我是新加载的内容 </p>");
-    //         loading = false;
-    //     }, 1500);   //模拟延迟
-    // });
-    
+            //$(document.body).destroyInfinite();
+            //$('.weui-infinite-scroll').css('display','none');
+            loading = false;
+        }, 1500);   //模拟延迟
+    });
 })(jQuery)

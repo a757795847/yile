@@ -8,17 +8,21 @@
     <link rel="stylesheet" type="text/css" href="../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/tabAll.css">
     <link rel="stylesheet" type="text/css" href="../css/pay.css">
-
 </head>
 <body>
-<section>
-    <ul class="tabHeader">
-        <li>上机位</li>
-        <li>支付时间</li>
-        <li>金额</li>
-        <li>支付收单</li>
-        <li>...</li>
-    </ul>
+<header>
+    <a href="" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <strong>非现金支付记录</strong>
+    <a href="" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
+</header>
+<ul class="tabHeader">
+    <li>上机位</li>
+    <li>支付时间</li>
+    <li>金额</li>
+    <li>支付收单</li>
+    <li>...</li>
+</ul>
+<section id="content">
     <div class="tabContent">
         <div class="showTab">
             <ul>
@@ -26,7 +30,7 @@
                 <li>07-20 08:20:03</li>
                 <li>2.0</li>
                 <li>微信—福建市丰大</li>
-                <li class="showBtn"><img src="../img/手机版后台界面- 蓝色-18.png" alt="下拉"></li>
+                <li class="showBtn"><img src="../img/18.png" alt="下拉"></li>
             </ul>
         </div>
         <div class="hideTab">
@@ -53,7 +57,7 @@
                 <li>07-20 08:20:03</li>
                 <li>2.0</li>
                 <li>微信—福建市丰大</li>
-                <li class="showBtn"><img src="../img/手机版后台界面- 蓝色-18.png" alt="下拉"></li>
+                <li class="showBtn"><img src="../img/18.png" alt="下拉"></li>
             </ul>
         </div>
         <div class="hideTab">
@@ -73,14 +77,21 @@
             </ul>
         </div>
     </div>
-
+    <div class="weui-infinite-scroll">
+        <div class="infinite-preloader"></div><!-- 菊花 -->
+        正在加载... <!-- 文案，可以自行修改 -->
+    </div>
 </section>
-<div class="weui-infinite-scroll">
-    <div class="infinite-preloader"></div><!-- 菊花 -->
-    正在加载... <!-- 文案，可以自行修改 -->
-</div>
+
+<ul class="nav">
+    <li><a href="/home"><img src="../img/09.png" class="img1"></a> <b></b></li>
+    <li><a href="#"><img src="../img/10.png" class="img2"></a> <b></b></li>
+    <li><a href="/device"><img src="../img/11.png" class="img3"></a> <b></b></li>
+    <li><a href="#"><img src="../img/13.png" class="img4"></a></li>
+</ul>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
-<script type="text/javascript" src="../js/market_data.js"></script>
+<script type="text/javascript" src="../js/tab_data.js"></script>
+<script type="text/javascript" src="../js/pay.js"></script>
 </body>
 </html>

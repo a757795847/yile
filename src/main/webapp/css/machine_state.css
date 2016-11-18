@@ -1,6 +1,11 @@
+#drink,#coffee{
+    display: none;
+}
+
 .tabHeader li {
     font-size: 0.56rem;
 }
+
 
 .tabHeader li:first-child, .tabContent li:first-child {
     width: 20%;
@@ -29,7 +34,7 @@
 .showTab li {
     font-size: 0.45rem;
 }
-
+/*图标*/
 .showTab .internetOn {
     padding-left: 0.938rem;
     font-size: 0.488rem;
@@ -111,7 +116,7 @@
 #coffee .hideTab ul:nth-child(5) li:first-child , #coffee .hideTab ul:last-child li:first-child{
     width: 41%;
 }
-@media (min-width: 320px) and (max-width: 360px) {
+@media screen and (max-width: 360px) {
     .tabHeader li {
         font-size: 0.5rem;
     }
@@ -126,10 +131,61 @@
         font-size: 0.45rem;
     }
     html body .tabContent .minWord {
-        font-size: 0.45rem!important;
+        font-size: 0.4rem!important;
     }
     .showTab li {
         font-size: 0.4rem;
+    }
+}
+
+/*header*/
+
+.machineHeader{
+    width: 12rem;
+    display: inline-block;
+    margin-top: 0.45rem;
+    height: 1.2rem;
+    border: 0.09rem solid #fff;
+    border-radius: 0.3rem;
+}
+.machineHeader li {
+    width: 3.96rem;
+    font-size: 0.656rem;
+    height: 100%;
+    text-align: center;
+    line-height: 1.2rem;
+    font-weight: inherit;
+    box-sizing: border-box;
+    color: #fff;
+    border-right: none;
+    border-bottom: none;
+    position: relative;
+}
+.machineHeader .borderLeft:before{
+    content: '';
+    display: block;
+    background: #fff;
+    position: absolute;
+    right: 0;
+    top: 0.2rem;
+    width: 0.05rem;
+    height: 0.8rem;
+}
+.machineHeader .active{
+    background: #fff;
+    width: 33.35%;
+    border-radius: 3px;
+    color:rgb(32,159,234);
+}
+@media screen and (max-width: 320px) {
+    .machineHeader{
+        width: 10rem;
+    }
+    .machineHeader li{
+        width: 3.299rem;
+    }
+    .machineHeader .active{
+        width: 33.37%;
     }
 }
 
