@@ -93,7 +93,6 @@ public class WeixinConfig extends JFinalConfig {
         arp.addMapping("androidtrackka", "deviceid", Androidtrackka.class);
 
 
-
     }
 
     public void configInterceptor(Interceptors me) {
