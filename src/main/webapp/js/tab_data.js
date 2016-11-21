@@ -46,9 +46,7 @@ function tab(tab) {
 }
 
 $(window).scroll(function(){
-    mTop = $('.tabHeader').offsetTop;
     sTop = $(window).scrollTop();
-    result = mTop - sTop;
     if(sTop > 40){
         $('.tabHeader').addClass('tabHeaderPosition');
     }else if(sTop < 40){

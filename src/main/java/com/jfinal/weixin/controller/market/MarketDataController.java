@@ -14,7 +14,7 @@ public class MarketDataController extends ApiController {
     }
 
     public void index(){
-        render("market_data.html");
+        render("market_data.jsp");
     }
 
 }

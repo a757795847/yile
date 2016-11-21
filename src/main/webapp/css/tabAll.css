@@ -15,6 +15,7 @@ ul li {
     border-right: 1px solid rgb(127, 201, 242);
     border-bottom: 1px solid rgb(127, 201, 242);
     height: 100%;
+    padding: 0 0.1rem;
 }
 
 ul li:last-child {
