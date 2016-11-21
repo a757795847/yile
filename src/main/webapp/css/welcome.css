@@ -137,15 +137,13 @@ input[type=checkbox]:checked+span {
 
 }
 .list img{
+    display:none;
     width:0.75rem;
     position:absolute;
     top:0;
     left:7%;
 }
-.block{
-    display:none;
 
-}
 
 
 

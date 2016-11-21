@@ -1,15 +1,28 @@
 var remember = $("#checkpass").is(":checked");
-var automatic = $("#checklogin").is(":checked");
+console.log(remember);
     $("#checkpass").click(function(){
-        console.log('44');
-        if(remember){
-            $("image1").addClass("block");
-        }else{
-            $("image1").removeClass("block");
-            console.log('11');
-        }
-
+            if(remember){
+                $('#image1').hide();
+                remember=false;
+            }else{
+                $('#image1').show();
+                remember = true;
+            }
+        console.log(remember);
     });
+
+$("#image1").click(function(){
+    if(remember){
+        $('#image1').hide();
+        remember=false;
+    }else{
+        $('#image1').show();
+        remember = true;
+    }
+    console.log(remember);
+});
+
+
     var uName=$.cookie('yonghuming');
     var psw=$.cookie('mima');
     console.log(uName);
@@ -17,9 +30,10 @@ var automatic = $("#checklogin").is(":checked");
     $('#username').val(uName);
     $('#password').val(psw);
     if(uName != null && uName != '' && psw != null && psw != '') {//选中保存秘密的复选框
-        console.log('1')
-        $("#polaris-checkbox-1").attr('checked', true);
-       $(".icheckbox_polaris").addClass("checked");
+        console.log('1');
+        remember=true;
+        console.log(remember);
+         $('#image1').show();
 
     }
 
@@ -30,8 +44,8 @@ var automatic = $("#checklogin").is(":checked");
         var username = $('#username').val();
         var password = $('#password').val();
         var code=$("#code").val();
-        var remember = $("#hehe").is(":checked");
-        var automatic = $("#jiji").is(":checked");
+
+        var automatic = $("#checklogin").is(":checked");
 
         console.log(remember);
 
@@ -41,8 +55,8 @@ var automatic = $("#checklogin").is(":checked");
             $.cookie('yonghuming',username, {expires:7,path:'/'});
             $.cookie('mima',password, {expires:7,path:'/'});
         }else{//删除cookie
-            $.cookie('username', '', { expires: -1, path: '/' });
-            $.cookie('password', '', { expires: -1, path: '/' });
+            $.cookie('yonghuming', '', { expires: -1, path: '/' });
+            $.cookie('mima', '', { expires: -1, path: '/' });
         }
 
 
@@ -84,7 +98,7 @@ var automatic = $("#checklogin").is(":checked");
                         // location.href = data.requestPathA;
                     },
                     error: function (jqXHR) {
-                        if (jqXHR.status == 400) {
+                        if (jqXHR.status == 400){
 
                         }
                     }

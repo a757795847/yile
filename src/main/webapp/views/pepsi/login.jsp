@@ -36,7 +36,7 @@
     <ul class="list">
         <li>
             <label>
-                <input type="checkbox" class="hidden-input" id="checkpass" checked="checked"/>
+                <input type="checkbox" class="hidden-input" id="checkpass"/>
                 <span class="your style about checkbox"></span>
                 <span class="talk">记住密码</span>
             </label>
