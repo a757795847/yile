@@ -1,0 +1,95 @@
+
+.tabHeader li:first-child, .tabContent li:first-child {
+    width: 30%;
+}
+
+.tabHeader li:nth-child(2), .tabContent li:nth-child(2) {
+    width: 30%;
+}
+
+.tabHeader li:nth-child(3), .tabContent li:nth-child(3) {
+    width: 9%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.tabHeader li:nth-child(4), .tabContent li:nth-child(4) {
+    width: 26%;
+}
+
+.tabHeader li:last-child, .tabContent li:last-child {
+    width: 5%;
+}
+.tabContent li:first-child {
+    font-size: 0.45rem;
+    line-height: 0.703rem;
+}
+.hideTab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .25s;
+}
+
+.hideTab li {
+    height: 0;
+
+}
+
+.tabContent .hideTab ul li {
+    border-right: 1px solid rgb(177, 225, 248);
+    border-bottom: 1px solid rgb(177, 225, 248);
+}
+
+.tabContent .hideTab ul li:last-child {
+    border-right: none;
+}
+
+.tabContent .hideTab ul:first-child li {
+    background: rgb(204, 236, 252);
+    font-size: 0.563rem;
+    font-weight: 300;
+    border-bottom: none;
+    line-height: 1.41rem;
+}
+
+.tabContent .hideTab ul:first-child li:last-child {
+    background: none;
+}
+
+.tabContent .hideTab ul:last-child li {
+    font-size: 0.51rem;
+}
+.tabContent .hideTab ul:last-child li:first-child,.tabContent .hideTab ul:last-child li:nth-child(2){
+    line-height: 0.72rem;
+    word-wrap: break-word;
+    padding: 0 0.281rem;
+}
+.tabContent .hideTab ul:last-child li:nth-child(4) {
+    line-height: 1.41rem;
+}
+.tabContent .showTab .minName{
+    font-size: 0.56rem;
+    line-height: 1.41rem;
+}
+
+.tabContent .hideTab .retreat{
+    background: url("../img/stop.png") no-repeat;
+    background-size: 0.563rem 0.563rem;
+    background-position: 0.66rem;
+}
+@media (min-width: 320px) and (max-width: 320px) {
+    .tabContent .hideTab ul:first-child li {
+        font-size: 0.5rem;
+    }
+    html body .tabContent .minWord {
+        font-size: 0.43rem!important;
+    }
+    .tabContent .hideTab .retreat{
+        background: url("../img/stop.png") no-repeat;
+        background-size: 0.563rem 0.563rem;
+        background-position: 0.3rem;
+    }
+}

@@ -25,7 +25,7 @@ public class GeneralStatusController extends ApiController {
 
     @ActionKey("/machine/integrated")
     public void integrated(){
-        render("");
+        render("machine_state.jsp");
     }
 
     @ActionKey("/machine/drinks")
