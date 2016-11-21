@@ -15,6 +15,8 @@ import com.jfinal.weixin.controller.*;
 import com.jfinal.weixin.controller.login.LoginController;
 import com.jfinal.weixin.controller.login.VerificationCodeController;
 import com.jfinal.weixin.controller.market.MarketDataController;
+import com.jfinal.weixin.models.Androidsetpara;
+import com.jfinal.weixin.models.Androidvmuserinfo;
 import com.jfinal.weixin.models.Vmcustomerinfo;
 import com.jfinal.weixin.models.Vmmisuser;
 import com.jfinal.weixin.sdk.api.ApiConfigKit;
@@ -89,6 +91,9 @@ public class WeixinConfig extends JFinalConfig {
 
         arp.addMapping("vmmisuser", "userid", Vmmisuser.class);
         arp.addMapping("vmcustomerinfo", "id", Vmcustomerinfo.class);
+        arp.addMapping("androidsetpara", "deviceid", Androidsetpara.class);
+        arp.addMapping("androidvmuserinfo", "deviceid", Androidvmuserinfo.class);
+
 
 
     }
