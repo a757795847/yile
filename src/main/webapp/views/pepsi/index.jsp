@@ -34,5 +34,7 @@
         <li><a href="#"><img src="../../img/12.png" class="img4"></a></li>
     </ul>
 
+
+    <script src="../../js/index.js"></script>
 </body>
 </html>

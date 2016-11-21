@@ -35,22 +35,33 @@
     </div>
     <ul class="list">
         <li>
-            <input type="checkbox" id="polaris-checkbox-1">
-            <label for="polaris-checkbox-1">记住密码</label>
+            <label>
+                <input type="checkbox" class="hidden-input" id="checkpass" checked="checked"/>
+                <span class="your style about checkbox"></span>
+                <span class="talk">记住密码</span>
+            </label>
+            <img src="../../img/133.jpg" id="image1">
         </li>
         <li>
-            <input type="checkbox" id="polaris-checkbox-2">
-            <label for="polaris-checkbox-2">自动登录</label>
+            <label>
+                <input type="checkbox" class="hidden-input" id="checklogin" />
+                <span class="your style about checkbox"></span>
+                <span class="talk">自动登录</span>
+            </label>
+            <img src="../../img/133.jpg" id="image2">
         </li>
     </ul>
 
     <button type="button" id="btn">登录</button>
 
+
 </div>
 <script src="../../js/jquery.min.js"></script>
 <script src="../../js/jquery-weui.min.js"></script>
 <script src="../../js/icheck.js"></script>
+<script src="../../js/jquery.cookie.js"></script>
 <script src="../../js/welcome.js"></script>
+
 
 
 </body>
