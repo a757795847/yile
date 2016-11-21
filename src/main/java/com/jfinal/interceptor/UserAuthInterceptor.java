@@ -19,6 +19,7 @@ public class UserAuthInterceptor implements Interceptor {
             if (debug) {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
+                System.out.println("requestPathA: " + requestPathA);
                 controller.setSessionAttr("userId", "72");
                 controller.setSessionAttr("openId", "oLCXfwmSwiAfcgiEyJoy6RY3i24s");
                 controller.setSessionAttr("token", "S4bapYUP6IhaZTXSZuz8XA1x6t2h6MWxJYTCbj2aBw_ODMaSMEd2-XqvdJNBQX-DyYVntPtYygujESeopcASsyqYI211gyBgqV523bzz4c");
