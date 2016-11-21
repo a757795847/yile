@@ -35,6 +35,19 @@
     </ul>
 
 
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-weui.min.js"></script>
     <script src="../../js/index.js"></script>
+    <script>
+        $.ajax({
+            type: 'GET',
+            url: '/home',
+            dataType: 'json',
+            success: function (data){
+                console.log(data);
+            }
+        });
+
+    </script>
 </body>
 </html>
