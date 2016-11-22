@@ -199,8 +199,15 @@ public class IntegratedMachineController extends ApiController {
         mapData.put("deviceid", data.get(0).get("deviceid").toString()); //设备id
         mapData.put("vmname", data.get(0).get("vmname").toString()); //机器名称
         mapData.put("lastnettime", data.get(0).get("lastnettime").toString()); //联网状态
-        mapData.put("billstatus/coinstratus", billstatus + "/" + coinstatus); //纸币/硬币找零
-        mapData.put("coin1yuan/coin5jiao", coin1yuan + "/" + coin5jiao); //钱箱(1元/五角)
+
+//        mapData.put("billstatus/coinstatus", billstatus + "/" + coinstatus); //纸币/硬币找零
+//        mapData.put("coin1yuan/coin5jiao", coin1yuan + "/" + coin5jiao); //钱箱(1元/五角)
+
+        mapData.put("billstatus", billstatus); //纸币
+        mapData.put("coinstatus", coinstatus); //硬币找零
+        mapData.put("coin1yuan", coin1yuan); //钱箱(1元)
+        mapData.put("coin5jiao", coin5jiao); //钱箱(五角)
+
         mapData.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
         mapData.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
         mapData.put("kucunNum", kucunNum + ""); //库存(故障)
@@ -209,6 +216,7 @@ public class IntegratedMachineController extends ApiController {
         mapData.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
 
         renderJson("mapData", mapData);
+
     }
 
     public String transformVM(String str) {
