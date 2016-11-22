@@ -15,10 +15,10 @@ public class TestController extends ApiController {
         return WeixinUtil.getApiConfig();
     }
 
-    @Before(UserAuthInterceptor.class)
+//    @Before(UserAuthInterceptor.class)
     public void index(){
         String userId = getSessionAttr("userId");
         setAttr("test", userId);
-        render("/jsp/login.jsp");
+        render("/index/index.jsp");
     }
 }
