@@ -15,7 +15,7 @@
 <header>
     <a href=""><img src="../../img/07.png" class="img-responsive" id="Leftimg"></a>
         <p>新增上位机</p>
-    <a href="#"><img src="../../img/08.png" class="img-responsive" id="Rightimg"></a>
+    <a href=""><img src="../../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
     <div id="index">
         <div id="content">
@@ -30,46 +30,7 @@
                 </div>
                     <h5>自动售货机型号</h5>
                     <div class="vending">
-
-                <select class="form-control select2" id="model">
-                    <option selected="selected">F302</option>
-                    <option>F303</option>
-                    <option>F303P-A</option>
-                    <option>F303P-B</option>
-                    <option>F303V</option>
-                    <option>F305</option>
-                    <option>F305T</option>
-                    <option>F306-DX</option>
-                    <option>F306-GX</option>
-                    <option>F306-HX</option>
-                    <option>F307</option>
-                    <option>F308-A</option>
-                    <option>F308-B</option>
-                    <option>F308-C</option>
-                    <option>LF-306D-17G</option>
-                    <option>LF-306D-22G</option>
-                    <option>LF-306D-32G</option>
-                    <option>LJ-503</option>
-                    <option>LV-205-46G</option>
-                    <option>LV-205A</option>
-                    <option>LV-205C-17</option>
-                    <option>LV-205F-A</option>
-                    <option>FLV-205F-B</option>
-                    <option>LV-205F-JJ</option>
-                    <option>LV-205F-JJ-B</option>
-                    <option>LV-205L-610A</option>
-                    <option>LV-205L-610B</option>
-                    <option>LV-205L610</option>
-                    <option>LV-209</option>
-                    <option>LV-32G-50</option>
-                    <option>LV-WG01</option>
-                    <option> LV-X01</option>
-                    <option>LV-X02</option>
-                    <option>LV205Y-46G</option>
-                    <option>LV206-03</option>
-                    <option>LV206-A</option>
-                    <option>LV206-B</option>
-                </select>
+                        <input type="text" id="model">
                         <span class="think"></span>
                     </div><h5>启用日</h5>
                     <div>
@@ -80,7 +41,6 @@
             </div>
 
         </div>
-
     </div>
     <ul class="nav">
         <li><a href="/home"><img src="../../img/09.png" class="img1"></a> <b></b></li>

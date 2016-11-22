@@ -84,7 +84,7 @@ public class LoginController extends ApiController {
 
                         //记住密码
                         setCookie("username", userName, 1209600);
-                        setCookie("password", new String(result), 1209600);
+//                        setCookie("password", new String(result), 1209600);
                     }
                     String AutomaticLogin = getPara("AutomaticLogin");
                     if (StrKit.notBlank(AutomaticLogin)) {
@@ -101,10 +101,10 @@ public class LoginController extends ApiController {
                     System.out.println("requestPathA: " + requestPathA);
 
 
-                    if ("http://localhost:8088/login".equals(requestPathA) || "http://wechat.izhuiyou.com/login".equals(requestPathA)) {
-                        render("/views/pepsi/index.jsp");
+                    if ("http://localhost:8080/login".equals(requestPathA) || "http://wechat.izhuiyou.com/login".equals(requestPathA)) {
+                        renderJson("requestPathA", "http://localhost:8080/home");
                     } else {
-                        renderJson("requestPathA", requestPathA);
+                        renderJson("requestPathA", getSessionAttr("requestPathA"));
                     }
 
 
