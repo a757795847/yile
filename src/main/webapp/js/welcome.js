@@ -22,7 +22,6 @@ $("#image1").click(function(){
     console.log(remember);
 });
 
-
     var uName=$.cookie('yonghuming');
     var psw=$.cookie('mima');
     console.log(uName);

@@ -2,7 +2,7 @@ $(document).ready(function (){
    var session = $("#session").val();
     console.log(session);
 
-    if(session ==false){
+    if(session == 'false'){
   $(".topLog").remove();
   $("#addtopLog").remove();
     $(".nav li").css("width","33%");
