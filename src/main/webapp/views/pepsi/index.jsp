@@ -1,5 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en">
 <head>
@@ -33,6 +40,11 @@
         <li><a href="/device"><img src="../../img/11.png" class="img3"></a> <b></b></li>
         <li><a href="#"><img src="../../img/12.png" class="img4"></a></li>
     </ul>
+
+
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-weui.min.js"></script>
+    <script src="../../js/index.js"></script>
 
 </body>
 </html>

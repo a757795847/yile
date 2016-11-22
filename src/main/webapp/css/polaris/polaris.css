@@ -37,9 +37,7 @@
     .iradio_polaris.hover {
         background-position: -186px 0;
     }
-    .iradio_polaris.checked {
-        background-position: -217px 0;
-    }
+
     .iradio_polaris.disabled {
         background-position: -248px 0;
         cursor: default;

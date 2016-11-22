@@ -70,7 +70,7 @@
                     <option>LV206-A</option>
                     <option>LV206-B</option>
                 </select>
-                        <span class="link"></span>
+                        <span class="think"></span>
                     </div><h5>启用日</h5>
                     <div>
 

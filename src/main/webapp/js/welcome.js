@@ -1,54 +1,122 @@
-$(document).ready(function(){
-    $('.list input').iCheck({
-        checkboxClass: 'icheckbox_polaris',
-        radioClass: 'iradio_polaris',
-        increaseArea: '-10%'
+var remember = $("#checkpass").is(":checked");
+console.log(remember);
+    $("#checkpass").click(function(){
+            if(remember){
+                $('#image1').hide();
+                remember=false;
+            }else{
+                $('#image1').show();
+                remember = true;
+            }
+        console.log(remember);
     });
+
+$("#image1").click(function(){
+    if(remember){
+        $('#image1').hide();
+        remember=false;
+    }else{
+        $('#image1').show();
+        remember = true;
+    }
+    console.log(remember);
+});
+
+
+    var uName=$.cookie('yonghuming');
+    var psw=$.cookie('mima');
+    console.log(uName);
+    console.log(psw);
+    $('#username').val(uName);
+    $('#password').val(psw);
+    if(uName != null && uName != '' && psw != null && psw != '') {//选中保存秘密的复选框
+        console.log('1');
+        remember=true;
+        console.log(remember);
+         $('#image1').show();
+
+    }
+
+
+
+
     $('#btn').on('click', function () {
         var username = $('#username').val();
         var password = $('#password').val();
         var code=$("#code").val();
-        var remember = $("#polaris-checkbox-1").is(":checked");
-        var automatic = $("#polaris-checkbox-2").is(":checked");
-        console.log(username)
-        console.log(password)
-        $.ajax({
-            type: 'POST',
-            url: '/login',
-            data: {
-                'username': username,
-                'password': password,
-                'captcha':code,
-                'AutomaticLogin':automatic,
-                'RememberPwd':remember
-            },
-            dataType: 'json',
-            success: function (data) {
-                if(data.msg_error=='验证码错误'){
-                    $.alert('验证码错误');
-                }else if(data.psd_beyond=='该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！'){
-                    $.alert('该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！');
-                }else if(data.user_disable=='该用户已被停用!'){
-                    $.alert('该用户已被停用!');
-                }else{
-                    $.alert(' 请输入验证码');
 
-                }
+        var automatic = $("#checklogin").is(":checked");
+
+        console.log(remember);
+
+        if(remember == true){//保存密码
+            console.log(username);
+            console.log(remember);
+            $.cookie('yonghuming',username, {expires:7,path:'/'});
+            $.cookie('mima',password, {expires:7,path:'/'});
+        }else{//删除cookie
+            $.cookie('yonghuming', '', { expires: -1, path: '/' });
+            $.cookie('mima', '', { expires: -1, path: '/' });
+        }
 
 
 
-                // if(data.msg_error){
 
-                // }
 
-                // location.href = data.requestPathA;
-            },
-            error: function (jqXHR) {
-                if (jqXHR.status == 400) {
+        // console.log(username);
+        // console.log(remember);
+            if(username==""||password==""){
+                $.alert(' 请输入用户名或密码');
+            }else if(code==""){
+                $.alert(' 请输入验证码');
+            }else {
+                $.ajax({
+                    type: 'POST',
+                    url: '/login',
+                    data: {
+                        'username': username,
+                        'password': password,
+                        'captcha': code,
+                        'AutomaticLogin': automatic,
+                        'RememberPwd': remember
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.msg_error == '验证码错误') {
+                            $.alert('验证码错误');
+                        } else if (data.psd_beyond == '该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！') {
+                            $.alert('该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！');
+                        } else if (data.user_disable == '该用户已被停用!') {
+                            $.alert('该用户已被停用!');
+                        }
 
-                }
+
+                        // if(data.msg_error){
+
+                        // }
+
+                        // location.href = data.requestPathA;
+                    },
+                    error: function (jqXHR) {
+                        if (jqXHR.status == 400){
+
+                        }
+                    }
+                })
             }
-        })
-    })
+    });
+
+
+
+$("#yanzheng").on('touchstart','.Image',function(){
+    console.log("2");
+        $(".Image").remove();
+    var date = Math.floor(Math.random()*20);
+    $("#yanzheng").append('<img src="/captcha?'+ date +'" class="Image">');
+   
+
+   
+
+
 
 });
