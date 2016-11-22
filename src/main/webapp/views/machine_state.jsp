@@ -32,94 +32,18 @@
 </ul>
 <div class="weui_tab_bd">
     <div id="synthesize" class="weui_tab_bd_item weui_tab_bd_item_active">
-
         <div class="synthesize">
-            <div class="tabContent">
-                <div class="showTab">
-                    <ul>
-                        <li><a href="#">C5A911241281</a></li>
-                        <li>sohu11栋2号门</li>
-                        <li class="internetOn">(07-17 13:21:07)</li>
-                        <li><i class="paperOn"></i>/<i class="paperOn"></i></li>
-                        <li class="showBtn"><img src="../img/18.png" alt="下拉"></li>
-                    </ul>
-                </div>
-                <div class="hideTab">
-                    <ul>
-                        <li>今日<span>(金额/次数)</span></li>
-                        <li>故障轨道</li>
-                        <li>缺货轨道</li>
-                        <li>库存<span>(故障)</span></li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li>90.0/25</li>
-                        <li>7</li>
-                        <li>3</li>
-                        <li>225(2)</li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li>柜子/连体箱</li>
-                        <li>版本</li>
-                        <li>钱箱</li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li>ABC</li>
-                        <li>7寸综合/1.4.6</li>
-                        <li>1元:20个; 5角:10个</li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="tabContent">
-                <div class="showTab">
-                    <ul>
-                        <li><a href="#">C5A911241281</a></li>
-                        <li>sohu11栋2号门</li>
-                        <li class="internetOff">(07-17 13:21:07)</li>
-                        <li><i class="paperOn"></i>/<i class="metalOff"></i></li>
-                        <li class="showBtn"><img src="../img/18.png" alt="下拉"></li>
-                    </ul>
-                </div>
-                <div class="hideTab">
-                    <ul>
-                        <li>今日<span>(金额/次数)</span></li>
-                        <li>故障轨道</li>
-                        <li>缺货轨道</li>
-                        <li>库存<span>(故障)</span></li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li>90.0/25</li>
-                        <li>7</li>
-                        <li>3</li>
-                        <li>225(2)</li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li>柜子/连体箱</li>
-                        <li>版本</li>
-                        <li>钱箱</li>
-                        <li></li>
-                    </ul>
-                    <ul>
-                        <li>ABC</li>
-                        <li>7寸综合/1.4.6</li>
-                        <li>1元:20个; 5角:10个</li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
+
         </div>
         <div class="weui-infinite-scroll">
             <div class="infinite-preloader"></div>
             正在加载...
         </div>
+        <div id="noContent">
+            -----------<span>没有内容了</span>-----------
+        </div>
     </div>
     <div id="drink" class="weui_tab_bd_item weui_tab_bd_item_active">
-
         <div class="drink">
             <div class="tabContent">
                     <div class="showTab">
@@ -238,7 +162,6 @@
         </div>
     </div>
     <div id="coffee" class="weui_tab_bd_item weui_tab_bd_item_active">
-
         <div class="coffee">
             <div class="tabContent">
                 <div class="showTab">
@@ -261,7 +184,7 @@
                     <ul>
                         <li>10/20</li>
                         <li>308-C</li>
-                        <li class="minWord">outcoffee命令发送3次对方无应答</li>
+                        <li><p class="minWord">outcoffee命令发送3次对方无应答</p></li>
                         <li>0</li>
                         <li></li>
                     </ul>
@@ -274,7 +197,7 @@
                     </ul>
                     <ul>
                         <li>90/18</li>
-                        <li class="minWord">红茶/牛奶/白咖啡/巧克力/糖</li>
+                        <li><p class="ellipsisWord">红茶/牛奶/白咖啡/巧克力/糖/吃饭/睡觉/打豆豆</p></li>
                         <li>98/95</li>
                         <li>---</li>
                         <li></li>
@@ -356,7 +279,7 @@
 
 <ul class="nav">
     <li><a href="/home"><img src="../img/09.png" class="img1"></a> <b></b></li>
-    <li><a href="#"><img src="../img/15.png" class="img2"></a> <b></b></li>
+    <li><a href="/machine/integrated"><img src="../img/15.png" class="img2"></a> <b></b></li>
     <li><a href="/device"><img src="../img/11.png" class="img3"></a> <b></b></li>
     <li><a href="#"><img src="../img/12.png" class="img4"></a></li>
 </ul>
