@@ -47,6 +47,12 @@ header{
 
 
 }
+#Rightimg {
+    transition: All 0.5s ease;
+}
+.transform{
+    transform: rotate(360deg);
+}
 a:hover {text-decoration:underline;}
 
 

@@ -11,3 +11,7 @@ $(document).ready(function (){
     $(".img2").css({"width":"41%","marginTop":"9%"});
 }
 });
+$('#Rightimg').on('touchstart',function(){
+    console.log("d");
+    $("#Rightimg").addClass("transform");
+});

@@ -150,7 +150,7 @@ h4{
     font-size:0.75rem;
 }
 #Rightimg {
-    transition: All 1s ease;
+    transition: All 0.5s ease;
     }
 .transform{
     transform: rotate(360deg);
