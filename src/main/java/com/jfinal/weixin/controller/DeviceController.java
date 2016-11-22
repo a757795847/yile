@@ -20,19 +20,25 @@ public class DeviceController extends ApiController {
 
     @Before(UserAuthInterceptor.class)
     public void index() {
-        render("onmachine.jsp");
-    }
-
-    @ActionKey("/device/name")
-    @Before(UserAuthInterceptor.class)
-    public void dname() {
-        // 新增上位机中的运行商公司名字
         String userId = getSessionAttr("userId");
         System.out.println("userId: " + userId);
         Vmmisuser vmmisuser = Vmmisuser.dao.findById(userId);
         Vmcustomerinfo vmcustomerinfo = Vmcustomerinfo.dao.findById(vmmisuser.getVmcustomerid());
         String dname = vmcustomerinfo.getName();
-        renderJson("dname", dname);
+        setSessionAttr("dname", dname);
+        render("onmachine.jsp");
     }
+
+//    @ActionKey("/device/name")
+//    @Before(UserAuthInterceptor.class)
+//    public void dname() {
+//        // 新增上位机中的运行商公司名字
+//        String userId = getSessionAttr("userId");
+//        System.out.println("userId: " + userId);
+//        Vmmisuser vmmisuser = Vmmisuser.dao.findById(userId);
+//        Vmcustomerinfo vmcustomerinfo = Vmcustomerinfo.dao.findById(vmmisuser.getVmcustomerid());
+//        String dname = vmcustomerinfo.getName();
+//        renderJson("dname", dname);
+//    }
 
 }
