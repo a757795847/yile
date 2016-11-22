@@ -64,6 +64,11 @@ public class WeixinConfig extends JFinalConfig {
         me.add("/nonCash", NonCashController.class);//非现金支付
 
 
+        me.add("/integratedMachineData", IntegratedMachineController.class);//综合机数据
+
+
+
+
         me.add("/anytest", TestController.class, "/index");
         me.add("/market", MarketDataController.class, "/views");
 
@@ -90,7 +95,16 @@ public class WeixinConfig extends JFinalConfig {
         arp.addMapping("vmcustomerinfo", "id", Vmcustomerinfo.class);
         arp.addMapping("androidsetpara", "deviceid", Androidsetpara.class);
         arp.addMapping("androidvmuserinfo", "deviceid", Androidvmuserinfo.class);
+        arp.addMapping("androidnetinfo", "deviceid", Androidnetinfo.class);
         arp.addMapping("androidtrackka", "deviceid", Androidtrackka.class);
+        arp.addMapping("androidsalelist", "deviceid", Androidsalelist.class);
+        arp.addMapping("androidnetappstart", "deviceid", Androidnetappstart.class);
+        arp.addMapping("androidcabineta", "deviceid", Androidcabineta.class);
+        arp.addMapping("androidcabinetb", "deviceid", Androidcabinetb.class);
+        arp.addMapping("androidcabinetc", "deviceid", Androidcabinetc.class);
+        arp.addMapping("androidcabinetd", "deviceid", Androidcabinetd.class);
+        arp.addMapping("androidcabinete", "deviceid", Androidcabinete.class);
+        arp.addMapping("androidtrackdouble", "deviceid", Androidtrackdouble.class);
 
 
     }
