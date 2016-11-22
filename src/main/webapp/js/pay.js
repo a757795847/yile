@@ -30,4 +30,12 @@
             loading = false;
         }, 1500);   //模拟延迟
     });
+    function minWord(data){
+        if(data.length > 20){
+            data[key] = data[key].substring(20,0)+'...';
+            return '<p class="minluoWord">'+data[key]+'</p>';
+        }else{
+            return '<p class="minWord">'+data[key]+'</p>';
+        }
+    }
 })(jQuery)

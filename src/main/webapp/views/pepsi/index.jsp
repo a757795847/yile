@@ -27,26 +27,20 @@
 <div class="header">
     <img src="../../img/04.png" class="img-responsive">
 </div>
+
     <div class="index">
         <div><a href="">总体状况及销售记录</a></div>
         <div id="addtopLog"><a href="/device">新增上位机</a></div>
         <div><a href="">非现金支付</a></div>
-
     </div>
-         <%--<div>--%>
-            <%--<%=session.getAttribute("allowsAdd");%>--%>
-        <%--</div>--%>
 
     <ul class="nav">
         <li><a href="/home"><img src="../../img/16.png" class="img1"></a> <b></b></li>
-        <li><a href="#"><img src="../../img/10.png" class="img2"></a> <b></b></li>
+        <li><a href="/machine/integrated"><img src="../../img/10.png" class="img2"></a> <b></b></li>
         <li class="topLog"><a href="/device"><img src="../../img/11.png" class="img3"></a> <b></b></li>
         <li><a href="#"><img src="../../img/12.png" class="img4"></a></li>
     </ul>
-    <%--<%--%>
-        <%--String M = session.getAttribute("allowsAdd").toString();--%>
-    <%--%>--%>
-    <input type="hidden" id="session"value="${sessionScope.allowsAdd}"/>
+
 
     <script src="../../js/jquery.min.js"></script>
     <script src="../../js/jquery-weui.min.js"></script>

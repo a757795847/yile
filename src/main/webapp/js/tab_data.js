@@ -1,5 +1,6 @@
 function tab(tab) {
-    $(tab).on('touchstart','.tabContent',function(){
+    var paX = 0,paY=0;
+    $(tab).on('click','.tabContent',function(e){
         function showTab(){
             $('.showBtn').find('img').css({
                 'transform':'rotateX(0deg)',
@@ -11,11 +12,12 @@ function tab(tab) {
             })
             $(tab).find('.hideTab li').css({
                 'height':0,
-                'transition':'height 0.2s'
+                'transition':'height 0s'
             })
 
         }
-
+        // $('.tabContent').find('.hideTab').hide();
+        // $(this).find('.hideTab').show();
         var hideTab = $(this).find('.hideTab');
         if(hideTab.css('opacity') == 0){
             showTab();
@@ -27,7 +29,7 @@ function tab(tab) {
                 'opacity':1,
                 'top':'2.8125rem',
                 'position':'initial',
-                'transition': 'opacity .25s',
+                'transition': 'opacity 0.8s',
             });
             hideTab.find('li').css({
                 'height':'1.406rem',
@@ -43,15 +45,14 @@ function tab(tab) {
         }
 
     })
+
 }
-
-$(window).scroll(function(){
-    sTop = $(window).scrollTop();
-    if(sTop > 40){
-        $('.tabHeader').addClass('tabHeaderPosition');
-    }else if(sTop < 40){
-        $('.tabHeader').removeClass('tabHeaderPosition');
-
-    }
-})
-
+//
+// $(window).scroll(function(){
+//     sTop = $(window).scrollTop();
+//     if(sTop > 39){
+//         $('.tabHeader').addClass('tabHeaderPosition');
+//     }else if(sTop < 39){
+//         $('.tabHeader').removeClass('tabHeaderPosition');
+//     }
+// })
