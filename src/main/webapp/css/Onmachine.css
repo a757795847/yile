@@ -85,6 +85,7 @@ h4{
 
 }
 #content span{
+    font-size:0.75rem;
     position: absolute;
     top: 33%;
     right: 18%;

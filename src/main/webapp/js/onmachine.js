@@ -3,13 +3,9 @@ $("#calendar").calendar();  //打开弹窗
 /*$("#calendar").calendar("setValue", ["2012-12-12"]);  //设置日期
 $("#calendar").calendar("destroy");  //销毁*/
 
-
 $("#Rightimg").on('click',function(){
-    $("#Rightimg").addClass("transform");
-    $("#Rightimg").remove("transform");
-   /* setTimeout(function(){
-        $("#Rightimg").addClass("transform");
-    },1000);*/
+    console.log("s");
+
 
 });
 

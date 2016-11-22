@@ -27,19 +27,25 @@
 <div class="header">
     <img src="../../img/04.png" class="img-responsive">
 </div>
-
     <div class="index">
         <div><a href="">总体状况及销售记录</a></div>
-        <div><a href="">新增上位机</a></div>
+        <div id="addtopLog"><a href="">新增上位机</a></div>
         <div><a href="">非现金支付</a></div>
+        <div><a href="">${sessionScope.allowsAdd}</a></div>
     </div>
+         <%--<div>--%>
+            <%--<%=session.getAttribute("allowsAdd");%>--%>
+        <%--</div>--%>
 
     <ul class="nav">
         <li><a href="/home"><img src="../../img/16.png" class="img1"></a> <b></b></li>
-        <li><a href="#"><img src="../../img/10.png" class="img2"></a> <b></b></li>
-        <li><a href="/device"><img src="../../img/11.png" class="img3"></a> <b></b></li>
+        <li><a href="#"><img src="../../img/10.png" class="img2"></a> <b></b></
+        <li class="topLog"><a href="/device"><img src="../../img/11.png" class="img3"></a> <b></b></li>
         <li><a href="#"><img src="../../img/12.png" class="img4"></a></li>
     </ul>
+    <%--<%--%>
+        <%--String M = session.getAttribute("allowsAdd").toString();--%>
+    <%--%>--%>
 
 
     <script src="../../js/jquery.min.js"></script>
