@@ -7,6 +7,7 @@ import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -67,6 +68,7 @@ public class IntegratedMachineController extends ApiController {
         String deviceid = data.get(0).get("deviceid").toString();
         String vmname = data.get(0).get("vmname").toString();
         String lastnettime = data.get(0).get("lastnettime").toString();
+
         String coinstatus = data.get(0).get("coinstatus").toString();
         String coinoutstatus = data.get(0).get("coinoutstatus").toString();
         String billstatus = data.get(0).get("billstatus").toString();
