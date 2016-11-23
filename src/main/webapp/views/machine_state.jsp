@@ -14,7 +14,7 @@
 </head>
 <body>
 <header>
-    <a href="/home"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <a href="/home?123"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
     <ul class="machineHeader">
         <li class="active borderLeft">综合机</li>
         <li class="borderLeft">饮料机</li>
@@ -41,9 +41,9 @@
             <div class="infinite-preloader"></div>
             正在加载...
         </div>
-        <%--<div class="noContent">--%>
-            <%--没有内容了--%>
-        <%--</div>--%>
+        <div class="noContent">
+            没有内容了
+        </div>
     </div>
     <div id="drink" class="weui_tab_bd_item weui_tab_bd_item_active">
         <div class="drink">
@@ -281,9 +281,9 @@
 </div>
 
 <ul class="nav">
-    <li><a href="/home"><img src="../img/09.png" class="img1"></a> <b></b></li>
-    <li><a href="/machine/integrated"><img src="../img/15.png" class="img2"></a> <b></b></li>
-    <li><a href="/device"><img src="../img/11.png" class="img3"></a> <b></b></li>
+    <li><a href="/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
+    <li><a href="/machine/integrated?123"><img src="../img/15.png" class="img2"></a> <b></b></li>
+    <li><a href="/device?123"><img src="../img/11.png" class="img3"></a> <b></b></li>
     <li><a href="#"><img src="../img/12.png" class="img4"></a></li>
 </ul>
 

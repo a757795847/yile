@@ -15,7 +15,7 @@ public class UserAuthInterceptor implements Interceptor {
         Controller controller = inv.getController();
         String userId = controller.getSessionAttr("userId");
         if (StrKit.isBlank(userId)) {
-            Boolean debug = false;
+            Boolean debug = true;
             if (debug) {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
