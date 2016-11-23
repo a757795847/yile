@@ -2,11 +2,14 @@ package com.jfinal.weixin.weboauth2;
 
 import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
+import com.jfinal.weixin.models.Vmmisuser;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.api.SnsAccessToken;
 import com.jfinal.weixin.sdk.api.SnsAccessTokenApi;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
+
+import java.util.List;
 
 /**
  * @author Javen
@@ -38,21 +41,37 @@ public class RedirectUri extends ApiController {
             System.out.println("snsAccessToken: " + snsAccessToken);
             String openId = snsAccessToken.getOpenid();
             String token = snsAccessToken.getAccessToken();
-            System.out.println("openId"+ openId);
-            System.out.println("token"+ token);
+            System.out.println("openId: " + openId);
+            System.out.println("token: " + token);
 
-            //此处写sql查询出来的sqlOpenId
-            String sqlOpenId = "";
-            String userId = "123";
-//            if(openId != null && openId.equals(sqlOpenId)){
-            if(openId != null){
-                setSessionAttr("userId", userId);
-                String requestPathA = getSessionAttr("requestPathA");
-                redirect(requestPathA);
-            }else{
+            String sql = "select * from vmmisuser where fanopenid = ?";
+            Vmmisuser vmmisuser = Vmmisuser.dao.findFirst(sql, openId);
+            System.out.println("vmmisuser: " + vmmisuser);
+
+            if (vmmisuser == null) {
                 setSessionAttr("openId", openId);
                 redirect("http://yile.izhuiyou.com/login");
+            } else {
+                setSessionAttr("userId", vmmisuser.getUserid());
+                String requestPathA = getSessionAttr("requestPathA");
+                System.out.println("RedirectUri_requestPathA: " + requestPathA);
+                redirect(requestPathA);
             }
+
+//            //此处写sql查询出来的sqlOpenId
+//            String sqlOpenId = "";
+////            String userId = "123";
+//            String userId = getSessionAttr("userId");
+////            if(openId != null && openId.equals(sqlOpenId)){
+////            if(openId != null){
+//            if (openId == null) {
+//                setSessionAttr("userId", userId);
+//                String requestPathA = getSessionAttr("requestPathA");
+//                redirect(requestPathA);
+//            } else {
+//                setSessionAttr("openId", openId);
+//                redirect("http://yile.izhuiyou.com/login");
+//            }
         }
 
     }

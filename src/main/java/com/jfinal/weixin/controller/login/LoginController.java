@@ -27,15 +27,15 @@ public class LoginController extends ApiController {
     }
 
 //    @ActionKey("/login")
-    @Before(UserAuthInterceptor.class)
+//    @Before(UserAuthInterceptor.class)
     public void index() {
         render("/views/pepsi/login.jsp");
     }
 
     @ActionKey("/login/post")
-    @Before(UserAuthInterceptor.class)
+//    @Before(UserAuthInterceptor.class)
     public void determine() throws Exception {
-        String userId = getSessionAttr("userId");
+//        String userId = getSessionAttr("userId");
         String userName = getPara("username");
         String password = getPara("password");
         String inputRandomCode = getPara("captcha");
@@ -95,10 +95,10 @@ public class LoginController extends ApiController {
                     }
 
 
-                    setSessionAttr("userId", userId);
+                    setSessionAttr("userId", users1.get(0).getUserid());
 
                     String requestPathA = getSessionAttr("requestPathA");
-                    System.out.println("requestPathA: " + requestPathA);
+                    System.out.println("LoginController_determine_requestPathA: " + requestPathA);
 
 
                     if ("http://localhost:8088/login".equals(requestPathA) || "http://yile.izhuiyou.com/login".equals(requestPathA)) {
