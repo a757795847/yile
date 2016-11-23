@@ -234,13 +234,15 @@ header strong{
     z-index: 300;
     width: 100%;
 }
+.synthesize{
+    margin-bottom: 0.5rem;
+}
 .noContent{
     display: none;
     height: 3px;
     line-height: 3px;
     padding: 0 10px;
     text-align: center;
-    margin-top: 0.5rem;
     margin-bottom: 3.5rem;
     color: #c8c8cd;
     font-size: 0.5rem;
