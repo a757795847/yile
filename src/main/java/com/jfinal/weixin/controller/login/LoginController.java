@@ -3,6 +3,7 @@ package com.jfinal.weixin.controller.login;
 import com.jfinal.aop.Before;
 import com.jfinal.core.ActionKey;
 import com.jfinal.interceptor.UserAuthInterceptor;
+import com.jfinal.kit.HttpKit;
 import com.jfinal.kit.StrKit;
 import com.jfinal.others.MyCaptchaRender;
 import com.jfinal.weixin.models.Vmmisuser;
@@ -92,8 +93,8 @@ public class LoginController extends ApiController {
                         //自动登录(1、session取openId; 2、调用接口存openId)
                         String openId = getSessionAttr("openId");
                         //todo 2、调用接口存openId
-                        redirect("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
-
+//                        redirect("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
+//                        String json = HttpKit.post();
                     }
 
 
