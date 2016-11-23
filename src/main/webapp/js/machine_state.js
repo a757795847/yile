@@ -43,13 +43,13 @@
                     paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
                     metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
 
-                    synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">'+data[i].deviceid+'</a></li><li>'+wordNum(data[i].vmname)+'</li>';
+                    synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     synthesize += '<li class="'+internet+'">('+newDate+')</li>';
                     synthesize += '<li><i class="'+paper+'"></i>/<i class="'+metal+'"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
                     synthesize += '<ul><li>今日<span>(金额/次数)</span></li><li>故障轨道</li><li>缺货轨道</li><li>库存<span>(故障)</span></li><li>';
                     synthesize += '</li></ul><ul><li>'+data[i].today+'</li><li>'+data[i].guzhangguidaoNum+'</li><li>'+data[i].quehuoguidaoNum+'</li>';
                     synthesize += '<li>'+data[i].kucunNum+'('+data[i].guzhangguidaoNum+')</li><li></li></ul><ul><li>柜子/连体箱</li><li>版本</li>';
-                    synthesize += '<li>钱箱</li><li></li></ul><ul><li>'+data[i]['guizi/liantiji']+'</li><li>'+wordNum('dfasdfas发生的发生大声道sdfasdfasdfas')+'</li>';
+                    synthesize += '<li>钱箱</li><li></li></ul><ul><li>'+data[i]['guizi/liantiji']+'</li><li>'+wordNum('dfasj的说法是是是')+'</li>';
                     synthesize += '<li>1元:'+data[i].coin1yuan+'个; 5角:'+data[i].coin5jiao+'个</li><li></li></ul></div></div>';
 
                 }
@@ -71,7 +71,7 @@
                     $('#synthesize .weui-infinite-scroll').css('display','block');
                     $('#synthesize .noContent').css('display','none');
                 }
-                //下拉刷新
+                //滚动加载
                 $('#synthesize').infinite().on("infinite", function() {
                     if(synthesizeLoading) return;
                     synthesizeLoading = true;
@@ -119,10 +119,17 @@
     }
 
     function wordNum(text){
-        if(text.length > 10){
-            return '<p class="ellipsisWord">'+text+'</p>'
+        var a = 0;
+        for(var i = 0;i < 10 ;i++){
+            if( 'z' >= text[i] ){
+                a++;
+            }
         }
-        return text;
+        if(a >= 5 && text.length < 10){
+            return text;
+        }
+        return '<p class="ellipsisWord">'+text+'</p>'
+
     }
 
     function drinkAjax(){

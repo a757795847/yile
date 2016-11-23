@@ -41,9 +41,9 @@
             <div class="infinite-preloader"></div>
             正在加载...
         </div>
-        <div class="noContent">
-            -----------<span>没有内容了</span>-----------
-        </div>
+        <%--<div class="noContent">--%>
+            <%--没有内容了--%>
+        <%--</div>--%>
     </div>
     <div id="drink" class="weui_tab_bd_item weui_tab_bd_item_active">
         <div class="drink">
@@ -162,9 +162,6 @@
             <div class="infinite-preloader"></div>
             正在加载...
         </div>
-        <div class="noContent">
-            -----------<span>没有内容了</span>-----------
-        </div>
     </div>
     <div id="coffee" class="weui_tab_bd_item weui_tab_bd_item_active">
 
@@ -279,9 +276,6 @@
         <div class="weui-infinite-scroll">
             <div class="infinite-preloader"></div>
             正在加载...
-        </div>
-        <div class="noContent">
-            -----------<span>没有内容了</span>-----------
         </div>
     </div>
 </div>
