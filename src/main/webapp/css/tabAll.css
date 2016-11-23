@@ -236,7 +236,6 @@ header strong{
 }
 .noContent{
     display: none;
-    width: 100%;
     height: 3px;
     line-height: 3px;
     padding: 0 10px;
