@@ -34,6 +34,7 @@ function tab(tab,rem) {
                 'position':'initial',
                 'transition': 'opacity 0.25s',
                 'height':remHeight,
+                'transition': 'height 0.25s',
             });
             hideTab.find('li').css({
                 'height':'1.406rem',
