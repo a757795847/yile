@@ -7,8 +7,8 @@ devMode = true
 token=123456
 
 # 测试用的账号
-appId=wxda1ae0886b0e2571
-appSecret=7350a291dae8f50d8185bc53e468bad1
+appId=wx6d37f5d05a8d301f
+appSecret=0288ce3dfc1d4da74aaf4a75707f9e19
 
 #是否对消息进行加密，是否对消息进行加密，对应于微信平台的消息加解密方式，false支持明文模式及兼容模式，true支持安全模式及兼容模式
 #encryptMessage=true

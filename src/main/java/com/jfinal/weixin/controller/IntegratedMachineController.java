@@ -50,10 +50,11 @@ public class IntegratedMachineController extends ApiController {
                 "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidsetpara.deviceid\n" +
                 "AND androidsalelist.yyyymmdd = ?\n" +
                 "GROUP BY\n" +
-                "\tandroidsetpara.deviceid";
+                "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
+                "LIMIT ?, ?";
 
         System.out.println(sql);
-        List<Record> data = Db.find(sql, "1", "2016-10-08");
+        List<Record> data = Db.find(sql, "1", "2016-10-08", 0, 20);
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
@@ -196,24 +197,17 @@ public class IntegratedMachineController extends ApiController {
             item.put("deviceid", data.get(n).get("deviceid").toString()); //设备id
             item.put("vmname", data.get(n).get("vmname").toString()); //机器名称
             item.put("lastnettime", data.get(n).get("lastnettime").toString()); //联网状态
-
-//        item.put("billstatus/coinstatus", billstatus + "/" + coinstatus); //纸币/硬币找零
-//        item.put("coin1yuan/coin5jiao", coin1yuan + "/" + coin5jiao); //钱箱(1元/五角)
-
             item.put("billstatus", billstatus); //纸币
             item.put("coinstatus", coinstatus); //硬币找零
             item.put("coin1yuan", coin1yuan); //钱箱(1元)
             item.put("coin5jiao", coin5jiao); //钱箱(五角)
-
             item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
             item.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
             item.put("kucunNum", kucunNum + ""); //库存(故障)
             item.put("today", prices + "/" + count1); //今日(金额/次数)
             item.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
             item.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
-
             list.add(item);
-
         }
         renderJson(list);
     }
