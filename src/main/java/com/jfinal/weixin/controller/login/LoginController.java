@@ -84,6 +84,7 @@ public class LoginController extends ApiController {
 
                         //记住密码
                         setCookie("username", userName, 1209600);
+                        setCookie("password", password, 1209600);
 //                        setCookie("password", new String(result), 1209600);
                     }
                     String AutomaticLogin = getPara("AutomaticLogin");
@@ -91,6 +92,7 @@ public class LoginController extends ApiController {
                         //自动登录(1、session取openId; 2、调用接口存openId)
                         String openId = getSessionAttr("openId");
                         //todo 2、调用接口存openId
+                        redirect("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
 
                     }
 
