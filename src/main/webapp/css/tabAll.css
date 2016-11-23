@@ -216,7 +216,9 @@ header strong{
     width: 100%;
     color: #c8c8cd;
     font-size: 0.5rem;
+    display: none;
 }
+
 .weui-infinite-scroll .infinite-preloader {
     width: 15px;
     height: 15px;
