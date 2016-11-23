@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
     <meta name="format-detection" content="telephone=no"/>
-    <title>Title</title>
+    <title>以勒VM管理后台</title>
     <link rel="stylesheet" href="../../css/weui.min.css">
     <link rel="stylesheet" href="../../css/jquery-weui.min.css">
     <link rel="stylesheet" href="../../css/all.css">
