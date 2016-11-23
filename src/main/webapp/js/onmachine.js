@@ -34,8 +34,8 @@ $("#btn").click(function(){
         $.alert('上位机设备ID不能为空');
     }else if(re.test(deviceId)==false){
         console.log('fdsf');
-        $.alert('请输入含数字或大写字母的设备ID');
-    }else if(deviceModel=="请选择"){
+        $.alert('请输入12位含数字或大写字母的设备ID');
+    } else if(deviceModel=="请选择"){
         $.alert('请选择自动售货机型号');
     }else {
         $.ajax({
