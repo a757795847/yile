@@ -27,7 +27,7 @@ public class LoginController extends ApiController {
         return WeixinUtil.getApiConfig();
     }
 
-//    @ActionKey("/login")
+    //    @ActionKey("/login")
 //    @Before(UserAuthInterceptor.class)
     public void index() {
         render("/views/pepsi/login.jsp");
@@ -95,9 +95,19 @@ public class LoginController extends ApiController {
                         //todo 2、调用接口存openId
 //                        redirect("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
 //                        String str = HttpKit.post("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
-                        String url = "http://115.29.179.158/vmmis/updateFanopenid?loginname=?&fanopenid=?";
-                        String str = HttpKit.post("http://115.29.179.158/vmmis/updateFanopenid?loginname=1047365539@qq.com&fanopenid=1", null);
-                        System.out.println("str: "+ str);
+
+                        /*if(!"1,更新粉丝ID成功！".equals(str)){
+
+                        }*/
+                        int i = 0;
+                        do {
+                            String url = "http://115.29.179.158/vmmis/updateFanopenid?loginname=" + userName + "&fanopenid=" + openId;
+                            System.out.println("url: " + url);
+                            String str = HttpKit.get(url);
+                            System.out.println("str: " + str);
+                            i++;
+                        } while (i < 3);
+
                     }
 
 
