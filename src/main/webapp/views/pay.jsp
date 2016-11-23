@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
     <meta name="format-detection" content="telephone=no"/>
-    <title>以乐</title>
+    <title>非现金支付</title>
     <link rel="stylesheet" type="text/css" href="../css/weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/tabAll.css">
@@ -15,7 +15,7 @@
 </head>
 <body>
 <header>
-    <a href="" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <a href="/home" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
     <strong>非现金支付记录</strong>
     <a href="" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
@@ -84,6 +84,9 @@
     <div class="weui-infinite-scroll">
         <div class="infinite-preloader"></div><!-- 菊花 -->
         正在加载... <!-- 文案，可以自行修改 -->
+    </div>
+    <div class="noContent">
+        -----------<span>没有内容了</span>-----------
     </div>
 </section>
 
