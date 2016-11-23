@@ -1,6 +1,13 @@
 
-$("#calendar").calendar();  //打开弹窗
+$("#calendar").calendar();
+var date = new Date();
+    year = date.getYear()+1900;
+    moth = date.getMonth()+1;
+    ri = date.getDate()
+$("#calendar").val(year+'-'+moth+'-'+ri);
+ //打开弹窗
 /*$("#calendar").calendar("setValue", ["2012-12-12"]);  //设置日期
+ $("#input").calendar("setValue", ["2012-12-12"]);
 $("#calendar").calendar("destroy");  //销毁*/
 
 $('#Rightimg').on('touchstart',function(){
@@ -16,35 +23,41 @@ $("#model").select({
         "LV-X01", "LV-X02", "LV205Y-46G", "LV206-03", "LV206-A", "LV206-B"]
 });
 
+
 $("#btn").click(function(){
     var deviceId=$("#equipment").val();
     var deviceModel=$("#model").val();
     var deviceData=$("#calendar").val();
     console.log(deviceId);
-    $.ajax({
-        type: 'POST',
-        url: '/addDevice',
-        data: {
-            'deviceId': deviceId,
-            'deviceModel': deviceModel,
-            'deviceData':deviceData
+    var re=/^[A-Z0-9]{12}$/;
+    if (deviceId =='') {
+        $.alert('上位机设备ID不能为空');
+    }else if(re.test(deviceId)==false){
+        console.log('fdsf');
+        $.alert('请输入含数字或大写字母的设备ID');
+    }else if(deviceModel=="请选择"){
+        $.alert('请选择自动售货机型号');
+    }else {
+        $.ajax({
+            type: 'POST',
+            url: '/addDevice',
+            data: {
+                'deviceId': deviceId,
+                'deviceModel': deviceModel,
+                'deviceData': deviceData
 
-        },
-        dataType: 'json',
-        success: function (data){
-            if(data.success=='添加成功'){
-                $.alert('添加成功');
-            }else if(data.failed=='添加失败'){
-                $.alert('添加失败');
-            }else{
-                $.alert('请输入完整信息');
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.success == '添加成功') {
+                    $.alert('添加成功');
+                } else if (data.failed == '添加失败') {
+                    $.alert('添加失败');
+                }
+
+
             }
-
-
-
-
-
-        }
-    })
+        })
+    }
 
 });
