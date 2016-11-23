@@ -15,12 +15,11 @@
 <header>
     <a href="/home"><img src="../../img/07.png" class="img-responsive" id="Leftimg"></a>
         <p>新增上位机</p>
-    <a href=""><img src="../../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
     <div id="index">
         <div id="content">
                 <h4 class="weui_media_title">运营商名称</h4>
-                <h4 class="weui_media_title" id="title">杭州以勒自动售货机制造有限公司</h4>
+                <h4 class="weui_media_title" id="title">${sessionScope.dname}</h4>
 
                 <div class="form">
                     <h5>上位机设备ID(12位)</h5>

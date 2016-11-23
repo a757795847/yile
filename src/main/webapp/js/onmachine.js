@@ -48,21 +48,3 @@ $("#btn").click(function(){
     })
 
 });
-$(document).ready(function(){
-    $.ajax({
-        type: 'GET',
-        url: '/device/name',
-        dataType: 'json',
-        success: function (data){
-          console.log(data);
-            $("#title").html(data.dname);
-
-
-
-
-
-        }
-    })
-
-
-});

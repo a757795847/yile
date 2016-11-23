@@ -20,20 +20,17 @@
 
 </head>
 <body>
-    <header>
-        <a href=""><img src="../../img/07.png" class="img-responsive" id="Leftimg"></a>
-        <a href=""><img src="../../img/08.png" class="img-responsive" id="Rightimg"></a>
-    </header>
 <div class="header">
     <img src="../../img/04.png" class="img-responsive">
 </div>
 
-    <div class="index">
+   <div class="index">
         <div><a href="">总体状况及销售记录</a></div>
         <div id="addtopLog"><a href="/device">新增上位机</a></div>
         <div><a href="">非现金支付</a></div>
     </div>
 
+    <input type="hidden" value="${sessionScope.allowsAdd}" id="session">
     <ul class="nav">
         <li><a href="/home"><img src="../../img/16.png" class="img1"></a> <b></b></li>
         <li><a href="/machine/integrated"><img src="../../img/10.png" class="img2"></a> <b></b></li>
