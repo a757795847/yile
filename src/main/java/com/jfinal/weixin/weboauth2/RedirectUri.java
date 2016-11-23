@@ -29,7 +29,7 @@ public class RedirectUri extends ApiController {
 
         System.out.println("RedirectUri_code1: " + code);
         if (StrKit.isBlank(code)) {
-            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://wechat.izhuiyou.com/oauth2", true));
+            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://yile.izhuiyou.com/oauth2", true));
         } else {
             System.out.println("RedirectUri_code2: " + code);
             SnsAccessToken snsAccessToken = SnsAccessTokenApi.getSnsAccessToken(appId, secret, code);
@@ -51,7 +51,7 @@ public class RedirectUri extends ApiController {
                 redirect(requestPathA);
             }else{
                 setSessionAttr("openId", openId);
-                redirect("http://wechat.izhuiyou.com/login");
+                redirect("http://yile.izhuiyou.com/login");
             }
         }
 

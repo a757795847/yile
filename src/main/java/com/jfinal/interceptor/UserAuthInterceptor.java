@@ -15,7 +15,7 @@ public class UserAuthInterceptor implements Interceptor {
         Controller controller = inv.getController();
         String userId = controller.getSessionAttr("userId");
         if (StrKit.isBlank(userId)) {
-            Boolean debug = true;
+            Boolean debug = false;
             if (debug) {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
@@ -27,7 +27,7 @@ public class UserAuthInterceptor implements Interceptor {
             } else {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
-                inv.getController().redirect("http://wechat.izhuiyou.com/oauth2");
+                inv.getController().redirect("http://yile.izhuiyou.com/oauth2");
             }
         } else {
             inv.invoke();
