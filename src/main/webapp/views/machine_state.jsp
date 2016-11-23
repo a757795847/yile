@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no"/>
-    <title>以乐</title>
+    <title>总体状态</title>
     <link rel="stylesheet" type="text/css" href="../css/weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/tabAll.css">
@@ -14,13 +14,13 @@
 </head>
 <body>
 <header>
-    <a href=""><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <a href="/home"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
     <ul class="machineHeader">
         <li class="active borderLeft">综合机</li>
         <li class="borderLeft">饮料机</li>
         <li>咖啡机</li>
     </ul>
-    <a href=""><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
+    <a href="#"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
 
 <ul class="tabHeader">
@@ -30,7 +30,9 @@
     <li>纸币/硬币找零</li>
     <li>...</li>
 </ul>
+
 <div class="weui_tab_bd">
+
     <div id="synthesize" class="weui_tab_bd_item weui_tab_bd_item_active">
         <div class="synthesize">
 
@@ -39,7 +41,7 @@
             <div class="infinite-preloader"></div>
             正在加载...
         </div>
-        <div id="noContent">
+        <div class="noContent">
             -----------<span>没有内容了</span>-----------
         </div>
     </div>
@@ -160,8 +162,12 @@
             <div class="infinite-preloader"></div>
             正在加载...
         </div>
+        <div class="noContent">
+            -----------<span>没有内容了</span>-----------
+        </div>
     </div>
     <div id="coffee" class="weui_tab_bd_item weui_tab_bd_item_active">
+
         <div class="coffee">
             <div class="tabContent">
                 <div class="showTab">
@@ -273,6 +279,9 @@
         <div class="weui-infinite-scroll">
             <div class="infinite-preloader"></div>
             正在加载...
+        </div>
+        <div class="noContent">
+            -----------<span>没有内容了</span>-----------
         </div>
     </div>
 </div>

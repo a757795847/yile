@@ -101,8 +101,8 @@ public class LoginController extends ApiController {
                     System.out.println("requestPathA: " + requestPathA);
 
 
-                    if ("http://localhost:8080/login".equals(requestPathA) || "http://wechat.izhuiyou.com/login".equals(requestPathA)) {
-                        renderJson("requestPathA", "http://localhost:8080/home");
+                    if ("http://localhost:8088/login".equals(requestPathA) || "http://yile.izhuiyou.com/login".equals(requestPathA)) {
+                        renderJson("requestPathA", "http://localhost:8088/home");
                     } else {
                         renderJson("requestPathA", getSessionAttr("requestPathA"));
                     }

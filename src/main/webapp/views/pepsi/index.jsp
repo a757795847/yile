@@ -25,7 +25,7 @@
 </div>
 
    <div class="index">
-        <div><a href="">总体状况及销售记录</a></div>
+        <div><a href="/machine/integrated">总体状况及销售记录</a></div>
         <div id="addtopLog"><a href="/device">新增上位机</a></div>
         <div><a href="">非现金支付</a></div>
     </div>

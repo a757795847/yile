@@ -28,19 +28,19 @@
 	欢迎使用Jfinal极速开发微信企业号<h1>${test}</h1>
 	<script src="../../js/jquery.min.js"></script>
 	<script type="text/javascript" >
-		$.ajax({
-			type: 'GET',
-			url: '/integratedMachineData',
-			dataType: 'json',
-			success: function (data) {
-				console.log(data.mapData.deviceid);
-			},
-			error: function (jqXHR) {
-				if (jqXHR.status == 400) {
-
-				}
-			}
-		})
+//		$.ajax({
+//			type: 'GET',
+//			url: '/integratedMachineData',
+//			dataType: 'json',
+//			success: function (data) {
+//				console.log(data.mapData.deviceid);
+//			},
+//			error: function (jqXHR) {
+//				if (jqXHR.status == 400) {
+//
+//				}
+//			}
+//		})
 
 	</script>
 </body>

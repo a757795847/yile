@@ -67,7 +67,9 @@
     width: 0.81rem;
     height: 0.45rem;
 }
-
+.weui_tab_bd{
+    height: initial;
+}
 .showTab li:nth-child(4) i:last-child {
     margin-left: 0.375rem;
 }
@@ -82,7 +84,7 @@
 
 .tabContent .hideTab ul:nth-child(even) li {
     border-bottom: none;
-    font-size: 0.47rem;
+    font-size: 0.43rem;
 }
 
 .tabContent .hideTab ul:last-child li {
@@ -143,7 +145,7 @@
 .machineHeader{
     width: 12rem;
     display: inline-block;
-    margin-top: 0.45rem;
+    margin-top: 0.4rem;
     height: 1.2rem;
     border: 0.09rem solid #fff;
     border-radius: 0.3rem;
