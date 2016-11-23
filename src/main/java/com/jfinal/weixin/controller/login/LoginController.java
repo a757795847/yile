@@ -95,6 +95,9 @@ public class LoginController extends ApiController {
                         //todo 2、调用接口存openId
 //                        redirect("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
 //                        String str = HttpKit.post("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
+                        String url = "http://115.29.179.158/vmmis/updateFanopenid?loginname=?&fanopenid=?";
+                        String str = HttpKit.post("http://115.29.179.158/vmmis/updateFanopenid?loginname=1047365539@qq.com&fanopenid=1", null);
+                        System.out.println("str: "+ str);
                     }
 
 
