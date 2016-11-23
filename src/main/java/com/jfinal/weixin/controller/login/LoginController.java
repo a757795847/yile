@@ -94,7 +94,7 @@ public class LoginController extends ApiController {
                         String openId = getSessionAttr("openId");
                         //todo 2、调用接口存openId
 //                        redirect("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
-//                        String json = HttpKit.post();
+//                        String str = HttpKit.post("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
                     }
 
 
