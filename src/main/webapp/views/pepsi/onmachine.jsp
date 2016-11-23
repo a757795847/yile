@@ -29,12 +29,12 @@
                 </div>
                     <h5>自动售货机型号</h5>
                     <div class="vending">
-                        <input type="text" id="model">
+                        <input type="text" id="model" value="请选择">
                         <span class="think"></span>
                     </div><h5>启用日</h5>
                     <div>
+                        <input type="text" id="calendar"/>
 
-                <input type="text" class="weui_input" id="calendar">
                 </div>
                 <button type="button" id="btn">确定</button>
             </div>
