@@ -1,6 +1,6 @@
 function tab(tab,rem) {
     var paX = 0,paY=0;
-    var remHeight = 1.406 * rem + 'rem';
+    var remHeight = 1.35 * rem + 'rem';
     console.log(rem);
     $(tab).on('click','.tabContent',function(e){
         function showTab(){
@@ -11,7 +11,6 @@ function tab(tab,rem) {
             $(tab).find('.hideTab').css({
                 'opacity':0,
                 'height':0,
-                'margin-bottom': 0,
                 'transition':'opacity 0s'
             })
             $(tab).find('.hideTab li').css({
@@ -35,7 +34,6 @@ function tab(tab,rem) {
                 'position':'initial',
                 'transition': 'opacity 0.8s',
                 'height':remHeight,
-                'margin-bottom': '-0.15rem'
             });
             hideTab.find('li').css({
                 'height':'1.406rem',
