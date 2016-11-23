@@ -95,6 +95,10 @@
         <div class="infinite-preloader"></div><!-- 菊花 -->
         正在加载... <!-- 文案，可以自行修改 -->
     </div>
+
+    <div class="noContent">
+        -----------<span>没有内容了</span>-----------
+    </div>
 </section>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
