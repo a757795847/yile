@@ -1,3 +1,4 @@
+//记住密码checkbox图片
 var remember = $("#checkpass").is(":checked");
 console.log(remember);
     $("#checkpass").click(function(){
@@ -22,7 +23,31 @@ $("#image1").click(function(){
     console.log(remember);
 });
 
+ var automatic = $("#checklogin").is(":checked");
+console.log(automatic);
+    $("#checklogin").click(function(){
+       if(automatic){
+           $('#image2').hide();
+           automatic=false;
+       }else{
+           $('#image2').show();
+           automatic = true;
+       }
 
+        
+    });
+$("#image2").click(function(){
+    if(automatic){
+        $('#image2').hide();
+        automatic=false;
+    }else{
+        $('#image2').show();
+        automatic = true;
+    }
+    console.log(automatic);
+});
+
+//记住密码存取cookie
     var uName=$.cookie('yonghuming');
     var psw=$.cookie('mima');
     console.log(uName);
@@ -36,11 +61,7 @@ $("#image1").click(function(){
          $('#image1').show();
 
     }
-
-
-
-
-    $('#btn').on('click', function () {
+        $('#btn').on('click', function () {
         var username = $('#username').val();
         var password = $('#password').val();
         var code=$("#code").val();
@@ -58,6 +79,8 @@ $("#image1").click(function(){
             $.cookie('yonghuming', '', { expires: -1, path: '/' });
             $.cookie('mima', '', { expires: -1, path: '/' });
         }
+
+ //表单验证
 
             if(username==""||password==""){
                 $.alert(' 请输入用户名或密码');
@@ -79,6 +102,9 @@ $("#image1").click(function(){
                         console.log(data);
                         if (data.msg_error == '验证码错误') {
                             $.alert('验证码错误');
+                            $(".Image").remove();
+                            var random = Math.floor(Math.random()*20);
+                            $("#yanzheng").append('<img src="/captcha?'+ random +'" class="Image">');
                         } else if (data.psd_beyond == '该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！') {
                             $.alert('该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！');
                         } else if (data.user_disable == '该用户已被停用!') {
@@ -89,7 +115,6 @@ $("#image1").click(function(){
                         }else{
                             location.href = data.requestPathA;
                         }
-
                     },
                     error: function (jqXHR) {
                         if (jqXHR.status == 400) {
@@ -105,7 +130,7 @@ $("#image1").click(function(){
     ;
 
 
-
+        //验证码
 $("#yanzheng").on('touchstart','.Image',function(){
     console.log("2");
         $(".Image").remove();
