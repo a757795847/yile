@@ -16,7 +16,7 @@
 </head>
 <body>
 <header>
-    <a href="" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <a href="/home?123" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
     <strong>销售数据</strong>
     <a href="" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
