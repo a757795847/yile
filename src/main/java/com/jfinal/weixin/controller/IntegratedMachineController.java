@@ -110,7 +110,7 @@ public class IntegratedMachineController extends ApiController {
                 "GROUP BY\n" +
                 "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
                 "ORDER BY\n" +
-                "\trd DESC" +
+                "\trd DESC\n" +
                 "LIMIT ?";
 
         String today = DateTime.now().toString("yyyy-MM-dd");
