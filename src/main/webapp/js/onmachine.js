@@ -51,7 +51,7 @@ $("#btn").click(function(){
             success: function (data) {
                 if (data.success == '添加成功') {
                     $.alert('添加成功');
-                } else if (data.failed == '添加失败') {
+                } else {
                     $.alert('添加失败');
                 }
 

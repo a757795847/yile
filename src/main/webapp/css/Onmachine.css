@@ -187,8 +187,7 @@ h4{
 
 }
 .weui-picker-modal.weui-picker-calendar.weui-picker-modal-visible{
-     padding-bottom:16%;
-
+     padding-bottom:2%;
 }
 i.icon.icon-prev{
     width:0.75rem;
@@ -197,7 +196,6 @@ i.icon.icon-prev{
 i.icon.icon-next{
     width:0.75rem;
     background-image:url('../img/131.png');
-
 }
 .toolbar a{
     margin-top:7%;
@@ -213,7 +211,6 @@ i.icon.icon-next{
 }
 
 @media screen and (max-width: 736px){
-
     #Leftimg {
         width: 5%;
         position: absolute;
