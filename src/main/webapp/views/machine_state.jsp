@@ -20,7 +20,7 @@
         <li class="borderLeft">饮料机</li>
         <li>咖啡机</li>
     </ul>
-    <a href="#"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
+    <a href="#"><img src="../img/08.png" data-machine="0" class="img-responsive" id="Rightimg"></a>
 </header>
 
 <ul class="tabHeader">
