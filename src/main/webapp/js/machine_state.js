@@ -1,10 +1,8 @@
 (function ($) {
     function indexState(){
-        $('.weui-infinite-scroll').css('display','none');
+        //$('.weui-infinite-scroll').css('display','none');
         $.showLoading();
         synthesizeAjax(true);
-        //drinkAjax();
-        //coffeeAjax();
     }
     indexState();
     $('#Rightimg').on('touchstart',function(){
@@ -34,8 +32,8 @@
         $('.machineHeader li').removeClass('active');
         $(this).addClass('active');
         var index = $(this).index();
-        $('.weui_tab_bd').find('.weui_tab_bd_item').css('display','none');
-        $('.weui_tab_bd .weui_tab_bd_item').eq(index).css('display','block');
+        $('.weui_tab_bd').find('.weui_tab_bd_item').removeClass('weui_tab_bd_item_active')
+        $('.weui_tab_bd .weui_tab_bd_item').eq(index).addClass('weui_tab_bd_item_active')
         $('#Rightimg').attr('data-machine',index);
         $('.machineHeader li').eq(index-1).removeClass('borderLeft');
         if(index != 1){
@@ -43,11 +41,18 @@
         }
     })
     var synthesizeLastId = '',drinkLastId = '',coffeeLastId = '';
-    //synthesizeAjax(false);
     function synthesizeAjax(on){
+        if(on){
+            var data = {}
+        }else{
+            var data = {
+                'rd':synthesizeLastId
+            }
+        }
         $.ajax({
             type: 'GET',
             url: '/integratedMachineData',
+            data:data,
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
@@ -70,21 +75,9 @@
 
                 }
                 synthesizeLastId = data[data.length-1].deviceid;
-                var synthesizeLoading = onBeack(data,'#synthesize','.synthesize',on,synthesize)
-                //console.log(synthesizeLoading);
+                onBeack(data,'#synthesize','.synthesize',on,synthesize)
                 //滚动加载
-                if(synthesizeLoading === false){
-                    $('#synthesize').infinite().on("infinite", function() {
-                        console.log(synthesizeLoading);
-                        if(synthesizeLoading) return;
-                        synthesizeLoading = true;
-
-                        if(synthesizeLoading){
-                            //synthesizeAjax(false);
-                            console.log(1);
-                        }
-                    });
-                }
+                loading = false
             },
             error: function (jqXHR) {
                 $.toast("加载失败", "cancel");
@@ -121,10 +114,9 @@
                     drink += '<li>光脚一号/1.1.2</li><li></li><li></li></ul></div></div>';
                 }
 
-
-                var drinkLoading = false;  //状态标记
                 drinkLastId = data[data.length-1].deviceid;
-                //onBeack(data,drinkLoading,'#drink',on,drink,drinkAjax(false))
+                //onBeack(data,drinkLoading,'#drink',on,drink)
+                loading = false
             },
             error: function (jqXHR) {
                 if (jqXHR.status == 400){
@@ -134,81 +126,60 @@
         })
     }
 
-    // function coffeeAjax(){
-    //     $.ajax({
-    //         type: 'GET',
-    //         url: '/integratedMachineData',
-    //         dataType: 'json',
-    //         success: function (data) {
-    //             $.hideLoading();
-    //             console.log(data);
-    //             var coffee = '',internet = '', paper = '', metal = '',newDate;
-    //             for(var i=0;i<data.length;i++){
-    //                 newData = data[i].lastnettime.split('.')[0].substring(5);
-    //                 internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
-    //                 paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
-    //                 metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
-    //
-    //                 coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">023041952882</a></li><li>杭州以勒308—C</li><li class="internetOn">(07-11 08:40:12)</li>';
-    //                 coffee += '<li><i class="paperOn"></i>/<i class="metalOff"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
-    //                 coffee += '<ul><li>一元/5角个数</li><li>机器类型</li><li>故障信息</li><li>咖啡品种</li><li></li></ul><ul><li>10/20</li><li>308-C</li>';
-    //                 coffee += '<li class="minWord">outcoffee命令发送3次对方无应答</li><li>0</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>料盒</li><li>咖啡温度/保持温度</li>';
-    //                 coffee += '<li>柜子/连体机</li><li></li></ul><ul><li>90/18</li><li class="minWord">红茶/牛奶/白咖啡/巧克力/糖</li><li>98/95</li><li>---</li><li></li></ul><ul>';
-    //                 coffee += '<li>版本</li><li></li><li></li><li></li></ul><ul><li>308-C咖啡机/1.0.0</li><li></li><li></li><li></li></ul></div></div>';
-    //
-    //             }
-    //
-    //
-    //             var coffeeLoading = false;  //状态标记
-    //             coffeeLastId = data[data.length-1].deviceid;
-    //             //onBeack(data,drinkLoading,'#coffee',on,coffee,coffeeAjax(false));
-    //
-    //         },
-    //         error: function (jqXHR) {
-    //             if (jqXHR.status == 400){
-    //
-    //             }
-    //         }
-    //     })
-    // }
-    function coffoneew(){
-        var coffee = '',internet = '', paper = '', metal = '',newDate;
-        for(var i=0;i<22;i++){
+    function coffeeAjax(){
+        $.ajax({
+            type: 'GET',
+            url: '/integratedMachineData',
+            dataType: 'json',
+            success: function (data) {
+                $.hideLoading();
+                console.log(data);
+                var coffee = '',internet = '', paper = '', metal = '',newDate;
+                for(var i=0;i<data.length;i++){
+                    newData = data[i].lastnettime.split('.')[0].substring(5);
+                    internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
+                    paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
+                    metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
 
-            internet = 1 ? 'internetOn':'internetOff';
-            paper = 1? 'paperOn':'paperOff';
-            metal = 1? 'metalOn':'metalOff';
+                    coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">023041952882</a></li><li>杭州以勒308—C</li><li class="internetOn">(07-11 08:40:12)</li>';
+                    coffee += '<li><i class="paperOn"></i>/<i class="metalOff"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
+                    coffee += '<ul><li>一元/5角个数</li><li>机器类型</li><li>故障信息</li><li>咖啡品种</li><li></li></ul><ul><li>10/20</li><li>308-C</li>';
+                    coffee += '<li class="minWord">outcoffee命令发送3次对方无应答</li><li>0</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>料盒</li><li>咖啡温度/保持温度</li>';
+                    coffee += '<li>柜子/连体机</li><li></li></ul><ul><li>90/18</li><li class="minWord">红茶/牛奶/白咖啡/巧克力/糖</li><li>98/95</li><li>---</li><li></li></ul><ul>';
+                    coffee += '<li>版本</li><li></li><li></li><li></li></ul><ul><li>308-C咖啡机/1.0.0</li><li></li><li></li><li></li></ul></div></div>';
 
-            coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">023041952882</a></li><li>杭州以勒308—C</li><li class="internetOn">(07-11 08:40:12)</li>';
-            coffee += '<li><i class="paperOn"></i>/<i class="metalOff"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
-            coffee += '<ul><li>一元/5角个数</li><li>机器类型</li><li>故障信息</li><li>咖啡品种</li><li></li></ul><ul><li>10/20</li><li>308-C</li>';
-            coffee += '<li class="minWord">outcoffee命令发送3次对方无应答</li><li>0</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>料盒</li><li>咖啡温度/保持温度</li>';
-            coffee += '<li>柜子/连体机</li><li></li></ul><ul><li>90/18</li><li class="minWord">红茶/牛奶/白咖啡/巧克力/糖</li><li>98/95</li><li>---</li><li></li></ul><ul>';
-            coffee += '<li>版本</li><li></li><li></li><li></li></ul><ul><li>308-C咖啡机/1.0.0</li><li></li><li></li><li></li></ul></div></div>';
-
-        }
-        var synthesizeLoading = onBeack('111111111111111111111111111111111111111111111111111111111111111111111111','#coffee','.coffee',true,coffee)
-        if(synthesizeLoading === false){
-            $('#synthesize').infinite().on("infinite", function() {
-                console.log(synthesizeLoading);
-                if(synthesizeLoading) return;
-                synthesizeLoading = true;
-
-                if(synthesizeLoading){
-                    //synthesizeAjax(false);
-                    console.log(1);
                 }
-            });
-        }
+
+                loading = false;
+                coffeeLastId = data[data.length-1].deviceid;
+                //onBeack(data,drinkLoading,'#coffee',on,coffee);
+
+            },
+            error: function (jqXHR) {
+                if (jqXHR.status == 400){
+
+                }
+            }
+        })
     }
-    coffoneew();
 
+    var coffee = '',internet = '', paper = '', metal = '',newDate;
+    for(var i=0;i<22;i++){
+        newData = 1;
+        internet = 1 ? 'internetOn':'internetOff';
+        paper = 1 == 'OK'? 'paperOn':'paperOff';
+        metal = 1 == 'OK'? 'metalOn':'metalOff';
 
-    //var coffeeLoading = false;  //状态标记
-    //coffeeLastId = data[data.length-1].deviceid;
-    //onBeack(data,drinkLoading,'#coffee',on,coffee,coffeeAjax(false));
+        coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">023041952882</a></li><li>杭州以勒308—C</li><li class="internetOn">(07-11 08:40:12)</li>';
+        coffee += '<li><i class="paperOn"></i>/<i class="metalOff"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
+        coffee += '<ul><li>一元/5角个数</li><li>机器类型</li><li>故障信息</li><li>咖啡品种</li><li></li></ul><ul><li>10/20</li><li>308-C</li>';
+        coffee += '<li class="minWord">outcoffee命令发送3次对方无应答</li><li>0</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>料盒</li><li>咖啡温度/保持温度</li>';
+        coffee += '<li>柜子/连体机</li><li></li></ul><ul><li>90/18</li><li class="minWord">红茶/牛奶/白咖啡/巧克力/糖</li><li>98/95</li><li>---</li><li></li></ul><ul>';
+        coffee += '<li>版本</li><li></li><li></li><li></li></ul><ul><li>308-C咖啡机/1.0.0</li><li></li><li></li><li></li></ul></div></div>';
 
-
+    }
+    $('#coffee').find('.coffee').append(coffee);
+    $('#coffee').find('.weui-infinite-scroll').css('display','block');
     function onBeack(data,id,childId,state,html,fu){
         var loading;
         if(state){
@@ -281,6 +252,64 @@
         }
 
     }
+    var loading = false;
+    $(document.body).infinite().on("infinite", function() {
+        if(loading) return;
+        loading = true;
+        var index = $('#Rightimg').attr('data-machine');
+        switch (index){
+            case 0:
+                console.log('1');
+                setTimeout(synthesizeAjax(false),3000);
+                break;
+            case 1:
+                console.log('2');
+                setTimeout(drinkAjax(false),3000);
+                break;
+            default:
+                console.log('3');
+                setTimeout(coffeeAjax(false),3000);
 
+        }
+    });
 
+    //后备选择
+    // var bb = false;
+    // $(window).scroll(function(){
+    //     var sTop = $(window).scrollTop();
+    //     var dTop = $(document).scrollTop();
+    //     var a = $('#synthesize .weui-infinite-scroll').offset().top;
+    //     var b = $('#drink .weui-infinite-scroll').offset().top;
+    //     var c = $('#coffee .weui-infinite-scroll').offset().top;
+    //     // console.log(sTop)
+    //     // console.log(a)
+    //     // console.log(a)
+    //     if(a > 150 && a <260){
+    //         if(bb) return;
+    //         console.log('2')
+    //         bb = true;
+    //         setTimeout(function(){
+    //             console.log('3')
+    //             bb = false;
+    //         },2000)
+    //     }
+    //     if(b > 150 && b <260){
+    //         if(bb) return;
+    //         console.log('2')
+    //         bb = true;
+    //         setTimeout(function(){
+    //             console.log('3')
+    //             bb = false;
+    //         },2000)
+    //     }
+    //     if(c > 150 && c <260){
+    //         if(bb) return;
+    //         console.log('2')
+    //         bb = true;
+    //         setTimeout(function(){
+    //             console.log('3')
+    //             bb = false;
+    //         },2000)
+    //     }
+    // })
 })(jQuery)

@@ -212,10 +212,9 @@ header strong{
     float: left;
     margin-top: 0.3rem;
     margin-bottom: 4rem;
-    width: 100%;
+    margin-left: 38%;
     color: #c8c8cd;
     font-size: 0.5rem;
-    display: none;
 }
 
 .weui-infinite-scroll .infinite-preloader {
@@ -249,7 +248,7 @@ header strong{
 }
 @media screen and (max-width: 320px){
     .weui-infinite-scroll {
-        margin-bottom: 3.3rem;
+        margin-bottom: 3rem;
     }
 }
 
