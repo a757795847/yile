@@ -53,25 +53,11 @@ public class RedirectUri extends ApiController {
                 redirect("http://yile.izhuiyou.com/login");
             } else {
                 setSessionAttr("userId", vmmisuser.getUserid());
+                setSessionAttr("vmmisuser", vmmisuser);
                 String requestPathA = getSessionAttr("requestPathA");
                 System.out.println("RedirectUri_requestPathA: " + requestPathA);
                 redirect(requestPathA);
             }
-
-//            //此处写sql查询出来的sqlOpenId
-//            String sqlOpenId = "";
-////            String userId = "123";
-//            String userId = getSessionAttr("userId");
-////            if(openId != null && openId.equals(sqlOpenId)){
-////            if(openId != null){
-//            if (openId == null) {
-//                setSessionAttr("userId", userId);
-//                String requestPathA = getSessionAttr("requestPathA");
-//                redirect(requestPathA);
-//            } else {
-//                setSessionAttr("openId", openId);
-//                redirect("http://yile.izhuiyou.com/login");
-//            }
         }
 
     }
