@@ -16,6 +16,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.util.List;
 
+import static com.jfinal.others.Constant.*;
 import static jxl.biff.FormatRecord.logger;
 
 /**
@@ -27,8 +28,6 @@ public class LoginController extends ApiController {
         return WeixinUtil.getApiConfig();
     }
 
-    //    @ActionKey("/login")
-//    @Before(UserAuthInterceptor.class)
     public void index() {
         render("/views/pepsi/login.jsp");
     }
@@ -36,7 +35,6 @@ public class LoginController extends ApiController {
     @ActionKey("/login/post")
 //    @Before(UserAuthInterceptor.class)
     public void determine() throws Exception {
-//        String userId = getSessionAttr("userId");
         String userName = getPara("username");
         String password = getPara("password");
         String inputRandomCode = getPara("captcha");
@@ -55,11 +53,11 @@ public class LoginController extends ApiController {
 
         if (StrKit.notBlank(userName, password, inputRandomCode)) {
             String sql1 = "select * from vmmisuser where loginname = ? and `password` = PASSWORD(?) and `status` != '1' and pwderrorcount < '4'";
-            List<Vmmisuser> users1 = Vmmisuser.dao.find(sql1, userName, password);
-            if (users1.size() == 0) {
-                renderJson("user_error", "用户名或密码错误！");
+            Vmmisuser users1 = Vmmisuser.dao.findFirst(sql1, userName, password);
+            if (StrKit.isBlank(users1.getLoginname())) {
+                renderJson("user_error", USER_ERROR);
             } else if (validate == false) {
-                renderJson("msg_error", "验证码错误");
+                renderJson("msg_error", MSG_ERROR);
             } else {
                 String sql2 = "select * from vmmisuser where loginname = ? and `password` = PASSWORD(?) and pwderrorcount >= '4'";
                 List<Vmmisuser> users2 = Vmmisuser.dao.find(sql2, userName, password);
@@ -67,9 +65,9 @@ public class LoginController extends ApiController {
                 List<Vmmisuser> users3 = Vmmisuser.dao.find(sql3, userName, password);
 
                 if (users2.size() > 0) {
-                    renderJson("psd_beyond", "该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！");
+                    renderJson("psd_beyond", PSD_BEYONG);
                 } else if (users3.size() > 0) {
-                    renderJson("user_disable", "该用户已被停用！");
+                    renderJson("user_disable", USER_DISABLE);
                 } else {
 
                     //正常登录
@@ -89,19 +87,14 @@ public class LoginController extends ApiController {
 //                        setCookie("password", new String(result), 1209600);
                     }
                     String AutomaticLogin = getPara("AutomaticLogin");
+                    System.out.println("AutomaticLogin: " + AutomaticLogin);
                     if (StrKit.notBlank(AutomaticLogin)) {
                         //自动登录(1、session取openId; 2、调用接口存openId)
                         String openId = getSessionAttr("openId");
-                        //todo 2、调用接口存openId
-//                        redirect("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
-//                        String str = HttpKit.post("http://115.29.179.158/vmmis/updateFanopenid?loginname="+ userName +"&fanopenid=" + openId);
-
-                        /*if(!"1,更新粉丝ID成功！".equals(str)){
-
-                        }*/
+                        //2、调用接口存openId
                         int i = 0;
                         do {
-                            String url = "http://115.29.179.158/vmmis/updateFanopenid?loginname=" + userName + "&fanopenid=" + openId;
+                            String url = "http://115.29.179.158/vmmis/updateFanopenid?loginname=" + userName + "&fanopenid=" + openId + "&vmcustomerid=" + users1.getVmcustomerid();
                             System.out.println("url: " + url);
                             String str = HttpKit.get(url);
                             System.out.println("str: " + str);
@@ -110,8 +103,16 @@ public class LoginController extends ApiController {
 
                     }
 
-
-                    setSessionAttr("userId", users1.get(0).getUserid());
+                    setSessionAttr("userId", users1.getUserid());
+//                    setSessionAttr("vmcustomerid", users1.getVmcustomerid());
+//                    setSessionAttr("realName", users1.getRealname());
+//                    setSessionAttr("username", userName);
+//                    System.out.println("userId: " + users1.getUserid());
+//                    System.out.println("vmcustomerid: " + users1.getVmcustomerid());
+//                    System.out.println("realName: " + users1.getRealname());
+//                    System.out.println("username: " + userName);
+                    setSessionAttr("vmmisuser", users1);
+                    System.out.println("vmmisuser: " + users1);
 
                     String requestPathA = getSessionAttr("requestPathA");
                     System.out.println("LoginController_determine_requestPathA: " + requestPathA);
@@ -122,116 +123,10 @@ public class LoginController extends ApiController {
                     } else {
                         renderJson("requestPathA", getSessionAttr("requestPathA"));
                     }
-
-
                 }
             }
-
-
         } else {
-            renderJson("enterAgain", "请输入完整信息！");
+            renderJson("enterAgain", ENTER_AGAIN);
         }
     }
-
-/*    @Before(UserAuthInterceptor.class)
-    public void index() throws Exception {
-        String userId = getSessionAttr("userId");
-        String userName = getPara("username");
-        String password = getPara("password");
-        String inputRandomCode = getPara("captcha");
-        logger.debug("userName: " + userName + " , password: " + password + ", captcha: " + inputRandomCode);
-
-        boolean validate = MyCaptchaRender.validate(this, inputRandomCode);
-        logger.debug("CaptchaRender.validate=" + validate + ";inputRandomCode=" + inputRandomCode);
-
-        //todo sql 查询用户名密码是否正确
-        String sql1 = "select * from vmmisuser where loginname = ? and `password` = PASSWORD(?) and `status` != '1' and pwderrorcount < '4'";
-        String sql2 = "select * from vmmisuser where loginname = ? and `password` = PASSWORD(?) and pwderrorcount >= '4'";
-        String sql3 = "select * from vmmisuser where loginname = ? and `password` = PASSWORD(?) and `status` = '1'";
-        List<Vmmisuser> users1 = Vmmisuser.dao.find(sql1, userName, password);
-        List<Vmmisuser> users2 = Vmmisuser.dao.find(sql2, userName, password);
-        List<Vmmisuser> users3 = Vmmisuser.dao.find(sql3, userName, password);
-        logger.debug("users1: " + users1);
-        logger.debug("users2: " + users2);
-        logger.debug("users3: " + users3);
-        if (validate == false && StrKit.notBlank(inputRandomCode)) {
-            renderJson("msg_error", "验证码错误");
-
-        } else if (users1.size() > 0 && validate) {
-            //正常登录
-            String RememberPwd = getPara("RememberPwd");
-            if (StrKit.notBlank(RememberPwd)) {
-
-                Cipher cipher = Cipher.getInstance("AES");
-                SecretKey key = KeyGenerator.getInstance("AES").generateKey();
-                setSessionAttr("AESKEY", key);
-                cipher.init(Cipher.ENCRYPT_MODE, key);
-                byte[] result = cipher.doFinal(password.getBytes());
-                logger.debug(new String(result));
-
-                //记住密码
-                setCookie("username", userName, 1209600);
-                setCookie("password", new String(result), 1209600);
-            }
-            String AutomaticLogin = getPara("AutomaticLogin");
-            if (StrKit.notBlank(AutomaticLogin)) {
-                //自动登录(1、session取openId; 2、调用接口存openId)
-                String openId = getSessionAttr("openId");
-                //todo 2、调用接口存openId
-
-            }
-
-
-            setSessionAttr("userId", userId);
-
-            String requestPathA = getSessionAttr("requestPathA");
-            System.out.println("requestPathA: " + requestPathA);
-            renderJson("requestPathA", requestPathA);
-
-        } else if (users1.size() == 0 && users2.size() > 0) {
-            //提示用户“该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！”
-            renderJson("psd_beyond", "该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！");
-
-        } else if (users1.size() == 0 && users3.size() > 0) {
-            //提示用户“该用户已被停用！”，并不允许用户登录；
-            renderJson("user_disable", "该用户已被停用！");
-
-        } else if (users1.size() > 0 && StrKit.isBlank(inputRandomCode)) {
-            renderJson("msg_null", "请输入验证码！");
-        } else {
-            render("login.jsp");
-
-        }*/
-
-
-//        Boolean flag = false;
-//        if (users1.size() > 0 && validate) {
-//            //记住密码
-//            setCookie("username", userName, 1209600);
-//            setCookie("password", password, 1209600);
-//            //自动登录(1、session取openId; 2、调用接口存openId)
-//            String openId = getSessionAttr("openId");
-//            //todo 2、调用接口存openId
-//
-//
-//            setSessionAttr("userId", userId);
-//
-//            String requestPathA = getSessionAttr("requestPathA");
-//            System.out.println("requestPathA: " + requestPathA);
-//            renderJson("requestPathA", requestPathA);
-////            redirect(requestPathA);
-////            setAttr("test", "成功登录");
-////            render("/jsp/login.jsp?1213");
-//        } /*else if (userName != "123" && password != "111") {
-//            renderError(1, "用户名或密码错误");
-//        } else if (validate == false) {
-////            setAttr("test", "用户名或密码错误");
-////            renderJson("error", requestPathA);
-////            render("/views/pepsi/login.html");
-//            renderError(1, "验证码错误");
-//        }*/ else {
-//            render("/views/pepsi/login.html");
-//        }
-
-
 }

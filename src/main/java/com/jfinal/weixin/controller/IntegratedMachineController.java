@@ -3,9 +3,11 @@ package com.jfinal.weixin.controller;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.weixin.models.Vmmisuser;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
+import org.joda.time.DateTime;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,6 +23,62 @@ public class IntegratedMachineController extends ApiController {
 
     public void index() {
         String sql = "SELECT\n" +
+                "concat(\n" +
+                "\t\tDATE_FORMAT(\n" +
+                "\t\t\tandroidvmuserinfo.registdate ,\n" +
+                "\t\t\t'%Y%c%d'\n" +
+                "\t\t) ,\n" +
+                "\t\tandroidvmuserinfo.deviceid\n" +
+                "\t) AS rd,\n" +
+                "\tsum(androidsalelist.price) prices,\n" +
+                "\tcount(androidsalelist.yyyymmdd) count1 ,\n" +
+                "\tandroidsetpara.*, \n" +
+                "\tandroidnetinfo.lastnettime ,\n" +
+                "\tandroidtrackka.*, \n" +
+                "\tandroidnetappstart.pkgname ,\n" +
+                "\tandroidnetappstart.apkversion ,\n" +
+                "\tCOUNT(androidcabineta.deviceid) counta,\n" +
+                "\tCOUNT(androidcabinetb.deviceid) countb,\n" +
+                "\tCOUNT(androidcabinetc.deviceid) countc,\n" +
+                "\tCOUNT(androidcabinetd.deviceid) countd,\n" +
+                "\tCOUNT(androidcabinete.deviceid) counte,\n" +
+                "\tCOUNT(androidtrackdouble.deviceid) count2\n" +
+                "FROM\n" +
+                "\tandroidsetpara\n" +
+                "INNER JOIN androidvmuserinfo ON androidvmuserinfo.deviceid = androidsetpara.deviceid\n" +
+                "AND androidvmuserinfo.vmcustomerid = ?\n" +
+                "LEFT JOIN androidnetinfo ON androidnetinfo.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidtrackka ON androidtrackka.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidnetappstart ON androidnetappstart.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidcabineta ON androidcabineta.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidcabinetb ON androidcabinetb.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidcabinetc ON androidcabinetc.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidcabinetd ON androidcabinetd.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidcabinete ON androidcabinete.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidsetpara.deviceid\n" +
+                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidsetpara.deviceid\n" +
+                "AND androidsalelist.yyyymmdd = ?\n" +
+                "where concat(\n" +
+                "\t\tDATE_FORMAT(\n" +
+                "\t\t\tandroidvmuserinfo.registdate ,\n" +
+                "\t\t\t'%Y%c%d'\n" +
+                "\t\t) ,\n" +
+                "\t\tandroidvmuserinfo.deviceid\n" +
+                "\t) < ?\n" +
+                "GROUP BY\n" +
+                "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
+                "ORDER BY\n" +
+                "\trd DESC" +
+                "LIMIT ?";
+
+        String sql1 = "SELECT\n" +
+                "concat(\n" +
+                "\t\tDATE_FORMAT(\n" +
+                "\t\t\tandroidvmuserinfo.registdate ,\n" +
+                "\t\t\t'%Y%c%d'\n" +
+                "\t\t) ,\n" +
+                "\t\tandroidvmuserinfo.deviceid\n" +
+                "\t) AS rd,\n" +
                 "\tsum(androidsalelist.price) prices,\n" +
                 "\tcount(androidsalelist.yyyymmdd) count1 ,\n" +
                 "\tandroidsetpara.*, \n" +
@@ -51,10 +109,20 @@ public class IntegratedMachineController extends ApiController {
                 "AND androidsalelist.yyyymmdd = ?\n" +
                 "GROUP BY\n" +
                 "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
-                "LIMIT ?, ?";
+                "ORDER BY\n" +
+                "\trd DESC" +
+                "LIMIT ?";
 
-        System.out.println(sql);
-        List<Record> data = Db.find(sql, "1", "2016-10-08", 0, 20);
+        String today = DateTime.now().toString("yyyy-MM-dd");
+        Vmmisuser vmmisuser = getSessionAttr("vmmisuser");
+        System.out.println("vmmisuser: " + vmmisuser);
+        String rd = getPara("rd");
+        List<Record> data;
+        if(StrKit.isBlank(rd)){
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 20);
+        }else{
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd , 20);
+        }
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
@@ -77,19 +145,11 @@ public class IntegratedMachineController extends ApiController {
 
 
             String trackfloor = data.get(n).get("trackfloor").toString();
-            String everyfloortracknum1 = data.get(n).get("everyfloortracknum1").toString();
-            String everyfloortracknum2 = data.get(n).get("everyfloortracknum2").toString();
-            String everyfloortracknum3 = data.get(n).get("everyfloortracknum3").toString();
-            String everyfloortracknum4 = data.get(n).get("everyfloortracknum4").toString();
-            String everyfloortracknum5 = data.get(n).get("everyfloortracknum5").toString();
-            String everyfloortracknum6 = data.get(n).get("everyfloortracknum6").toString();
-            String everyfloortracknum7 = data.get(n).get("everyfloortracknum7").toString();
             String prices = "";
             if (data.get(n).get("prices") != null) {
                 prices = data.get(n).get("prices").toString();
             }
 
-//        String prices = data.get(n).get("prices").toString();
             String count1 = data.get(n).get("count1").toString();
             String pkgname = data.get(n).get("pkgname").toString();
             String apkversion = data.get(n).get("apkversion").toString();
@@ -99,27 +159,6 @@ public class IntegratedMachineController extends ApiController {
             Long countd = data.get(n).get("countd");
             Long counte = data.get(n).get("counte");
             Long count2 = data.get(n).get("count2");
-
-//        System.out.println(deviceid);
-//        System.out.println(vmname);
-//        System.out.println(lastnettime);
-//        System.out.println(coinstatus);
-//        System.out.println(coinoutstatus);
-//        System.out.println(billstatus);
-//        System.out.println(coin1yuan);
-//        System.out.println(coin5jiao);
-//        System.out.println(trackfloor);
-//        System.out.println(everyfloortracknum1);
-//        System.out.println(everyfloortracknum2);
-//        System.out.println(everyfloortracknum3);
-//        System.out.println(everyfloortracknum4);
-//        System.out.println(everyfloortracknum5);
-//        System.out.println(everyfloortracknum6);
-//        System.out.println(everyfloortracknum7);
-//        System.out.println(prices);
-//        System.out.println(count1);
-//        System.out.println(pkgname);
-//        System.out.println(apkversion);
 
             Set<String> youxiaoguidao = new HashSet<String>();
             if (StrKit.notBlank(trackfloor)) {
@@ -132,15 +171,12 @@ public class IntegratedMachineController extends ApiController {
                         youxiaoguidao.add(z + "" + y);
                     }
                 }
-                System.out.println("youxiaoguidao: " + youxiaoguidao);
-                System.out.println("youxiaoguidao.size(): " + youxiaoguidao.size());
             }
 
             int guzhangguidaoNum = 0;
             int quehuoguidaoNum = 0;
             int kucunNum = 0;
             for (String it : youxiaoguidao) {
-                System.out.println("trackstatus" + it);
                 String i = data.get(n).get("trackstatus" + it).toString();
 
                 int now = data.get(n).get("numnow" + it);
@@ -153,9 +189,6 @@ public class IntegratedMachineController extends ApiController {
                     quehuoguidaoNum++;
                 }
             }
-            System.out.println("guzhangguidaoNum: " + guzhangguidaoNum);
-            System.out.println("quehuoguidaoNum: " + quehuoguidaoNum);
-            System.out.println("kucunNum: " + kucunNum);
 
             String apkversionStr = "";
             if (StrKit.notBlank(apkversion)) {
@@ -169,7 +202,6 @@ public class IntegratedMachineController extends ApiController {
                     }
                 }
             }
-            System.out.println("apkversionStr: " + apkversionStr);
 
             String liantiji = "";
             if (count2 > 0) {
