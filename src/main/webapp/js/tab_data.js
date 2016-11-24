@@ -1,7 +1,6 @@
 function tab(tab,rem) {
     var paX = 0,paY=0;
     var remHeight = 1.35 * rem + 'rem';
-    console.log(rem);
     $(tab).on('click','.tabContent',function(e){
         function showTab(){
             $('.showBtn').find('img').css({
