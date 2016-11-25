@@ -89,10 +89,35 @@ public class DrinkMachinesController extends ApiController {
             String tempstatus = data.get(n).get("tempstatus").toString();
             String insidetempnow = data.get(n).get("insidetempnow").toString();
             String insidetempset = data.get(n).get("insidetempset").toString();
-            String tracknum = data.get(n).get("tracknum").toString();
             String coininstatus = data.get(n).get("coininstatus").toString();
             String oneyuannum = data.get(n).get("oneyuannum").toString();
             String fivejiaonum = data.get(n).get("fivejiaonum").toString();
+            int tracknum = data.get(n).getInt("tracknum");
+
+            int guzhangguidaoNum = 0;
+            int quehuoguidaoNum = 0;
+            int kucunNum = 0;
+            for (int i = 1; i <= tracknum; i++) {
+                String trackstatus = "";
+                int now = 0;
+                int max = 0;
+                if (i < 10) {
+                    trackstatus = data.get(n).get("trackstatus0" + i).toString();
+                    now = data.get(n).get("now0" + i);
+                    max = data.get(n).get("max0" + i);
+                } else {
+                    trackstatus = data.get(n).get("trackstatus" + i).toString();
+                    now = data.get(n).get("now" + i);
+                    max = data.get(n).get("max" + i);
+                }
+                kucunNum += now;
+                if ("0".equals(trackstatus)) {
+                    guzhangguidaoNum++;
+                } else if ("1".equals(trackstatus) && now < max) {
+                    quehuoguidaoNum++;
+                }
+
+            }
 
 
             if (StrKit.isBlank(vmname)) {
@@ -118,23 +143,6 @@ public class DrinkMachinesController extends ApiController {
                 doorstatus = "开";
             }
 
-
-//            String billstatus = data.get(0).get("billstatus").toString();
-//            String coinstatus = data.get(0).get("coinstatus").toString();
-
-//        String coinoutstatus = data.get(0).get("coinoutstatus").toString();
-//        String coin1yuan = data.get(0).get("coin1yuan").toString();
-//        String coin5jiao = data.get(0).get("coin5jiao").toString();
-//
-//        if (StrKit.isBlank(coin1yuan)) {
-//            coin1yuan = "0";
-//        }
-//        if (StrKit.isBlank(coin5jiao)) {
-//            coin5jiao = "0";
-//        }
-
-
-//        String trackfloor = data.get(0).get("trackfloor").toString();
             String prices = data.get(n).get("prices");
             if (prices == null) {
                 prices = "--";
@@ -152,35 +160,7 @@ public class DrinkMachinesController extends ApiController {
             Long countd = data.get(n).get("countd");
             Long counte = data.get(n).get("counte");
             Long count2 = data.get(n).get("count2");
-//
-//        Set<String> youxiaoguidao = new HashSet<String>();
-//        if (StrKit.notBlank(trackfloor)) {
-//            int z = 0;
-//            int num = 0;
-//            for (int i = 1; i <= 7; i++) {
-//                z = i - 1;
-//                num = data.get(0).get("everyfloortracknum" + i);
-//                for (int y = num - 1; y >= 0; y--) {
-//                    youxiaoguidao.add(z + "" + y);
-//                }
-//            }
-//        }
-//
-//        int guzhangguidaoNum = 0;
-//        int quehuoguidaoNum = 0;
-//        int kucunNum = 0;
-//        for (String it : youxiaoguidao) {
-//            String i = data.get(0).get("trackstatus" + it).toString();
-//            int now = data.get(0).get("numnow" + it);
-//            int max = data.get(0).get("nummax" + it);
-//            kucunNum += now;
-//            if ("0".equals(i)) {
-//                guzhangguidaoNum++;
-//            } else if ("1".equals(i) && now < max) {
-//                quehuoguidaoNum++;
-//            }
-//        }
-//
+
             String apkversion = data.get(n).get("apkversion").toString();
             String apkversionStr = "";
             if (StrKit.notBlank(apkversion)) {
@@ -227,18 +207,14 @@ public class DrinkMachinesController extends ApiController {
             item.put("version", IntegratedMachineController.transformVM(pkgname) + "/" + apkversionStr); //版本
             item.put("today", prices + "/" + count1); //今日(金额/次数)
             item.put("doorstatus", doorstatus); //门状态 0:门关闭着;1:门开着的
-            item.put("tracknum", tracknum); //轨道数
             item.put("number", number); //一元五角个数
             item.put("tempnow", lefttempnow + "/" + righttempnow); // 左温度/右温度
             item.put("tempstatus", tempstatus + "/" + insidetempnow + "/" + insidetempset); // 温度模式/室内温度/设置温度
+            item.put("tracknum", tracknum + ""); //轨道数
+            item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
+            item.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
+            item.put("kucunNum", kucunNum + ""); //库存(故障)
 
-
-//            item.put("billstatus", billstatus); //纸币
-//            item.put("coinstatus", coinstatus); //硬币找零
-
-//        item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
-//        item.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
-//        item.put("kucunNum", kucunNum + ""); //库存(故障)
 
             list.add(item);
 
