@@ -37,4 +37,9 @@
         font-size: 0.59rem;
     }
 }
-
+.weui-infinite-scroll{
+    display: none;
+}
+.weui-infinite-scroll {
+    margin-bottom: 0.9rem;
+}

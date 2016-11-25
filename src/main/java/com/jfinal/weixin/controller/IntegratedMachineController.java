@@ -68,7 +68,7 @@ public class IntegratedMachineController extends ApiController {
                 "GROUP BY\n" +
                 "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
                 "ORDER BY\n" +
-                "\trd DESC" +
+                "\trd DESC\n" +
                 "LIMIT ?";
 
         String sql1 = "SELECT\n" +
@@ -121,10 +121,12 @@ public class IntegratedMachineController extends ApiController {
         List<Record> data;
         if(StrKit.notBlank(rd)){
             System.out.println("11111111111111111");
-            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd , 20);
+//            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd , 20);
+            data = Db.find(sql, 1, today, rd , 20);
         }else{
             System.out.println("22222222222222222");
-            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 20);
+//            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 20);
+            data = Db.find(sql1, 1, today, 20);
         }
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();

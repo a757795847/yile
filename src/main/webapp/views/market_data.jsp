@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
+<html lang="zh">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -18,7 +18,7 @@
 <header>
     <a href="/home?123" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
     <strong>销售数据</strong>
-    <a href="" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
+    <a href="javascript:;" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
 <ul class="tabHeader">
     <li>上机位</li>
@@ -97,7 +97,7 @@
     </div>
 
     <div class="noContent">
-        -----------<span>没有内容了</span>-----------
+        没有内容了
     </div>
 </section>
 <script type="text/javascript" src="../js/jquery.min.js"></script>

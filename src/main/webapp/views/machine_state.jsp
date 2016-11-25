@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
+<html lang="zh">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -36,6 +36,9 @@
     <div id="synthesize" class="weui_tab_bd_item weui_tab_bd_item_active">
         <div class="synthesize">
 
+        </div>
+        <div class="noContent">
+            没有内容了
         </div>
     </div>
     <div id="drink" class="weui_tab_bd_item">
@@ -96,6 +99,9 @@
                 </div>
             </div>
         </div>
+        <div class="noContent">
+            没有内容了
+        </div>
     </div>
     <div id="coffee" class="weui_tab_bd_item">
 
@@ -154,16 +160,18 @@
                 </div>
             </div>
         </div>
+        <div class="noContent">
+            没有内容了
+        </div>
     </div>
 </div>
 
-<div class="noContent">
-    没有内容了
-</div>
+
 <div class="weui-infinite-scroll">
     <div class="infinite-preloader"></div>
     正在加载...
 </div>
+<div class="zhanwei"></div>
 <ul class="nav">
     <li><a href="/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
     <li><a href="/machine/integrated?123"><img src="../img/15.png" class="img2"></a> <b></b></li>
