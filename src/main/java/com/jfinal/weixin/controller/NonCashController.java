@@ -17,7 +17,7 @@ public class NonCashController extends ApiController {
 
     @Before(UserAuthInterceptor.class)
     public void index() {
-        render("");
+        render("pay.jsp");
     }
 
 }

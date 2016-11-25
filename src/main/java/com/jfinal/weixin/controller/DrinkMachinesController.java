@@ -111,8 +111,8 @@ public class DrinkMachinesController extends ApiController {
             data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd, 50);
         } else {
             System.out.println("DrinkMachinesController_222");
-//            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 50);
-            data = Db.find(sql, 1, today, 50);
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 50);
+//            data = Db.find(sql, 1, today, 50);
         }
         System.out.println("sql: " + sql);
         System.out.println("data: " + data);
