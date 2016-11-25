@@ -89,8 +89,9 @@
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
                     paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
                     metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
+                    data[i].today = data[i].today == '/0'? '--/--':data[i].today;
 
-                    synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="/home?123">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
+                    synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="/home?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     synthesize += '<li class="'+internet+'">('+newDate+')</li><li><i class="'+paper+'"></i>/<i class="'+metal+'"></i>';
                     synthesize += '</li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
                     synthesize += '<ul><li>今日<span>(金额/次数)</span></li><li>故障轨道</li><li>缺货轨道</li><li>库存<span>(故障)</span></li><li>';

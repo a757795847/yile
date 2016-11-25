@@ -23,12 +23,9 @@
 }
 
 .tabContent .hideTab ul:last-child li {
-    font-size: 0.506rem;
+    font-size: 0.43rem;
 }
 
-.tabContent .hideTab ul:last-child li:nth-child(4) {
-    line-height: 0.694rem;
-}
 @media (min-width: 320px) and (max-width:360px) {
     .tabContent li{
         font-size: 0.42rem;
