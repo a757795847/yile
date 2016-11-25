@@ -68,7 +68,7 @@ public class IntegratedMachineController extends ApiController {
                 "GROUP BY\n" +
                 "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
                 "ORDER BY\n" +
-                "\trd DESC" +
+                "\trd DESC " +
                 "LIMIT ?";
 
         String sql1 = "SELECT\n" +
@@ -119,10 +119,10 @@ public class IntegratedMachineController extends ApiController {
         String rd = getPara("rd");
         System.out.println("rd: " + rd);
         List<Record> data;
-        if(StrKit.notBlank(rd)){
+        if (StrKit.notBlank(rd)) {
             System.out.println("11111111111111111");
-            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd , 20);
-        }else{
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd, 20);
+        } else {
             System.out.println("22222222222222222");
             data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 20);
         }
@@ -312,7 +312,7 @@ public class IntegratedMachineController extends ApiController {
         renderJson(list);
     }
 
-    public String transformVM(String str) {
+    public static String transformVM(String str) {
         String myversion = "";
         if ("VMSelf206".equals(str)) {
             myversion = "饮料206";
