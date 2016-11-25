@@ -137,21 +137,19 @@
             success: function (data) {
                 $.hideLoading();
                 console.log(data);
-                var drink = '',internet = '', paper = '', metal = '',newDate;
+                var drink = '',internet = '',newDate;
                 for(var i=0;i<data.length;i++){
 
                     newData = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
-                    paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
-                    metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
 
                     drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     drink += '<li class="'+internet+'">('+newData+')</li>';
-                    drink += '<li>故障轨道</i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div>';
+                    drink += '<li>'+data[i].guzhangguidaoNum+'</i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div>';
                     drink += '<div class="hideTab"><ul><li>一元/5角个数</li><li>轨道数</li><li>缺货轨道</li><li>在库件数<span>(故障)</span></li><li></li></ul><ul>';
-                    drink += '<li class="none">'+data[i].number+'/'+data[i].number+'</li><li>'+data[i].tracknum+'</li><li>7</li><li>0</li><li></li></ul><ul>';
-                    drink += '<li>今日<span>(金额/次数)</span></li><li>门状态</li><li class="minWord">温度模式/室内温度<br/>设置温度</li><li>左温度/右温度</li><li></li></ul><ul>';
-                    drink += '<li>'+data[i].today+'</li><li>'+data[i].doorstatus+'</li><li>'+data[i].tempstatus+'</li><li>'+data[i].tempnow+'</li><li></li></ul>';
+                    drink += '<li class="none">'+data[i].number+'/'+data[i].number+'</li><li>'+data[i].tracknum+'</li><li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].kucunNum+'</li>';
+                    drink += '<li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>门状态</li><li class="minWord">温度模式/室内温度<br/>设置温度</li><li>左温度/右温度</li>';
+                    drink += '<li></li></ul><ul><li>'+data[i].today+'</li><li>'+data[i].doorstatus+'</li><li>'+data[i].tempstatus+'</li><li>'+data[i].tempnow+'</li><li></li></ul>';
                     drink += '<ul><li>柜子/连体机</li><li>版本</li><li><li></li></li><li></li></ul><ul><li>'+data[i]['guizi/liantiji']+'</li>';
                     drink += '<li>'+data[i].version+'</li><li></li><li></li><li></li></ul></div></div>';
                 }
@@ -257,24 +255,23 @@
     function onBeack(data,id,childId,state,html){
         if(state){
             $(id).find(childId).html(html);
-            dataLength(state);
+
         }else{
             $(id).find(childId).append(html);
-            dataLength();
+
         }
-        function dataLength(state){
-            if(data.length < 25){
-                $('.weui-infinite-scroll').css('display','none');
-                if(state){
-                    $(id).find('.noContent').css('display','none');
-                }else{
-                    $(id).find('.noContent').css('display','block');
-                }
-            }else{
-                $('.weui-infinite-scroll').css('display','block');
+        if(data.length < 25){
+            $('.weui-infinite-scroll').css('display','none');
+            if(state){
                 $(id).find('.noContent').css('display','none');
+            }else{
+                $(id).find('.noContent').css('display','block');
             }
+        }else{
+            $('.weui-infinite-scroll').css('display','block');
+            $(id).find('.noContent').css('display','none');
         }
+
     }
 
     $(document.body).infinite().on("infinite", function() {

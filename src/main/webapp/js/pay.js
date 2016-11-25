@@ -39,14 +39,18 @@
                 }else{
                     $('#content').append(pay);
                 }
-                if(on){
-                    
-                }
                 if(data.length < 25){
                     $('.weui-infinite-scroll').css('display','none');
-                    $(document.body).destroyInfinite();
+                    if(on){
+                        $('.noContent').css('display','none');
+                    }else{
+                        $('.noContent').css('display','block');
+                    }
+                    //$(document.body).destroyInfinite();
+                    loading = true;
                 }else{
                     $('.weui-infinite-scroll').css('display','block')
+                    loading = false;
                 }
 
                 payId = data[data.length-1].deviceid;
