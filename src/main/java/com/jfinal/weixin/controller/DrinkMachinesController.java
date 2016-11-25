@@ -42,7 +42,6 @@ public class DrinkMachinesController extends ApiController {
                 "COUNT(androidcabinete.deviceid) counte,\n" +
                 "COUNT(androidtrackdouble.deviceid) count2,\n" +
                 "androidguangone.*\n" +
-//                "androidtrackka.*\n" +
                 "FROM\n" +
                 "    androidguangone\n" +
                 "INNER JOIN androidvmuserinfo ON androidvmuserinfo.deviceid = androidguangone.deviceid AND androidvmuserinfo.vmcustomerid = ?\n" +
@@ -59,12 +58,53 @@ public class DrinkMachinesController extends ApiController {
                 "GROUP BY androidguangone.deviceid, androidsalelist.yyyymmdd\n" +
                 "order by rd desc " +
                 "LIMIT ?";
-        String sql1 = "";
+
+        String sql1 = "SELECT\n" +
+                "concat(\n" +
+                "                DATE_FORMAT(\n" +
+                "                androidvmuserinfo.registdate ,\n" +
+                "                '%Y%m%d'),\n" +
+                "                androidvmuserinfo.deviceid\n" +
+                "                ) AS rd,\n" +
+                "sum(androidsalelist.price) prices ,\n" +
+                "count(androidsalelist.yyyymmdd) count1 ,\n" +
+                "androidnetinfo.lastnettime ,\n" +
+                "androidnetappstart.pkgname ,\n" +
+                "androidnetappstart.apkversion ,\n" +
+                "COUNT(androidcabineta.deviceid) counta,\n" +
+                "COUNT(androidcabinetb.deviceid) countb,\n" +
+                "COUNT(androidcabinetc.deviceid) countc,\n" +
+                "COUNT(androidcabinetd.deviceid) countd,\n" +
+                "COUNT(androidcabinete.deviceid) counte,\n" +
+                "COUNT(androidtrackdouble.deviceid) count2,\n" +
+                "androidguangone.*\n" +
+                "FROM\n" +
+                "    androidguangone\n" +
+                "INNER JOIN androidvmuserinfo ON androidvmuserinfo.deviceid = androidguangone.deviceid AND androidvmuserinfo.vmcustomerid = ?\n" +
+                "LEFT JOIN androidnetinfo ON androidnetinfo.deviceid = androidguangone.deviceid \n" +
+                "LEFT JOIN androidtrackka ON androidtrackka.deviceid = androidguangone.deviceid \n" +
+                "LEFT JOIN androidnetappstart ON androidnetappstart.deviceid = androidguangone.deviceid \n" +
+                "LEFT JOIN androidcabineta ON androidcabineta.deviceid = androidguangone.deviceid\n" +
+                "LEFT JOIN androidcabinetb ON androidcabinetb.deviceid = androidguangone.deviceid\n" +
+                "LEFT JOIN androidcabinetc ON androidcabinetc.deviceid = androidguangone.deviceid\n" +
+                "LEFT JOIN androidcabinetd ON androidcabinetd.deviceid = androidguangone.deviceid\n" +
+                "LEFT JOIN androidcabinete ON androidcabinete.deviceid = androidguangone.deviceid\n" +
+                "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidguangone.deviceid\n" +
+                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidguangone.deviceid AND androidsalelist.yyyymmdd = 2016-11-21\n" +
+                "where concat(\n" +
+                "                DATE_FORMAT(\n" +
+                "                androidvmuserinfo.registdate ,\n" +
+                "                '%Y%m%d'),\n" +
+                "                androidvmuserinfo.deviceid\n" +
+                "                ) < ?\n" +
+                "GROUP BY androidguangone.deviceid, androidsalelist.yyyymmdd\n" +
+                "order by rd desc LIMIT ?";
         String today = DateTime.now().toString("yyyy-MM-dd");
         Vmmisuser vmmisuser = getSessionAttr("vmmisuser");
         System.out.println("DrinkMachinesController_vmmisuser: " + vmmisuser);
         String rd = getPara("rd");
         System.out.println("DrinkMachinesController_rd: " + rd);
+
         List<Record> data;
         if (StrKit.notBlank(rd)) {
             System.out.println("DrinkMachinesController_111");
@@ -143,9 +183,9 @@ public class DrinkMachinesController extends ApiController {
                 doorstatus = "开";
             }
 
-            String prices = data.get(n).get("prices");
-            if (prices == null) {
-                prices = "--";
+            String prices = "";
+            if (data.get(n).get("prices") != null) {
+                prices = data.get(n).get("prices").toString();
             }
 
             String count1 = data.get(n).getLong("count1").toString();
