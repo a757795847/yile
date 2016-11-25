@@ -23,17 +23,17 @@
     <a href="#"><img src="../img/08.png" data-machine="0" class="img-responsive" id="Rightimg"></a>
 </header>
 
-<ul class="tabHeader">
-    <li>上位机ID</li>
-    <li>机器名称</li>
-    <li>联网状态(最近联网)</li>
-    <li>纸币/硬币找零</li>
-    <li>...</li>
-</ul>
-
 <div class="weui_tab_bd">
 
     <div id="synthesize" class="weui_tab_bd_item weui_tab_bd_item_active">
+        <ul class="tabHeader">
+            <li>上位机ID</li>
+            <li>机器名称</li>
+            <li>联网状态(最近联网)</li>
+            <li>纸币/硬币找零</li>
+            <li>...</li>
+        </ul>
+
         <div class="synthesize">
 
         </div>
@@ -42,6 +42,14 @@
         </div>
     </div>
     <div id="drink" class="weui_tab_bd_item">
+        <ul class="tabHeader">
+            <li>上位机ID</li>
+            <li>机器名称</li>
+            <li>联网状态(最近联网)</li>
+            <li>故障轨道</li>
+            <li>...</li>
+        </ul>
+
         <div class="drink">
             <div class="tabContent">
                 <div class="showTab">
@@ -104,7 +112,13 @@
         </div>
     </div>
     <div id="coffee" class="weui_tab_bd_item">
-
+        <ul class="tabHeader">
+            <li>上位机ID</li>
+            <li>机器名称</li>
+            <li>联网状态(最近联网)</li>
+            <li>纸币/硬币找零</li>
+            <li>...</li>
+        </ul>
         <div class="coffee">
             <div class="tabContent">
                 <div class="showTab">

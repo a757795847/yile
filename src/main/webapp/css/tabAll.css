@@ -211,10 +211,8 @@ header strong{
     line-height: 3px;
     padding: 0 10px;
     text-align: center;
-    float: left;
     margin-top: 0.3rem;
-    margin-bottom: 4rem;
-    margin-left: 38%;
+    margin-bottom: 1rem;
     color: #c8c8cd;
     font-size: 0.5rem;
     display: none;
@@ -250,11 +248,7 @@ header strong{
     font-size: 0.5rem;
 }
 
-@media screen and (max-width: 320px){
-    .weui-infinite-scroll {
-        margin-bottom: 3rem;
-    }
-}
+
 
 @media screen and (max-width: 736px){
     .index {

@@ -15,10 +15,8 @@
         var index = $(this).attr('data-machine');
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         $.showLoading("正在加载...");
-        console.log(index);
         switch(index){
             case '0':
-                console.log('')
                 synthesizeAjax(true);
                 break;
             case '1':
@@ -46,23 +44,26 @@
             $('.machineHeader li').eq(index-2).addClass('borderLeft');
         }
         switch (index){
-            case '0':
+            case 0:
+                console.log(synthesizeState)
                 if(synthesizeState){
-                    return;
+                    $('.weui-infinite-scroll').css('display','block');
                 }else{
                     $('.weui-infinite-scroll').css('display','none');
                 };
                 break;
-            case '1':
+            case 1:
+                console.log(drinkState)
                 if(drinkState){
-                    return;
+                    $('.weui-infinite-scroll').css('display','block');
                 }else{
                     $('.weui-infinite-scroll').css('display','none');
                 };
                 break;
             default:
+                console.log(coffeeState)
                 if(coffeeState){
-                    return;
+                    $('.weui-infinite-scroll').css('display','block');
                 }else{
                     $('.weui-infinite-scroll').css('display','none');
                 };
@@ -93,8 +94,8 @@
                     metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
 
                     synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="/home?123">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
-                    synthesize += '<li class="'+internet+'">('+newDate+')</li>';
-                    synthesize += '<li><i class="'+paper+'"></i>/<i class="'+metal+'"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
+                    synthesize += '<li class="'+internet+'">('+newDate+')</li><li><i class="'+paper+'"></i>/<i class="'+metal+'"></i>';
+                    synthesize += '</li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
                     synthesize += '<ul><li>今日<span>(金额/次数)</span></li><li>故障轨道</li><li>缺货轨道</li><li>库存<span>(故障)</span></li><li>';
                     synthesize += '</li></ul><ul><li>'+data[i].today+'</li><li>'+data[i].guzhangguidaoNum+'</li><li>'+data[i].quehuoguidaoNum+'</li>';
                     synthesize += '<li>'+data[i].kucunNum+'('+data[i].guzhangguidaoNum+')</li><li></li></ul><ul><li>柜子/连体箱</li><li>版本</li>';
@@ -130,27 +131,29 @@
         }
         $.ajax({
             type: 'GET',
-            url: '//drinkMachineData',
+            url: '/drinkMachineData',
             data:data,
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
                 console.log(data);
                 var drink = '',internet = '', paper = '', metal = '',newDate;
-                for(var i=0;i<0;i++){
+                for(var i=0;i<data.length;i++){
 
                     newData = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
                     paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
                     metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
 
-                    drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">023041952882</a></li><li>未设定</li><li class="internetOn">(05-11 08:40:12)</li>';
-                    drink += '<li><i class="paperOn"></i>/<i class="metalOff"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div>';
-                    drink += '<div class="hideTab"><ul><li>一元/5角个数</li><li>故障轨道</li><li>缺货轨道</li><li>在库件数<span>(故障)</span></li><li></li></ul><ul>';
-                    drink += '<li class="none">NONE/NONE</li><li>0</li><li>7</li><li>0</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>门状态</li>';
-                    drink += '<li class="minWord">温度模式/室内温度<br/>设置温度</li><li>左温度/右温度</li><li></li></ul><ul><li>-- / --</li><li>关</li><li>冷/17/18</li>';
-                    drink += '<li>---</li><li></li></ul><ul><li>轨道数</li><li>柜子/连体机</li><li>版本</li><li></li><li></li></ul><ul><li>7</li><li>A</li>';
-                    drink += '<li>光脚一号/1.1.2</li><li></li><li></li></ul></div></div>';
+                    drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
+                    drink += '<li class="'+internet+'">('+newData+')</li>';
+                    drink += '<li>故障轨道</i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div>';
+                    drink += '<div class="hideTab"><ul><li>一元/5角个数</li><li>轨道数</li><li>缺货轨道</li><li>在库件数<span>(故障)</span></li><li></li></ul><ul>';
+                    drink += '<li class="none">'+data[i].number+'/'+data[i].number+'</li><li>'+data[i].tracknum+'</li><li>7</li><li>0</li><li></li></ul><ul>';
+                    drink += '<li>今日<span>(金额/次数)</span></li><li>门状态</li><li class="minWord">温度模式/室内温度<br/>设置温度</li><li>左温度/右温度</li><li></li></ul><ul>';
+                    drink += '<li>'+data[i].today+'</li><li>'+data[i].doorstatus+'</li><li>'+data[i].tempstatus+'</li><li>'+data[i].tempnow+'</li><li></li></ul>';
+                    drink += '<ul><li>柜子/连体机</li><li>版本</li><li><li></li></li><li></li></ul><ul><li>'+data[i]['guizi/liantiji']+'</li>';
+                    drink += '<li>'+data[i].version+'</li><li></li><li></li><li></li></ul></div></div>';
                 }
                 if(data.length < 25){
                     drinkState = false;
@@ -195,7 +198,6 @@
                 }else{
                     loading = false;
                 }
-                loading = false;
                 coffeeLastId = data[data.length-1].deviceid;
                 onBeack(data,'#coffee','.coffee',on,coffee);
 
@@ -276,34 +278,33 @@
     }
 
     $(document.body).infinite().on("infinite", function() {
-        console.log('触发了')
         if(loading) return;
         loading = true;
         var index = $('#Rightimg').attr('data-machine');
         console.log(synthesizeState)
         console.log(drinkState)
         console.log(coffeeState)
+        // setTimeout(function(){loading = false},1000)
+        switch (index){
+            case '0':
+                if(synthesizeState){
+                    console.log('1');
+                    synthesizeAjax(false)
+                }
+                break;
+            case '1':
+                if(drinkState){
+                    console.log('2');
+                    drinkAjax(false)
+                }
+                break;
+            default:
+                if(coffeeState){
+                    console.log('3');
+                    coffeeAjax(false)
+                }
 
-        // switch (index){
-        //     case '0':
-        //         if(synthesizeState){
-        //             console.log('1');
-        //             synthesizeAjax(false)
-        //         }
-        //         break;
-        //     case '1':
-        //         if(drinkState){
-        //             console.log('2');
-        //             drinkAjax(false)
-        //         }
-        //         break;
-        //     default:
-        //         if(coffeeState){
-        //             console.log('3');
-        //             coffeeAjax(false)
-        //         }
-        //
-        // }
+        }
     });
 
 

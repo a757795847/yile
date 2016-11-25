@@ -1,33 +1,62 @@
 (function ($) {
     tab('#content');
     //$.showLoading("正在加载...");
+    var payId = '';
     $('#Rightimg').on('touchstart',function(){
         $("#Rightimg").addClass("transform");
         var index = $(this).attr('data-machine');
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         $.showLoading("正在加载...");
-        indexAjax();
+        payAjax(true);
     });
-    function indexAjax(){
-        var pay = '',pay1='';
-
-        for(var i=0;i<22;i++){
-            pay += '<div class="tabContent"><div class="showTab"><ul><li class="minName">F90813151281</li><li>07-20 08:20:03</li><li>2.0</li><li>微信—福建市丰大</li>';
-            pay += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>交易号(tranid)</li><li>支付者ID(openid)</li>';
-            pay += '<li>轨道</li><li>实际销售</li><li></li></ul><ul><li class="minWord">400885200120160720935830169</li>';
-            pay += '<li class="minWord">oQv75vr5SpLLf13e35mOB1fCsupk</li><li>32</li><li class="retreat">销售处理</li><li></li></ul></div></div>';
-
+    function payAjax(on){
+        if(on){
+            var data = {}
+        }else{
+            var data = {
+                'rd':payId
+            }
         }
-        pay1 += '<div class="tabContent"><div class="showTab"><ul><li class="minName">F90813151281</li><li>07-20 08:20:03</li><li>2.0</li><li>微信—福建市丰大</li>';
-        pay1 += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>交易号(tranid)</li><li>支付者ID(openid)</li>';
-        pay1 += '<li>轨道</li><li>实际销售</li><li></li></ul><ul><li class="minWord">400885200120160720935830169</li>';
-        pay1 += '<li class="minWord">oQv75vr5SpLLf13e35mOB1fCsupk</li><li>32</li><li class="retreat">销售处理</li><li></li></ul></div></div>';
+        $.ajax({
+            type: 'GET',
+            url: '/integratedMachineData',
+            data:data,
+            dataType: 'json',
+            success: function (data) {
+                $.hideLoading();
+                console.log(data);
+                var pay = '',pay1='';
 
-        $('#content').append(pay);
-        setTimeout(function(){$.hideLoading();},1000)
-        $('.weui-infinite-scroll').css('display','block')
+                for(var i=0;i < data.length ; i++ ){
+                    pay += '<div class="tabContent"><div class="showTab"><ul><li class="minName">F90813151281</li><li>07-20 08:20:03</li><li>2.0</li><li>微信—福建市丰大</li>';
+                    pay += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>交易号(tranid)</li><li>支付者ID(openid)</li>';
+                    pay += '<li>轨道</li><li>实际销售</li><li></li></ul><ul><li class="minWord">400885200120160720935830169</li>';
+                    pay += '<li class="minWord">oQv75vr5SpLLf13e35mOB1fCsupk</li><li>32</li><li class="retreat">销售处理</li><li></li></ul></div></div>';
+
+                }
+                if(on){
+                    $('#content').html(pay);
+                }else{
+                    $('#content').append(pay);
+                }
+                if(on){
+                    
+                }
+                if(data.length < 25){
+                    $('.weui-infinite-scroll').css('display','none');
+                    $(document.body).destroyInfinite();
+                }else{
+                    $('.weui-infinite-scroll').css('display','block')
+                }
+
+                payId = data[data.length-1].deviceid;
+
+            },
+            error: function (jqXHR) {
+                $.toast("加载失败", "cancel");
+            }
+        })
     }
-    indexAjax();
     var loading = false;  //状态标记
     $(document.body).infinite(60).on("infinite", function() {
         console.log('到底啦');
