@@ -16,7 +16,7 @@
 </head>
 <body>
 <header>
-    <a href="/home?123" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <a href="javascript:;" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
     <strong>销售数据</strong>
     <a href="javascript:;" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
@@ -89,17 +89,16 @@
             </ul>
         </div>
     </div>
-
-
-    <div class="weui-infinite-scroll">
-        <div class="infinite-preloader"></div><!-- 菊花 -->
-        正在加载... <!-- 文案，可以自行修改 -->
-    </div>
-
-    <div class="noContent">
-        没有内容了
-    </div>
 </section>
+
+<div class="weui-infinite-scroll">
+    <div class="infinite-preloader"></div><!-- 菊花 -->
+    正在加载... <!-- 文案，可以自行修改 -->
+</div>
+
+<div class="noContent">
+    没有内容了
+</div>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
 <script type="text/javascript" src="../js/tab_data.js"></script>

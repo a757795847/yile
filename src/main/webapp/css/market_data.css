@@ -40,6 +40,9 @@
 .weui-infinite-scroll{
     display: none;
 }
-.weui-infinite-scroll {
+.weui-infinite-scroll , .noContent {
     margin-bottom: 0.9rem;
+}
+#content{
+    margin-bottom: 1rem;
 }

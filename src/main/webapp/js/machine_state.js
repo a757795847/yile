@@ -45,7 +45,6 @@
         }
         switch (index){
             case 0:
-                console.log(synthesizeState)
                 if(synthesizeState){
                     $('.weui-infinite-scroll').css('display','block');
                 }else{
@@ -53,7 +52,6 @@
                 };
                 break;
             case 1:
-                console.log(drinkState)
                 if(drinkState){
                     $('.weui-infinite-scroll').css('display','block');
                 }else{
@@ -61,7 +59,6 @@
                 };
                 break;
             default:
-                console.log(coffeeState)
                 if(coffeeState){
                     $('.weui-infinite-scroll').css('display','block');
                 }else{
@@ -133,6 +130,7 @@
             type: 'GET',
             url: '/drinkMachineData',
             data:data,
+            data:data,
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
@@ -142,6 +140,8 @@
 
                     newData = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
+                    data[i].today = data[i].today == '/--' ? '— / —':data[i].today;
+                    data[i].tempnow = data[i].tempnow == '-/-'? '—':data[i].tempnow;
 
                     drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     drink += '<li class="'+internet+'">('+newData+')</li>';
@@ -168,26 +168,36 @@
     }
 
     function coffeeAjax(on){
+        if(on){
+            var data = {}
+        }else{
+            var data = {
+                'rd':synthesizeLastId
+            }
+        }
         $.ajax({
             type: 'GET',
-            url: '/integratedMachineData',
+            url: '/coffeeMachineData',
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
                 console.log(data);
-                var coffee = '',internet = '', paper = '', metal = '',newDate;
+                var coffee = '',internet = '', paper = '', metal = '',newDate='', errorData='';
                 for(var i=0;i<data.length;i++){
                     newData = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
                     paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
                     metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
+                    data[i].errorstr = data[i].errorstr == ''? '无':data[i].errorstr;
+                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--':data[i]['guizi/liantiji'];
+                    data[i].today = data[i].today == '/--' ? '0/0':data[i].today;
 
-                    coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">023041952882</a></li><li>杭州以勒308—C</li><li class="internetOn">(07-11 08:40:12)</li>';
-                    coffee += '<li><i class="paperOn"></i>/<i class="metalOff"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
-                    coffee += '<ul><li>一元/5角个数</li><li>机器类型</li><li>故障信息</li><li>咖啡品种</li><li></li></ul><ul><li>10/20</li><li>308-C</li>';
-                    coffee += '<li class="minWord">outcoffee命令发送3次对方无应答</li><li>0</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>料盒</li><li>咖啡温度/保持温度</li>';
-                    coffee += '<li>柜子/连体机</li><li></li></ul><ul><li>90/18</li><li class="minWord">红茶/牛奶/白咖啡/巧克力/糖</li><li>98/95</li><li>---</li><li></li></ul><ul>';
-                    coffee += '<li>版本</li><li></li><li></li><li></li></ul><ul><li>308-C咖啡机/1.0.0</li><li></li><li></li><li></li></ul></div></div>';
+                    coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="#">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li><li class="'+internet+'">('+newData+')</li>';
+                    coffee += '<li><i class="'+paper+'"></i>/<i class="'+metal+'"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
+                    coffee += '<ul><li>一元/5角个数</li><li>机器类型</li><li>故障信息</li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li>'+data[i].types+'</li>';
+                    coffee += '<li>'+wordNum(data[i].errorstr)+'</li><li>'+data[i].coffeeNum+'</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>料盒</li><li>咖啡温度/保持温度</li>';
+                    coffee += '<li>柜子/连体机</li><li></li></ul><ul><li>'+data[i].today+'</li><li>'+wordNum(data[i].foldname)+'</li><li>'+data[i].temp+'</li><li>'+data[i]['guizi/liantiji']+'</li><li></li></ul><ul>';
+                    coffee += '<li>版本</li><li></li><li></li><li></li></ul><ul><li>'+data[i].version+'</li><li></li><li></li><li></li></ul></div></div>';
 
                 }
 
@@ -235,14 +245,15 @@
     }
 
     function wordNum(text){
-        console.log(text.length);
         var a = 0;
         for(var i = 0;i < text.length;i++){
             if( 'z' >= text[i] ){
                 a++;
             }
         }
-        if(a >= 11 && text.length < 14){
+        if(text.length <7){
+            return text;
+        }else if(a >= 11 && text.length < 14){
             return text;
         }else if(a > 5 && text.length < 10){
             return text;
@@ -274,14 +285,11 @@
 
     }
 
+
     $(document.body).infinite().on("infinite", function() {
         if(loading) return;
         loading = true;
         var index = $('#Rightimg').attr('data-machine');
-        console.log(synthesizeState)
-        console.log(drinkState)
-        console.log(coffeeState)
-        // setTimeout(function(){loading = false},1000)
         switch (index){
             case '0':
                 if(synthesizeState){
