@@ -65,6 +65,8 @@ public class WeixinConfig extends JFinalConfig {
 
 
         me.add("/integratedMachineData", IntegratedMachineController.class);//综合机数据
+        me.add("/drinkMachineData", DrinkMachinesController.class);//饮料机数据
+        me.add("/coffeeMachineData", DrinkMachinesController.class);//饮料机数据
 
 
 
@@ -105,6 +107,8 @@ public class WeixinConfig extends JFinalConfig {
         arp.addMapping("androidcabinetd", "deviceid", Androidcabinetd.class);
         arp.addMapping("androidcabinete", "deviceid", Androidcabinete.class);
         arp.addMapping("androidtrackdouble", "deviceid", Androidtrackdouble.class);
+        arp.addMapping("androidguangone", "deviceid", Androidguangone.class);
+
 
 
     }

@@ -68,7 +68,7 @@ public class IntegratedMachineController extends ApiController {
                 "GROUP BY\n" +
                 "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
                 "ORDER BY\n" +
-                "\trd DESC\n" +
+                "\trd DESC " +
                 "LIMIT ?";
 
         String sql1 = "SELECT\n" +
@@ -314,7 +314,7 @@ public class IntegratedMachineController extends ApiController {
         renderJson(list);
     }
 
-    public String transformVM(String str) {
+    public static String transformVM(String str) {
         String myversion = "";
         if ("VMSelf206".equals(str)) {
             myversion = "饮料206";
