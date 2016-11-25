@@ -22,95 +22,95 @@ public class IntegratedMachineController extends ApiController {
     }
 
     public void index() {
-        String sql = "SELECT\n" +
-                "concat(\n" +
-                "\t\tDATE_FORMAT(\n" +
-                "\t\t\tandroidvmuserinfo.registdate ,\n" +
-                "\t\t\t'%Y%c%d'\n" +
-                "\t\t) ,\n" +
-                "\t\tandroidvmuserinfo.deviceid\n" +
-                "\t) AS rd,\n" +
-                "\tsum(androidsalelist.price) prices,\n" +
-                "\tcount(androidsalelist.yyyymmdd) count1 ,\n" +
-                "\tandroidsetpara.*, \n" +
-                "\tandroidnetinfo.lastnettime ,\n" +
-                "\tandroidtrackka.*, \n" +
-                "\tandroidnetappstart.pkgname ,\n" +
-                "\tandroidnetappstart.apkversion ,\n" +
-                "\tCOUNT(androidcabineta.deviceid) counta,\n" +
-                "\tCOUNT(androidcabinetb.deviceid) countb,\n" +
-                "\tCOUNT(androidcabinetc.deviceid) countc,\n" +
-                "\tCOUNT(androidcabinetd.deviceid) countd,\n" +
-                "\tCOUNT(androidcabinete.deviceid) counte,\n" +
-                "\tCOUNT(androidtrackdouble.deviceid) count2\n" +
-                "FROM\n" +
-                "\tandroidsetpara\n" +
-                "INNER JOIN androidvmuserinfo ON androidvmuserinfo.deviceid = androidsetpara.deviceid\n" +
-                "AND androidvmuserinfo.vmcustomerid = ?\n" +
-                "LEFT JOIN androidnetinfo ON androidnetinfo.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidtrackka ON androidtrackka.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidnetappstart ON androidnetappstart.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabineta ON androidcabineta.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabinetb ON androidcabinetb.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabinetc ON androidcabinetc.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabinetd ON androidcabinetd.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabinete ON androidcabinete.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidsetpara.deviceid\n" +
-                "AND androidsalelist.yyyymmdd = ?\n" +
-                "where concat(\n" +
-                "\t\tDATE_FORMAT(\n" +
-                "\t\t\tandroidvmuserinfo.registdate ,\n" +
-                "\t\t\t'%Y%c%d'\n" +
-                "\t\t) ,\n" +
-                "\t\tandroidvmuserinfo.deviceid\n" +
-                "\t) < ?\n" +
-                "GROUP BY\n" +
-                "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
-                "ORDER BY\n" +
-                "\trd DESC " +
+        String sql = "SELECT " +
+                "concat( " +
+                "  DATE_FORMAT( " +
+                "   androidvmuserinfo.registdate , " +
+                "   '%Y%c%d' " +
+                "  ) , " +
+                "  androidvmuserinfo.deviceid " +
+                " ) AS rd, " +
+                " sum(androidsalelist.price) prices, " +
+                " count(androidsalelist.yyyymmdd) count1 , " +
+                " androidsetpara.*,  " +
+                " androidnetinfo.lastnettime , " +
+                " androidtrackka.*,  " +
+                " androidnetappstart.pkgname , " +
+                " androidnetappstart.apkversion , " +
+                " COUNT(androidcabineta.deviceid) counta, " +
+                " COUNT(androidcabinetb.deviceid) countb, " +
+                " COUNT(androidcabinetc.deviceid) countc, " +
+                " COUNT(androidcabinetd.deviceid) countd, " +
+                " COUNT(androidcabinete.deviceid) counte, " +
+                " COUNT(androidtrackdouble.deviceid) count2 " +
+                "FROM " +
+                " androidsetpara " +
+                "INNER JOIN androidvmuserinfo ON androidvmuserinfo.deviceid = androidsetpara.deviceid " +
+                "AND androidvmuserinfo.vmcustomerid = ? " +
+                "LEFT JOIN androidnetinfo ON androidnetinfo.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidtrackka ON androidtrackka.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidnetappstart ON androidnetappstart.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabineta ON androidcabineta.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabinetb ON androidcabinetb.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabinetc ON androidcabinetc.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabinetd ON androidcabinetd.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabinete ON androidcabinete.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidsetpara.deviceid " +
+                "AND androidsalelist.yyyymmdd = ? " +
+                "where concat( " +
+                "  DATE_FORMAT( " +
+                "   androidvmuserinfo.registdate , " +
+                "   '%Y%c%d' " +
+                "  ) , " +
+                "  androidvmuserinfo.deviceid " +
+                " ) < ? " +
+                "GROUP BY " +
+                " androidsetpara.deviceid, androidsalelist.yyyymmdd " +
+                "ORDER BY " +
+                " rd DESC " +
                 "LIMIT ?";
 
-        String sql1 = "SELECT\n" +
-                "concat(\n" +
-                "\t\tDATE_FORMAT(\n" +
-                "\t\t\tandroidvmuserinfo.registdate ,\n" +
-                "\t\t\t'%Y%c%d'\n" +
-                "\t\t) ,\n" +
-                "\t\tandroidvmuserinfo.deviceid\n" +
-                "\t) AS rd,\n" +
-                "\tsum(androidsalelist.price) prices,\n" +
-                "\tcount(androidsalelist.yyyymmdd) count1 ,\n" +
-                "\tandroidsetpara.*, \n" +
-                "\tandroidnetinfo.lastnettime ,\n" +
-                "\tandroidtrackka.*, \n" +
-                "\tandroidnetappstart.pkgname ,\n" +
-                "\tandroidnetappstart.apkversion ,\n" +
-                "\tCOUNT(androidcabineta.deviceid) counta,\n" +
-                "\tCOUNT(androidcabinetb.deviceid) countb,\n" +
-                "\tCOUNT(androidcabinetc.deviceid) countc,\n" +
-                "\tCOUNT(androidcabinetd.deviceid) countd,\n" +
-                "\tCOUNT(androidcabinete.deviceid) counte,\n" +
-                "\tCOUNT(androidtrackdouble.deviceid) count2\n" +
-                "FROM\n" +
-                "\tandroidsetpara\n" +
-                "INNER JOIN androidvmuserinfo ON androidvmuserinfo.deviceid = androidsetpara.deviceid\n" +
-                "AND androidvmuserinfo.vmcustomerid = ?\n" +
-                "LEFT JOIN androidnetinfo ON androidnetinfo.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidtrackka ON androidtrackka.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidnetappstart ON androidnetappstart.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabineta ON androidcabineta.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabinetb ON androidcabinetb.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabinetc ON androidcabinetc.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabinetd ON androidcabinetd.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidcabinete ON androidcabinete.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidsetpara.deviceid\n" +
-                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidsetpara.deviceid\n" +
-                "AND androidsalelist.yyyymmdd = ?\n" +
-                "GROUP BY\n" +
-                "\tandroidsetpara.deviceid, androidsalelist.yyyymmdd\n" +
-                "ORDER BY\n" +
-                "\trd DESC\n" +
+        String sql1 = "SELECT " +
+                "concat( " +
+                "  DATE_FORMAT( " +
+                "   androidvmuserinfo.registdate , " +
+                "   '%Y%c%d' " +
+                "  ) , " +
+                "  androidvmuserinfo.deviceid " +
+                " ) AS rd, " +
+                " sum(androidsalelist.price) prices, " +
+                " count(androidsalelist.yyyymmdd) count1 , " +
+                " androidsetpara.*,  " +
+                " androidnetinfo.lastnettime , " +
+                " androidtrackka.*,  " +
+                " androidnetappstart.pkgname , " +
+                " androidnetappstart.apkversion , " +
+                " COUNT(androidcabineta.deviceid) counta, " +
+                " COUNT(androidcabinetb.deviceid) countb, " +
+                " COUNT(androidcabinetc.deviceid) countc, " +
+                " COUNT(androidcabinetd.deviceid) countd, " +
+                " COUNT(androidcabinete.deviceid) counte, " +
+                " COUNT(androidtrackdouble.deviceid) count2 " +
+                "FROM " +
+                " androidsetpara " +
+                "INNER JOIN androidvmuserinfo ON androidvmuserinfo.deviceid = androidsetpara.deviceid " +
+                "AND androidvmuserinfo.vmcustomerid = ? " +
+                "LEFT JOIN androidnetinfo ON androidnetinfo.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidtrackka ON androidtrackka.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidnetappstart ON androidnetappstart.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabineta ON androidcabineta.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabinetb ON androidcabinetb.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabinetc ON androidcabinetc.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabinetd ON androidcabinetd.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidcabinete ON androidcabinete.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidsetpara.deviceid " +
+                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidsetpara.deviceid " +
+                "AND androidsalelist.yyyymmdd = ? " +
+                "GROUP BY " +
+                " androidsetpara.deviceid, androidsalelist.yyyymmdd " +
+                "ORDER BY " +
+                " rd DESC " +
                 "LIMIT ?";
 
         String today = DateTime.now().toString("yyyy-MM-dd");
@@ -119,14 +119,13 @@ public class IntegratedMachineController extends ApiController {
         String rd = getPara("rd");
         System.out.println("rd: " + rd);
         List<Record> data;
-        if(StrKit.notBlank(rd)){
+        if (StrKit.notBlank(rd)) {
             System.out.println("11111111111111111");
-//            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd , 20);
-            data = Db.find(sql, 1, today, rd , 20);
-        }else{
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd, 50);
+        } else {
             System.out.println("22222222222222222");
-//            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 20);
-            data = Db.find(sql1, 1, today, 20);
+//            data = Db.find(sql1, 1, today, 50);
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 20);
         }
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
@@ -149,7 +148,7 @@ public class IntegratedMachineController extends ApiController {
             }
 
 
-            String trackfloor = data.get(n).get("trackfloor").toString();
+
             String prices = "";
             if (data.get(n).get("prices") != null) {
                 prices = data.get(n).get("prices").toString();
@@ -165,11 +164,12 @@ public class IntegratedMachineController extends ApiController {
             Long counte = data.get(n).get("counte");
             Long count2 = data.get(n).get("count2");
 
+            int trackfloor = data.get(n).getInt("trackfloor");
             Set<String> youxiaoguidao = new HashSet<String>();
-            if (StrKit.notBlank(trackfloor)) {
+            if (trackfloor != 0) {
                 int z = 0;
                 int num = 0;
-                for (int i = 1; i <= 7; i++) {
+                for (int i = 1; i < trackfloor; i++) {
                     z = i - 1;
                     num = data.get(n).get("everyfloortracknum" + i);
                     for (int y = num - 1; y >= 0; y--) {
@@ -235,8 +235,8 @@ public class IntegratedMachineController extends ApiController {
             HashMap<String, String> item2 = new HashMap<String, String>();
             HashMap<String, String> item3 = new HashMap<String, String>();
             HashMap<String, String> item4 = new HashMap<String, String>();
-            item.put("deviceid", data.get(n).get("deviceid").toString()); //设备id
-            item.put("vmname", data.get(n).get("vmname").toString()); //机器名称
+            item.put("deviceid", deviceid); //设备id
+            item.put("vmname", vmname); //机器名称
             item.put("lastnettime", data.get(n).get("lastnettime").toString()); //联网状态
             item.put("billstatus", billstatus); //纸币
             item.put("coinstatus", coinstatus); //硬币找零
