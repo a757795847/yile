@@ -67,6 +67,8 @@ public class WeixinConfig extends JFinalConfig {
         me.add("/integratedMachineData", IntegratedMachineController.class);//综合机数据
         me.add("/drinkMachineData", DrinkMachinesController.class);//饮料机数据
         me.add("/coffeeMachineData", CoffeeMachinesController.class);//咖啡机数据
+        me.add("/nonCashData", NonCashPaymentController.class);//非现金支付列表
+        me.add("/saleDeviceData", SaleListController.class);//设备销售数据列表
 
 
 
