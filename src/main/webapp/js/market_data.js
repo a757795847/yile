@@ -10,7 +10,8 @@
     $('#Rightimg').on('touchstart',function(){
         $("#Rightimg").addClass("transform");
         $('.noContent').css('display','none');
-        $('#content').html(' ');
+        $('.weui-infinite-scroll').css('display','none');
+        $('#content').html('');
         $.showLoading("正在加载...");
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         marketDataAjax(true);

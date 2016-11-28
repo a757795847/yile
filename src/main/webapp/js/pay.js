@@ -5,6 +5,8 @@
     var payId = '';
     $('#Rightimg').on('touchstart',function(){
         $("#Rightimg").addClass("transform");
+        $('.noContent').css('display','none');
+        $('.weui-infinite-scroll').css('display','none');
         $('#content').html('');
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         $.showLoading("正在加载...");
