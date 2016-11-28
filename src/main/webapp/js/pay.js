@@ -64,15 +64,12 @@
     }
     var loading = false;  //状态标记
     $(document.body).infinite(60).on("infinite", function() {
-        console.log('到底啦');
         if(loading) return;
         loading = true;
         payAjax(false);
     });
-    function saleTime(date){
-        return date.splice
-    }
-
+    
+    var innerWidth = window.screen.availWidth;
     function wordNum(text){
         var a = 0;
         for(var i = 0;i < text.length;i++){
@@ -80,22 +77,44 @@
                 a++;
             }
         }
-        if(text.length <7){
-            return text;
-        }else if(a >= 11 && text.length < 14){
-            return text;
-        }else if(a > 5 && text.length < 10){
-            return text;
+        if(innerWidth < 375){
+            if(text.length < 8){
+                return text;
+            }else if(a >= 11 && text.length < 14){
+                return text;
+            }else if(a > 5 && text.length < 10){
+                return text;
+            }else{
+                return '<p class="ellipsisWord">'+text+'</p>'
+            }
         }else{
-            return '<p class="ellipsisWord">'+text+'</p>'
+            if(text.length < 10){
+                return text;
+            }else if(a >= 11 && text.length < 14){
+                return text;
+            }else if(a > 3 && text.length < 13){
+                return text;
+            }else{
+                return '<p class="ellipsisWord">'+text+'</p>'
+            }
         }
+
 
     }
     function zhifuText(text){
-        if(text.length < 9 ){
-            return text;
+        if(innerWidth < 375){
+            if(text.length < 8 ){
+                return text;
+            }else{
+                return '<p class="ellipsisWord">'+text+'</p>'
+            }
         }else{
-            return '<p class="ellipsisWord">'+text+'</p>'
+            if(text.length < 10 ){
+                return text;
+            }else{
+                return '<p class="ellipsisWord">'+text+'</p>'
+            }
         }
+
     }
 })(jQuery)
