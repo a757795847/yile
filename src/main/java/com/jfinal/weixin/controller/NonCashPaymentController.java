@@ -139,7 +139,7 @@ public class NonCashPaymentController extends ApiController {
         try {
             if (StrKit.notBlank(rd)) {
                 time = rd.substring(0, 8);
-                DateTime.parse(time, dateTimeFormatter).toDate();
+                dt = DateTime.parse(time, dateTimeFormatter).toDate();
 
 //                dt = sdf.parse(time);
                 specialDate.setTime(dt);
