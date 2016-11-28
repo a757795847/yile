@@ -8,6 +8,9 @@ import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimePrinter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -128,6 +131,7 @@ public class NonCashPaymentController extends ApiController {
         String time = DateTime.now().toString("yyyy-MM-dd");
         Date time2 = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyyMMdd");
         Date dt = null;
         Date dt1 = null;
         Calendar specialDate = Calendar.getInstance();
@@ -135,7 +139,9 @@ public class NonCashPaymentController extends ApiController {
         try {
             if (StrKit.notBlank(rd)) {
                 time = rd.substring(0, 8);
-                dt = sdf.parse(time);
+                DateTime.parse(time, dateTimeFormatter).toDate();
+
+//                dt = sdf.parse(time);
                 specialDate.setTime(dt);
                 specialDate.add(Calendar.DAY_OF_MONTH, -3);
                 dt1 = specialDate.getTime();
