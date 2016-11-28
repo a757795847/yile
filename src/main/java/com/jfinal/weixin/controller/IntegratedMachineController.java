@@ -140,17 +140,17 @@ public class IntegratedMachineController extends ApiController {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
-            String deviceid = data.get(n).get("deviceid").toString();
-            String vmname = data.get(n).get("vmname").toString();
-            String lastnettime = data.get(n).get("lastnettime").toString();
+            String deviceid = data.get(n).get("deviceid", "").toString();
+            String vmname = data.get(n).get("vmname", "").toString();
+            String lastnettime = data.get(n).get("lastnettime", "").toString();
 
-            String coinstatus = data.get(n).get("coinstatus").toString();
-            String coinoutstatus = data.get(n).get("coinoutstatus").toString();
-            String billstatus = data.get(n).get("billstatus").toString();
-            String coin1yuan = data.get(n).get("coin1yuan").toString();
-            String coin5jiao = data.get(n).get("coin5jiao").toString();
+            String coinstatus = data.get(n).get("coinstatus", "").toString();
+            String coinoutstatus = data.get(n).get("coinoutstatus", "").toString();
+            String billstatus = data.get(n).get("billstatus", "").toString();
+            String coin1yuan = data.get(n).get("coin1yuan", "").toString();
+            String coin5jiao = data.get(n).get("coin5jiao", "").toString();
 
-            String rds = data.get(n).get("rds").toString();
+            String rds = data.get(n).get("rds", "").toString();
 
             if (StrKit.isBlank(coin1yuan)) {
                 coin1yuan = "0";
@@ -160,21 +160,20 @@ public class IntegratedMachineController extends ApiController {
             }
 
 
-
             String prices = "";
             if (data.get(n).get("prices") != null) {
                 prices = data.get(n).get("prices").toString();
             }
 
-            String count1 = data.get(n).get("count1").toString();
-            String pkgname = data.get(n).get("pkgname").toString();
-            String apkversion = data.get(n).get("apkversion").toString();
-            Long counta = data.get(n).get("counta");
-            Long countb = data.get(n).get("countb");
-            Long countc = data.get(n).get("countc");
-            Long countd = data.get(n).get("countd");
-            Long counte = data.get(n).get("counte");
-            Long count2 = data.get(n).get("count2");
+            String count1 = data.get(n).get("count1", "").toString();
+            String pkgname = data.get(n).get("pkgname", "").toString();
+            String apkversion = data.get(n).get("apkversion", "").toString();
+            Long counta = data.get(n).get("counta", "");
+            Long countb = data.get(n).get("countb", "");
+            Long countc = data.get(n).get("countc", "");
+            Long countd = data.get(n).get("countd", "");
+            Long counte = data.get(n).get("counte", "");
+            Long count2 = data.get(n).get("count2", "");
 
             int trackfloor = data.get(n).getInt("trackfloor");
             Set<String> youxiaoguidao = new HashSet<String>();
@@ -246,7 +245,7 @@ public class IntegratedMachineController extends ApiController {
 
             item.put("deviceid", deviceid); //设备id
             item.put("vmname", vmname); //机器名称
-            item.put("lastnettime", data.get(n).get("lastnettime").toString()); //联网状态
+            item.put("lastnettime", data.get(n).get("lastnettime", "").toString()); //联网状态
             item.put("billstatus", billstatus); //纸币
             item.put("coinstatus", coinstatus); //硬币找零
             item.put("coin1yuan", coin1yuan); //钱箱(1元)

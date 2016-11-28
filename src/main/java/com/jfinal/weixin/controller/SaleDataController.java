@@ -84,15 +84,15 @@ public class SaleDataController extends ApiController {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
-            String deviceid = data.get(n).get("deviceid").toString();
-            String saletime = data.get(n).get("stime").toString();
-            String outtype = data.get(n).get("outtype").toString();
-            String trackno = data.get(n).get("trackno").toString();
-            String mingcheng = data.get(n).get("mingcheng").toString();
-            String buyprice = data.get(n).get("buyprice").toString();
-            String price = data.get(n).get("price").toString();
-            String payway = data.get(n).get("payway").toString();
-            String tranid = data.get(n).get("tranid").toString();
+            String deviceid = data.get(n).get("deviceid", "").toString();
+            String saletime = data.get(n).get("stime", "").toString();
+            String outtype = data.get(n).get("outtype", "").toString();
+            String trackno = data.get(n).get("trackno", "").toString();
+            String mingcheng = data.get(n).get("mingcheng", "").toString();
+            String buyprice = data.get(n).get("buyprice", "").toString();
+            String price = data.get(n).get("price", "").toString();
+            String payway = data.get(n).get("payway", "").toString();
+            String tranid = data.get(n).get("tranid", "").toString();
             String rds = data.get(n).get("rds").toString();
 
             String way = "";
