@@ -29,7 +29,7 @@ public class SaleDataController extends ApiController {
                 "   '%Y%m%d%H%i%S' " +
                 "  ) , " +
                 "  androidsalelist.deviceid " +
-                " ) AS rd , " +
+                " ) AS rds , " +
                 " DATE_FORMAT(androidsalelist.saletime, '%Y-%m-%d %H:%i:%S') stime, " +
                 " androidsalelist.* " +
                 "FROM " +
@@ -45,7 +45,7 @@ public class SaleDataController extends ApiController {
                 "   '%Y%m%d%H%i%S' " +
                 "  ) , " +
                 "  androidsalelist.deviceid " +
-                " ) AS rd , " +
+                " ) AS rds , " +
                 " DATE_FORMAT(androidsalelist.saletime, '%Y-%m-%d %H:%i:%S') stime, " +
                 " androidsalelist.* " +
                 "FROM " +
@@ -93,6 +93,7 @@ public class SaleDataController extends ApiController {
             String price = data.get(n).get("price").toString();
             String payway = data.get(n).get("payway").toString();
             String tranid = data.get(n).get("tranid").toString();
+            String rds = data.get(n).get("rds").toString();
 
             String way = "";
             if ("现金".equals(payway)) {
@@ -111,7 +112,7 @@ public class SaleDataController extends ApiController {
             item.put("buyprice", buyprice);
             item.put("price", price);
             item.put("payway", way);
-            item.put("rd", rd);
+            item.put("rd", rds);
 
 
             list.add(item);
