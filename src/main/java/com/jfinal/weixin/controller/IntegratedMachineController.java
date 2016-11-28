@@ -29,7 +29,7 @@ public class IntegratedMachineController extends ApiController {
                 "   '%Y%c%d' " +
                 "  ) , " +
                 "  androidvmuserinfo.deviceid " +
-                " ) AS rd, " +
+                " ) AS rds, " +
                 " sum(androidsalelist.price) prices, " +
                 " count(androidsalelist.yyyymmdd) count1 , " +
                 " androidsetpara.*,  " +
@@ -78,7 +78,7 @@ public class IntegratedMachineController extends ApiController {
                 "   '%Y%c%d' " +
                 "  ) , " +
                 "  androidvmuserinfo.deviceid " +
-                " ) AS rd, " +
+                " ) AS rds, " +
                 " sum(androidsalelist.price) prices, " +
                 " count(androidsalelist.yyyymmdd) count1 , " +
                 " androidsetpara.*,  " +
@@ -148,6 +148,8 @@ public class IntegratedMachineController extends ApiController {
             String billstatus = data.get(n).get("billstatus").toString();
             String coin1yuan = data.get(n).get("coin1yuan").toString();
             String coin5jiao = data.get(n).get("coin5jiao").toString();
+
+            String rds = data.get(n).get("rds").toString();
 
             if (StrKit.isBlank(coin1yuan)) {
                 coin1yuan = "0";
@@ -254,7 +256,7 @@ public class IntegratedMachineController extends ApiController {
             item.put("today", prices + "/" + count1); //今日(金额/次数)
             item.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
             item.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
-            item.put("rd", rd);
+            item.put("rd", rds);
 
             list.add(item);
         }

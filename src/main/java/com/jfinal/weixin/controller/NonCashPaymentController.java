@@ -36,7 +36,7 @@ public class NonCashPaymentController extends ApiController {
                 "  concat(  " +
                 "    DATE_FORMAT(p.inserttime , '%Y%c%d') ,  " +
                 "    p.tranid  " +
-                "  ) AS rd ,  " +
+                "  ) AS rds ,  " +
                 "  p.deviceid ,  " +
                 "  a.vmcode ,  " +
                 "  a.vmname ,  " +
@@ -83,7 +83,7 @@ public class NonCashPaymentController extends ApiController {
                 "  concat(  " +
                 "    DATE_FORMAT(p.inserttime , '%Y%c%d') ,  " +
                 "    p.tranid  " +
-                "  ) AS rd ,  " +
+                "  ) AS rds ,  " +
                 "  p.deviceid ,  " +
                 "  a.vmcode ,  " +
                 "  a.vmname ,  " +
@@ -185,6 +185,7 @@ public class NonCashPaymentController extends ApiController {
             String openid = data.get(n).get("openid").toString();
             String trackno = data.get(n).get("trackno").toString();
             String stranid = data.get(n).get("stranid").toString();
+            String rds = data.get(n).get("rds").toString();
 
 
             HashMap<String, String> item = new HashMap<String, String>();
@@ -197,7 +198,7 @@ public class NonCashPaymentController extends ApiController {
             item.put("openid", openid);
             item.put("trackno", trackno);
             item.put("stranid", stranid);// 数据存在显示'有'，否则显示'退款处理'
-            item.put("rd", rd);
+            item.put("rd", rds);
 
             list.add(item);
 

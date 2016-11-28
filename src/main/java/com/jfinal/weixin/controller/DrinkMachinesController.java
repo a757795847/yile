@@ -29,7 +29,7 @@ public class DrinkMachinesController extends ApiController {
                 "                androidvmuserinfo.registdate ,\n" +
                 "                '%Y%c%d'),\n" +
                 "                androidvmuserinfo.deviceid\n" +
-                "                ) AS rd,\n" +
+                "                ) AS rds,\n" +
                 "sum(androidsalelist.price) prices ,\n" +
                 "count(androidsalelist.yyyymmdd) count1 ,\n" +
                 "androidnetinfo.lastnettime ,\n" +
@@ -65,7 +65,7 @@ public class DrinkMachinesController extends ApiController {
                 "                androidvmuserinfo.registdate ,\n" +
                 "                '%Y%m%d'),\n" +
                 "                androidvmuserinfo.deviceid\n" +
-                "                ) AS rd,\n" +
+                "                ) AS rds,\n" +
                 "sum(androidsalelist.price) prices ,\n" +
                 "count(androidsalelist.yyyymmdd) count1 ,\n" +
                 "androidnetinfo.lastnettime ,\n" +
@@ -142,6 +142,7 @@ public class DrinkMachinesController extends ApiController {
             String oneyuannum = data.get(n).get("oneyuannum").toString();
             String fivejiaonum = data.get(n).get("fivejiaonum").toString();
             int tracknum = data.get(n).getInt("tracknum");
+            String rds = data.get(n).get("rds").toString();
 
             int guzhangguidaoNum = 0;
             int quehuoguidaoNum = 0;
@@ -263,7 +264,7 @@ public class DrinkMachinesController extends ApiController {
             item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
             item.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
             item.put("kucunNum", kucunNum + ""); //库存(故障)
-            item.put("rd", rd);
+            item.put("rd", rds);
 
 
             list.add(item);

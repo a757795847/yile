@@ -30,7 +30,7 @@ public class CoffeeMachinesController extends ApiController {
                 "   '%Y%m%d' " +
                 "  ) , " +
                 "  androidvmuserinfo.deviceid " +
-                " ) AS rd , " +
+                " ) AS rds , " +
                 " sum(androidsalelist.price) prices , " +
                 " count(androidsalelist.yyyymmdd) count1 , " +
                 " androidnetinfo.lastnettime , " +
@@ -72,7 +72,7 @@ public class CoffeeMachinesController extends ApiController {
                 "   '%Y%m%d' " +
                 "  ) , " +
                 "  androidvmuserinfo.deviceid " +
-                " ) AS rd , " +
+                " ) AS rds , " +
                 " sum(androidsalelist.price) prices , " +
                 " count(androidsalelist.yyyymmdd) count1 , " +
                 " androidnetinfo.lastnettime , " +
@@ -150,6 +150,7 @@ public class CoffeeMachinesController extends ApiController {
             String keeptemp = data.get(n).get("keeptemp").toString();
             String oneyuannum = data.get(n).get("oneyuannum").toString();
             String fivejiaonum = data.get(n).get("fivejiaonum").toString();
+            String rds = data.get(n).get("rds").toString();
 
             if (StrKit.isBlank(vmname)) {
                 vmname = "未设定";
@@ -248,7 +249,7 @@ public class CoffeeMachinesController extends ApiController {
             item.put("temp", coffeetemp + "/" + keeptemp); //咖啡温度/保持温度
             item.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
             item.put("version", IntegratedMachineController.transformVM(pkgname) + "/" + apkversionStr); //版本
-            item.put("rd", rd);
+            item.put("rd", rds);
 
             list.add(item);
 
