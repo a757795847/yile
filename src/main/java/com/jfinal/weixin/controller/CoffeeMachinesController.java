@@ -3,6 +3,7 @@ package com.jfinal.weixin.controller;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.weixin.models.Vmmisuser;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
@@ -64,9 +65,78 @@ public class CoffeeMachinesController extends ApiController {
                 " rd DESC " +
                 "LIMIT ?";
 
-        List<Record> data;
+        String sql1 = "SELECT " +
+                " concat( " +
+                "  DATE_FORMAT( " +
+                "   androidvmuserinfo.registdate , " +
+                "   '%Y%m%d' " +
+                "  ) , " +
+                "  androidvmuserinfo.deviceid " +
+                " ) AS rd , " +
+                " sum(androidsalelist.price) prices , " +
+                " count(androidsalelist.yyyymmdd) count1 , " +
+                " androidnetinfo.lastnettime , " +
+                " androidnetappstart.pkgname , " +
+                " androidnetappstart.apkversion , " +
+                " COUNT(androidcabineta.deviceid) counta , " +
+                " COUNT(androidcabinetb.deviceid) countb , " +
+                " COUNT(androidcabinetc.deviceid) countc , " +
+                " COUNT(androidcabinetd.deviceid) countd , " +
+                " COUNT(androidcabinete.deviceid) counte , " +
+                " COUNT(androidtrackdouble.deviceid) count2 , " +
+                " androidcoffee.* " +
+                "FROM " +
+                " androidcoffee " +
+                "INNER JOIN androidvmuserinfo ON androidvmuserinfo.deviceid = androidcoffee.deviceid " +
+                "AND androidvmuserinfo.vmcustomerid = ? " +
+                "LEFT JOIN androidnetinfo ON androidnetinfo.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidtrackka ON androidtrackka.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidnetappstart ON androidnetappstart.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidcabineta ON androidcabineta.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidcabinetb ON androidcabinetb.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidcabinetc ON androidcabinetc.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidcabinetd ON androidcabinetd.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidcabinete ON androidcabinete.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidcoffee.deviceid " +
+                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidcoffee.deviceid " +
+                "AND androidsalelist.yyyymmdd = ? " +
+                "WHERE concat( \" + " +
+                "                \"  DATE_FORMAT( \" + " +
+                "                \"   androidvmuserinfo.registdate , \" + " +
+                "                \"   '%Y%m%d' \" + " +
+                "                \"  ) , \" + " +
+                "                \"  androidvmuserinfo.deviceid \" + " +
+                "                \" ) < ?" +
+                "GROUP BY " +
+                " androidcoffee.deviceid , " +
+                " androidsalelist.yyyymmdd " +
+                "ORDER BY " +
+                " rd DESC " +
+                "LIMIT ?";
+
         String today = DateTime.now().toString("yyyy-MM-dd");
-        data = Db.find(sql, 1, today, 50);
+        Vmmisuser vmmisuser = getSessionAttr("vmmisuser");
+        System.out.println("DrinkMachinesController_vmmisuser: " + vmmisuser);
+        String rd = getPara("rd");
+        String rows = getPara("rows");
+        System.out.println("rd: " + rd + ", rows: " + rows);
+
+        List<Record> data;
+        if (StrKit.notBlank(rd) && StrKit.notBlank(rows)) {
+
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, rd, rows);
+
+        } else if (StrKit.isBlank(rd) && StrKit.notBlank(rows)) {
+
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rows);
+
+        } else if (StrKit.notBlank(rd) && StrKit.isBlank(rows)) {
+
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, rd, 50);
+        } else {
+
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, 50);
+        }
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {

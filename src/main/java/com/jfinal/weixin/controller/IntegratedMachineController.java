@@ -117,15 +117,24 @@ public class IntegratedMachineController extends ApiController {
         Vmmisuser vmmisuser = getSessionAttr("vmmisuser");
         System.out.println("vmmisuser: " + vmmisuser);
         String rd = getPara("rd");
-        System.out.println("rd: " + rd);
+        String rows = getPara("rows");
+        System.out.println("rd: " + rd + ", rows: " + rows);
         List<Record> data;
-        if (StrKit.notBlank(rd)) {
-            System.out.println("11111111111111111");
+
+        if (StrKit.notBlank(rd) && StrKit.notBlank(rows)) {
+
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd, rows);
+
+        } else if (StrKit.isBlank(rd) && StrKit.notBlank(rows)) {
+
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, rows);
+
+        } else if (StrKit.notBlank(rd) && StrKit.isBlank(rows)) {
+
             data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd, 50);
         } else {
-            System.out.println("22222222222222222");
-//            data = Db.find(sql1, 1, today, 50);
-            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 20);
+
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 50);
         }
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
@@ -231,10 +240,7 @@ public class IntegratedMachineController extends ApiController {
             }
 
             HashMap<String, String> item = new HashMap<String, String>();
-            HashMap<String, String> item1 = new HashMap<String, String>();
-            HashMap<String, String> item2 = new HashMap<String, String>();
-            HashMap<String, String> item3 = new HashMap<String, String>();
-            HashMap<String, String> item4 = new HashMap<String, String>();
+
             item.put("deviceid", deviceid); //设备id
             item.put("vmname", vmname); //机器名称
             item.put("lastnettime", data.get(n).get("lastnettime").toString()); //联网状态
@@ -249,67 +255,7 @@ public class IntegratedMachineController extends ApiController {
             item.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
             item.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
 
-            item1.put("deviceid", data.get(n).get("deviceid").toString()); //设备id
-            item1.put("vmname", data.get(n).get("vmname").toString()); //机器名称
-            item1.put("lastnettime", data.get(n).get("lastnettime").toString()); //联网状态
-            item1.put("billstatus", billstatus); //纸币
-            item1.put("coinstatus", coinstatus); //硬币找零
-            item1.put("coin1yuan", coin1yuan); //钱箱(1元)
-            item1.put("coin5jiao", coin5jiao); //钱箱(五角)
-            item1.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
-            item1.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
-            item1.put("kucunNum", kucunNum + ""); //库存(故障)
-            item1.put("today", prices + "/" + count1); //今日(金额/次数)
-            item1.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
-            item1.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
-
-            item2.put("deviceid", data.get(n).get("deviceid").toString()); //设备id
-            item2.put("vmname", data.get(n).get("vmname").toString()); //机器名称
-            item2.put("lastnettime", data.get(n).get("lastnettime").toString()); //联网状态
-            item2.put("billstatus", billstatus); //纸币
-            item2.put("coinstatus", coinstatus); //硬币找零
-            item2.put("coin1yuan", coin1yuan); //钱箱(1元)
-            item2.put("coin5jiao", coin5jiao); //钱箱(五角)
-            item2.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
-            item2.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
-            item2.put("kucunNum", kucunNum + ""); //库存(故障)
-            item2.put("today", prices + "/" + count1); //今日(金额/次数)
-            item2.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
-            item2.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
-
-            item3.put("deviceid", data.get(n).get("deviceid").toString()); //设备id
-            item3.put("vmname", data.get(n).get("vmname").toString()); //机器名称
-            item3.put("lastnettime", data.get(n).get("lastnettime").toString()); //联网状态
-            item3.put("billstatus", billstatus); //纸币
-            item3.put("coinstatus", coinstatus); //硬币找零
-            item3.put("coin1yuan", coin1yuan); //钱箱(1元)
-            item3.put("coin5jiao", coin5jiao); //钱箱(五角)
-            item3.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
-            item3.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
-            item3.put("kucunNum", kucunNum + ""); //库存(故障)
-            item3.put("today", prices + "/" + count1); //今日(金额/次数)
-            item3.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
-            item3.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
-
-            item4.put("deviceid", data.get(n).get("deviceid").toString()); //设备id
-            item4.put("vmname", data.get(n).get("vmname").toString()); //机器名称
-            item4.put("lastnettime", data.get(n).get("lastnettime").toString()); //联网状态
-            item4.put("billstatus", billstatus); //纸币
-            item4.put("coinstatus", coinstatus); //硬币找零
-            item4.put("coin1yuan", coin1yuan); //钱箱(1元)
-            item4.put("coin5jiao", coin5jiao); //钱箱(五角)
-            item4.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
-            item4.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
-            item4.put("kucunNum", kucunNum + ""); //库存(故障)
-            item4.put("today", prices + "/" + count1); //今日(金额/次数)
-            item4.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
-            item4.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
-
             list.add(item);
-            list.add(item1);
-            list.add(item2);
-            list.add(item3);
-            list.add(item4);
         }
         renderJson(list);
     }

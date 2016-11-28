@@ -90,7 +90,7 @@ public class DrinkMachinesController extends ApiController {
                 "LEFT JOIN androidcabinetd ON androidcabinetd.deviceid = androidguangone.deviceid\n" +
                 "LEFT JOIN androidcabinete ON androidcabinete.deviceid = androidguangone.deviceid\n" +
                 "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidguangone.deviceid\n" +
-                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidguangone.deviceid AND androidsalelist.yyyymmdd = 2016-11-21\n" +
+                "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidguangone.deviceid AND androidsalelist.yyyymmdd = ?\n" +
                 "where concat(\n" +
                 "                DATE_FORMAT(\n" +
                 "                androidvmuserinfo.registdate ,\n" +
@@ -103,17 +103,26 @@ public class DrinkMachinesController extends ApiController {
         Vmmisuser vmmisuser = getSessionAttr("vmmisuser");
         System.out.println("DrinkMachinesController_vmmisuser: " + vmmisuser);
         String rd = getPara("rd");
-        System.out.println("DrinkMachinesController_rd: " + rd);
+        String rows = getPara("rows");
+        System.out.println("rd: " + rd + ", rows: " + rows);
 
         List<Record> data;
-        if (StrKit.notBlank(rd)) {
-            System.out.println("DrinkMachinesController_111");
-            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rd, 50);
+        if (StrKit.notBlank(rd) && StrKit.notBlank(rows)) {
+
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, rd, rows);
+
+        } else if (StrKit.isBlank(rd) && StrKit.notBlank(rows)) {
+
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, rows);
+
+        } else if (StrKit.notBlank(rd) && StrKit.isBlank(rows)) {
+
+            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, rd, 50);
         } else {
-            System.out.println("DrinkMachinesController_222");
-            data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, 50);
-//            data = Db.find(sql, 1, today, 50);
+
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, 50);
         }
+
         System.out.println("sql: " + sql);
         System.out.println("data: " + data);
 
