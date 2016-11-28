@@ -1,6 +1,9 @@
-function tab(tab,rem) {
+var noTop = $('.noContent').css('margin-top');
+
+function tab(tab,rem,pbX) {
     var paX = 0,paY=0;
     var remHeight = 1.35 * rem + 'rem';
+    var nomarginTop = '1rem'
     $(tab).on('touchstart','.tabContent',function(event){
         var touch = event.originalEvent.targetTouches[0];
         paX = touch.pageX;
@@ -8,8 +11,7 @@ function tab(tab,rem) {
     $(tab).on('touchend','.tabContent',function(event){
         var touch = event.originalEvent.changedTouches[0];
         var endX = touch.pageX;
-
-        if(paX == endX){
+        if(paX == endX && endX > pbX ){
             function showTab(){
                 $('.showBtn').find('img').css({
                     'transform':'rotateX(0deg)',
@@ -24,6 +26,7 @@ function tab(tab,rem) {
                     'height':0,
                     'transition':'height 0s'
                 })
+                $('.noContent').css('margin-top',noTop)
             }
 
             // $('.tabContent').find('.hideTab').hide();
@@ -42,6 +45,7 @@ function tab(tab,rem) {
                     'transition': 'opacity 0.35s',
                     'height':remHeight,
                 });
+                $('.noContent').css('margin-top',nomarginTop)
                 hideTab.find('li').css({
                     'height':'1.406rem',
                     'transition':'height 0s'

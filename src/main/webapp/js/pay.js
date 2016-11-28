@@ -1,5 +1,6 @@
 (function ($) {
-    tab('#content');
+    tab('#content',2,0);
+    payAjax(true);
     var payId = '';
     $('#Rightimg').on('touchstart',function(){
         $("#Rightimg").addClass("transform");
@@ -7,6 +8,7 @@
         $.showLoading("正在加载...");
         payAjax(true);
     });
+
     function payAjax(on){
         if(on){
             var data = {}
@@ -63,7 +65,7 @@
         console.log('到底啦');
         if(loading) return;
         loading = true;
-        payAjax(false);
+        //payAjax(false);
     });
     function wordNum(text){
         var a = 0;

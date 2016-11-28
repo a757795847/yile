@@ -90,11 +90,12 @@
 <div class="noContent">
     没有内容了
 </div>
+<div class="zhanwei"></div>
 <ul class="nav">
-    <li><a href="/home"><img src="../img/09.png" class="img1"></a> <b></b></li>
-    <li><a href="/machine/integrated"><img src="../img/15.png" class="img2"></a> <b></b></li>
-    <li><a href="/device"><img src="../img/11.png" class="img3"></a> <b></b></li>
-    <li><a href="#"><img src="../img/12.png" class="img4"></a></li>
+    <li><a href="/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
+    <li><a href="/machine/integrated?123"><img src="../img/10.png" class="img2"></a> <b></b></li>
+    <li><a href="/device?123"><img src="../img/11.png" class="img3"></a> <b></b></li>
+    <li><a href="#"><img src="../img/13.png" class="img4"></a></li>
 </ul>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery-weui.min.js"></script>

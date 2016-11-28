@@ -1,15 +1,19 @@
 (function ($) {
     var urlId = location.search.split('?')[1];
+    if(urlId == ''){
+        history.go(-1);
+    }
     var loading = false;  //状态标记
-    tab('#content');
+    tab('#content',2,0);
 
-    $('header a:eq(1)').on('touchstart',function(){
+    $('#Rightimg').on('touchstart',function(){
         $("#Rightimg").addClass("transform");
+        $('.noContent').css('display','none');
         $.showLoading("正在加载...");
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         marketDataAjax(true);
     });
-    $('header a:eq(0)').on('touchstart',function(){
+    $('#Leftimg').on('touchend',function(){
         history.go(-1);
     });
     marketDataAjax(true)
@@ -30,21 +34,27 @@
             data:data,
             dataType: 'json',
             success: function (data) {
+                if(data.length == 0 && on){
+                    $('.records').css('display','block')
+                }
+
                 $.hideLoading();
                 console.log(data);
-                var market = '';
+                var market = '',a = '',b='';
                 for(var i=0;i<data.length;i++){
+                    a = data[i].payway.split(':')[0];
+                    b = data[i].payway.split(':')[1];
                     market += '<div class="tabContent"><div class="showTab"><ul><li>'+data[i].deviceid+'</li><li>'+data[i].saletime+'</li><li>'+data[i].outtype+'</li><li>'+data[i].trackno+'</li>';
                     market += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>名称</li><li>进价</li>';
                     market += '<li>价格</li><li>支付方式</li><li></li></ul><ul><li>'+wordNum(data[i].mingcheng)+'</li><li>'+data[i].buyprice+'</li><li>'+data[i].price+'</li>';
-                    market += '<li>'+wordNum(data[i].payway)+'</li><li></li></ul></div></div>';
+                    market += '<li class="ellipsisWord">'+data[i].payway+'</li><li></li></ul></div></div>';
                 }
                 if(on){
                     $('#content').html(market);
                 }else{
                     $('#content').append(market);
                 }
-                if(data.length < 25){
+                if(data.length < 30){
                     $('.weui-infinite-scroll').css('display','none');
                     if(on){
                         $('.noContent').css('display','none');
@@ -53,11 +63,11 @@
                     }
                     loading = true;
                 }else{
+                    payId = data[data.length-1].deviceid;
                     $('.weui-infinite-scroll').css('display','block')
                     loading = false;
                 }
 
-                payId = data[data.length-1].deviceid;
 
             },
             error: function (jqXHR) {
@@ -71,6 +81,7 @@
         loading = true;
         marketDataAjax(false)
     });
+
     function wordNum(text){
         var a = 0;
         for(var i = 0;i < text.length;i++){
