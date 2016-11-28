@@ -263,6 +263,7 @@ public class DrinkMachinesController extends ApiController {
             item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
             item.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
             item.put("kucunNum", kucunNum + ""); //库存(故障)
+            item.put("rd", rd);
 
 
             list.add(item);

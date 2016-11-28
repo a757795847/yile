@@ -197,6 +197,7 @@ public class NonCashPaymentController extends ApiController {
             item.put("openid", openid);
             item.put("trackno", trackno);
             item.put("stranid", stranid);// 数据存在显示'有'，否则显示'退款处理'
+            item.put("rd", rd);
 
             list.add(item);
 

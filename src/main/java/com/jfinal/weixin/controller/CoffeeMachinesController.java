@@ -248,6 +248,7 @@ public class CoffeeMachinesController extends ApiController {
             item.put("temp", coffeetemp + "/" + keeptemp); //咖啡温度/保持温度
             item.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
             item.put("version", IntegratedMachineController.transformVM(pkgname) + "/" + apkversionStr); //版本
+            item.put("rd", rd);
 
             list.add(item);
 
