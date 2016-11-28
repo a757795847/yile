@@ -17,12 +17,15 @@
         $.showLoading("正在加载...");
         switch(index){
             case '0':
+                $('.synthesize').empty();
                 synthesizeAjax(true);
                 break;
             case '1':
+                $('.drink').empty();
                 drinkAjax(true);
                 break;
             default:
+                $('.coffee').empty();
                 coffeeAjax(true);
         }
 

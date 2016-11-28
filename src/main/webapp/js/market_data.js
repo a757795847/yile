@@ -11,7 +11,7 @@
         $("#Rightimg").addClass("transform");
         $('.noContent').css('display','none');
         $('.weui-infinite-scroll').css('display','none');
-        $('#content').html('');
+        $('#content').empty();
         $.showLoading("正在加载...");
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         marketDataAjax(true);

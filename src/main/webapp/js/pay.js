@@ -7,7 +7,7 @@
         $("#Rightimg").addClass("transform");
         $('.noContent').css('display','none');
         $('.weui-infinite-scroll').css('display','none');
-        $('#content').html('');
+        $('#content').empty();
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         $.showLoading("正在加载...");
         payAjax(true);
