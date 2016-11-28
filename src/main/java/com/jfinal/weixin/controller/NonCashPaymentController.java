@@ -134,7 +134,7 @@ public class NonCashPaymentController extends ApiController {
         Calendar specialDate2 = Calendar.getInstance();
         try {
             if (StrKit.notBlank(rd)) {
-                time = rd.substring(0, 7);
+                time = rd.substring(0, 8);
                 dt = sdf.parse(time);
                 specialDate.setTime(dt);
                 specialDate.add(Calendar.DAY_OF_MONTH, -3);
