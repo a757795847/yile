@@ -120,8 +120,8 @@ public class DrinkMachinesController extends ApiController {
             data = Db.find(sql1, vmmisuser.getVmcustomerid(), today, rd, 50);
         } else {
 
-//            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, 50);
-            data = Db.find(sql, 1, today, 50);
+            data = Db.find(sql, vmmisuser.getVmcustomerid(), today, 50);
+//            data = Db.find(sql, 1, today, 50);
         }
 
         System.out.println("sql: " + sql);

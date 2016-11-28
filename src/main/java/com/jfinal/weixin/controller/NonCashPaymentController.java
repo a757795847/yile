@@ -69,7 +69,7 @@ public class NonCashPaymentController extends ApiController {
                 "AND p.yyyymmdd >= ?  " +
                 "AND p.yyyymmdd <= ?  " +
                 "AND proxy.slaveid = u.vmcustomerid  " +
-                "AND proxy.masterid = 1  " +
+                "AND proxy.masterid = ?  " +
                 "ORDER BY  " +
                 "  rds DESC  " +
                 "LIMIT 30";
@@ -190,7 +190,7 @@ public class NonCashPaymentController extends ApiController {
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
                 DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(3);
 //                data = Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd);
-                data.addAll(Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate()));
+                data.addAll(Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid()));
                 System.out.println("data2: " + data);
                 /*specialDate.setTime(dt1);
                 specialDate.add(Calendar.DAY_OF_MONTH, -3);
