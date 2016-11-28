@@ -67,7 +67,7 @@ public class NonCashPaymentController extends ApiController {
                 "AND proxy.slaveid = u.vmcustomerid  " +
                 "AND proxy.masterid = ?  " +
                 "ORDER BY  " +
-                "  rd DESC  " +
+                "  rds DESC  " +
                 "LIMIT 30";
 
         String sql1 = "SELECT  " +
@@ -118,7 +118,7 @@ public class NonCashPaymentController extends ApiController {
                 "    p.tranid  " +
                 "  ) < ?  " +
                 "ORDER BY  " +
-                "  rd DESC  " +
+                "  rds DESC  " +
                 "LIMIT 30";
 
         Vmmisuser vmmisuser = getSessionAttr("vmmisuser");

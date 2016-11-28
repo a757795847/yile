@@ -62,7 +62,7 @@ public class CoffeeMachinesController extends ApiController {
                 " androidcoffee.deviceid , " +
                 " androidsalelist.yyyymmdd " +
                 "ORDER BY " +
-                " rd DESC " +
+                " rds DESC " +
                 "LIMIT ?";
 
         String sql1 = "SELECT " +
@@ -111,7 +111,7 @@ public class CoffeeMachinesController extends ApiController {
                 " androidcoffee.deviceid , " +
                 " androidsalelist.yyyymmdd " +
                 "ORDER BY " +
-                " rd DESC " +
+                " rds DESC " +
                 "LIMIT ?";
 
         String today = DateTime.now().toString("yyyy-MM-dd");
