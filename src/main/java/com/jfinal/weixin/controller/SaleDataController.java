@@ -111,6 +111,7 @@ public class SaleDataController extends ApiController {
             item.put("buyprice", buyprice);
             item.put("price", price);
             item.put("payway", way);
+            item.put("rd", rd);
 
 
             list.add(item);

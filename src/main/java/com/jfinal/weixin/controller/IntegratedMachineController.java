@@ -254,6 +254,7 @@ public class IntegratedMachineController extends ApiController {
             item.put("today", prices + "/" + count1); //今日(金额/次数)
             item.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
             item.put("guizi/liantiji", guizi + liantiji); //柜子/连体机
+            item.put("rd", rd);
 
             list.add(item);
         }
