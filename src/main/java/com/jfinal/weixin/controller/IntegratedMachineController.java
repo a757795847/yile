@@ -68,7 +68,7 @@ public class IntegratedMachineController extends ApiController {
                 "GROUP BY " +
                 " androidsetpara.deviceid, androidsalelist.yyyymmdd " +
                 "ORDER BY " +
-                " rd DESC " +
+                " rds DESC " +
                 "LIMIT ?";
 
         String sql1 = "SELECT " +
@@ -110,7 +110,7 @@ public class IntegratedMachineController extends ApiController {
                 "GROUP BY " +
                 " androidsetpara.deviceid, androidsalelist.yyyymmdd " +
                 "ORDER BY " +
-                " rd DESC " +
+                " rds DESC " +
                 "LIMIT ?";
 
         String today = DateTime.now().toString("yyyy-MM-dd");

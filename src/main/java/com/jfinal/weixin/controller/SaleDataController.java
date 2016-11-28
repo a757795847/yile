@@ -35,7 +35,7 @@ public class SaleDataController extends ApiController {
                 "FROM " +
                 " androidsalelist " +
                 "where androidsalelist.deviceid = ? " +
-                "ORDER BY rd  " +
+                "ORDER BY rds DESC " +
                 "LIMIT ?";
 
         String sql1 = "SELECT " +
@@ -58,7 +58,7 @@ public class SaleDataController extends ApiController {
                 "  ) , " +
                 "  androidsalelist.deviceid " +
                 " ) < ? " +
-                "ORDER BY rd  " +
+                "ORDER BY rds DESC " +
                 "LIMIT ?";
 
         List<Record> data;

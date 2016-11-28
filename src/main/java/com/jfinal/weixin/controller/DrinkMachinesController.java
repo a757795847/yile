@@ -56,7 +56,7 @@ public class DrinkMachinesController extends ApiController {
                 "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidguangone.deviceid\n" +
                 "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidguangone.deviceid AND androidsalelist.yyyymmdd = ?\n" +
                 "GROUP BY androidguangone.deviceid, androidsalelist.yyyymmdd\n" +
-                "order by rd desc " +
+                "order by rds desc " +
                 "LIMIT ?";
 
         String sql1 = "SELECT\n" +
@@ -98,7 +98,7 @@ public class DrinkMachinesController extends ApiController {
                 "                androidvmuserinfo.deviceid\n" +
                 "                ) < ?\n" +
                 "GROUP BY androidguangone.deviceid, androidsalelist.yyyymmdd\n" +
-                "order by rd desc LIMIT ?";
+                "order by rds desc LIMIT ?";
         String today = DateTime.now().toString("yyyy-MM-dd");
         Vmmisuser vmmisuser = getSessionAttr("vmmisuser");
         System.out.println("DrinkMachinesController_vmmisuser: " + vmmisuser);
