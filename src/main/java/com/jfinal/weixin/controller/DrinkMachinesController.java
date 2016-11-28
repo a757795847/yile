@@ -130,19 +130,19 @@ public class DrinkMachinesController extends ApiController {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
-            String deviceid = data.get(n).getStr("deviceid");
-            String vmname = data.get(n).getStr("vmname");
-            String doorstatus = data.get(n).get("doorstatus").toString();
-            String types = data.get(n).get("type").toString(); //0:光脚一号(7或20料道)，1:206-B大屏，2:206-B小屏
-            String lefttempnow = data.get(n).get("lefttempnow").toString();
-            String righttempnow = data.get(n).get("righttempnow").toString();
-            String tempstatus = data.get(n).get("tempstatus").toString();
-            String insidetempnow = data.get(n).get("insidetempnow").toString();
-            String insidetempset = data.get(n).get("insidetempset").toString();
-            String coininstatus = data.get(n).get("coininstatus").toString();
-            String oneyuannum = data.get(n).get("oneyuannum").toString();
-            String fivejiaonum = data.get(n).get("fivejiaonum").toString();
-            int tracknum = data.get(n).getInt("tracknum");
+            String deviceid = data.get(n).get("deviceid", "");
+            String vmname = data.get(n).get("vmname", "");
+            String doorstatus = data.get(n).get("doorstatus", "").toString();
+            String types = data.get(n).get("type", "").toString(); //0:光脚一号(7或20料道)，1:206-B大屏，2:206-B小屏
+            String lefttempnow = data.get(n).get("lefttempnow", "").toString();
+            String righttempnow = data.get(n).get("righttempnow", "").toString();
+            String tempstatus = data.get(n).get("tempstatus", "").toString();
+            String insidetempnow = data.get(n).get("insidetempnow", "").toString();
+            String insidetempset = data.get(n).get("insidetempset", "").toString();
+            String coininstatus = data.get(n).get("coininstatus", "").toString();
+            String oneyuannum = data.get(n).get("oneyuannum", "").toString();
+            String fivejiaonum = data.get(n).get("fivejiaonum", "").toString();
+            int tracknum = data.get(n).get("tracknum", "");
             String rds = data.get(n).get("rds").toString();
 
             int guzhangguidaoNum = 0;

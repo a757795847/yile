@@ -38,7 +38,7 @@ public class NonCashPaymentController extends ApiController {
                 "    '%Y-%m-%d %H:%i:%s'  " +
                 "  ) AS inserttime ,  " +
                 "  concat(  " +
-                "    DATE_FORMAT(p.inserttime , '%Y%c%d') ,  " +
+                "    DATE_FORMAT(p.inserttime , '%Y%c%d%H%i%s') ,  " +
                 "    p.tranid  " +
                 "  ) AS rds ,  " +
                 "  p.deviceid ,  " +
@@ -85,7 +85,7 @@ public class NonCashPaymentController extends ApiController {
                 "    '%Y-%m-%d %H:%i:%s'  " +
                 "  ) AS inserttime ,  " +
                 "  concat(  " +
-                "    DATE_FORMAT(p.inserttime , '%Y%c%d') ,  " +
+                "    DATE_FORMAT(p.inserttime , '%Y%c%d%H%i%s') ,  " +
                 "    p.tranid  " +
                 "  ) AS rds ,  " +
                 "  p.deviceid ,  " +
@@ -140,10 +140,10 @@ public class NonCashPaymentController extends ApiController {
         Calendar specialDate = Calendar.getInstance();
         Calendar specialDate2 = Calendar.getInstance();
 //        try {
-            if (StrKit.notBlank(rd)) {
-                time = rd.substring(0, 8);
+        if (StrKit.notBlank(rd)) {
+            time = rd.substring(0, 8);
 //                dt = DateTime.parse(time, dateTimeFormatter).toDate();
-                dt_parsed = DateTime.parse(time, dateTimeFormatter);
+            dt_parsed = DateTime.parse(time, dateTimeFormatter);
 //                dt = sdf.parse(time);
 //                specialDate.setTime(dt);
 //                specialDate.add(Calendar.DAY_OF_MONTH, -3);
@@ -153,11 +153,11 @@ public class NonCashPaymentController extends ApiController {
 //                specialDate.setTime(sdf.parse(time));
 //                specialDate.add(Calendar.DAY_OF_MONTH, -3);
 //                dt1 = specialDate.getTime();
-            }
+        }
 //            specialDate2.setTime(dt);
 //            specialDate2.add(Calendar.MONTH, -1);
 //            time2 = specialDate2.getTime();
-            dt2_minusOneMonth = dt_parsed.minusMonths(1).withDayOfMonth(1);
+        dt2_minusOneMonth = dt_parsed.minusMonths(1).withDayOfMonth(1);
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
@@ -198,21 +198,21 @@ public class NonCashPaymentController extends ApiController {
                 dt_parsed = dt_parsed.minusDays(3);
             }
         }
-        data  = data.subList(0,30);
+        data = data.subList(0, 30);
         System.out.println("data: " + data);
 
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
-            String deviceid = data.get(n).get("deviceid").toString();
-            String saletime = data.get(n).get("saletime","").toString();
-            String price = data.get(n).get("price").toString();
-            String name = data.get(n).get("name","").toString();
+            String deviceid = data.get(n).get("deviceid", "").toString();
+            String saletime = data.get(n).get("saletime", "").toString();
+            String price = data.get(n).get("price", "").toString();
+            String name = data.get(n).get("name", "").toString();
 
-            String tranid = data.get(n).get("tranid").toString();
-            String openid = data.get(n).get("openid").toString();
-            String trackno = data.get(n).get("trackno").toString();
-            String stranid = data.get(n).get("stranid").toString();
+            String tranid = data.get(n).get("tranid", "").toString();
+            String openid = data.get(n).get("openid", "").toString();
+            String trackno = data.get(n).get("trackno", "").toString();
+            String stranid = data.get(n).get("stranid", "").toString();
             String rds = data.get(n).get("rds").toString();
 
 

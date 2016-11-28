@@ -141,16 +141,16 @@ public class CoffeeMachinesController extends ApiController {
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
-            String deviceid = data.get(n).getStr("deviceid");
-            String vmname = data.get(n).getStr("vmname");
-            String billstatus = data.get(n).get("billstatus").toString();
-            String coinstatus = data.get(n).get("coinstatus").toString();
-            String types = data.get(n).get("type").toString();
-            String errorstr = data.get(n).get("errorstr").toString();
-            String coffeetemp = data.get(n).get("coffeetemp").toString();
-            String keeptemp = data.get(n).get("keeptemp").toString();
-            String oneyuannum = data.get(n).get("oneyuannum").toString();
-            String fivejiaonum = data.get(n).get("fivejiaonum").toString();
+            String deviceid = data.get(n).get("deviceid", "");
+            String vmname = data.get(n).get("vmname", "");
+            String billstatus = data.get(n).get("billstatus", "").toString();
+            String coinstatus = data.get(n).get("coinstatus", "").toString();
+            String types = data.get(n).get("type", "").toString();
+            String errorstr = data.get(n).get("errorstr", "").toString();
+            String coffeetemp = data.get(n).get("coffeetemp", "").toString();
+            String keeptemp = data.get(n).get("keeptemp", "").toString();
+            String oneyuannum = data.get(n).get("oneyuannum", "").toString();
+            String fivejiaonum = data.get(n).get("fivejiaonum", "").toString();
             String rds = data.get(n).get("rds").toString();
 
             if (StrKit.isBlank(vmname)) {
@@ -190,14 +190,14 @@ public class CoffeeMachinesController extends ApiController {
             }
 
             String pkgname = data.get(n).getStr("pkgname");
-            Long counta = data.get(n).get("counta");
-            Long countb = data.get(n).get("countb");
-            Long countc = data.get(n).get("countc");
-            Long countd = data.get(n).get("countd");
-            Long counte = data.get(n).get("counte");
-            Long count2 = data.get(n).get("count2");
+            Long counta = data.get(n).get("counta", "");
+            Long countb = data.get(n).get("countb", "");
+            Long countc = data.get(n).get("countc", "");
+            Long countd = data.get(n).get("countd", "");
+            Long counte = data.get(n).get("counte", "");
+            Long count2 = data.get(n).get("count2", "");
 
-            String apkversion = data.get(n).get("apkversion").toString();
+            String apkversion = data.get(n).get("apkversion", "").toString();
             String apkversionStr = "";
             if (StrKit.notBlank(apkversion)) {
                 for (int i = 0; i < apkversion.length(); i++) {
