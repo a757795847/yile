@@ -1,5 +1,6 @@
 (function ($) {
     var urlId = location.search.split('?')[1];
+    $.showLoading("正在加载...");
     if(urlId == ''){
         history.go(-1);
     }
@@ -9,6 +10,7 @@
     $('#Rightimg').on('touchstart',function(){
         $("#Rightimg").addClass("transform");
         $('.noContent').css('display','none');
+        $('#content').html(' ');
         $.showLoading("正在加载...");
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         marketDataAjax(true);

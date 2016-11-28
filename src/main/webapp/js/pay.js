@@ -1,9 +1,11 @@
 (function ($) {
     tab('#content',2,0);
+    $.showLoading("正在加载...");
     payAjax(true);
     var payId = '';
     $('#Rightimg').on('touchstart',function(){
         $("#Rightimg").addClass("transform");
+        $('#content').html('');
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         $.showLoading("正在加载...");
         payAjax(true);
