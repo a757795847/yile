@@ -30,7 +30,7 @@
                 for(var i=0;i < data.length ; i++ ){
                     stranidClass = data[i].stranid == ''? 'retreat':'';
                     stranidState = data[i].stranid == ''? '退货处理':'有';
-                    pay += '<div class="tabContent"><div class="showTab"><ul><li class="minName">'+data[i].deviceid+'</li><li>'+data[i].saletime.slice(5)+'</li><li>'+data[i].price+'</li><li>'+zhifuText(data[i].name)+'</li>';
+                    pay += '<div class="tabContent"><div class="showTab"><ul><li class="minName"><span>'+data[i].noncashName+'</span><span>'+data[i].deviceid+'</span></li><li>'+data[i].saletime.slice(5)+'</li><li>'+data[i].price+'</li><li>'+zhifuText(data[i].name)+'</li>';
                     pay += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>交易号(tranid)</li><li>支付者ID(openid)</li>';
                     pay += '<li>轨道</li><li>实际销售</li><li></li></ul><ul><li class="minWord">'+data[i].tranid+'</li>';
                     pay += '<li class="minWord">'+data[i].openid+'</li><li>'+data[i].trackno+'</li><li class="'+stranidClass+'">'+stranidState+'</li><li></li></ul></div></div>';
@@ -68,7 +68,7 @@
         loading = true;
         payAjax(false);
     });
-    
+
     var innerWidth = window.screen.availWidth;
     function wordNum(text){
         var a = 0;
@@ -78,7 +78,7 @@
             }
         }
         if(innerWidth < 375){
-            if(text.length < 8){
+            if(text.length <= 8){
                 return text;
             }else if(a >= 11 && text.length < 14){
                 return text;

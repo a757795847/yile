@@ -72,9 +72,21 @@
 }
 .tabContent .showTab .minName{
     font-size: 0.5rem;
-    line-height: 1.41rem;
+    line-height: 0.7rem;
 }
-
+.tabContent .showTab .minName span:nth-child(1){
+    font-size: 0.5rem;
+    line-height: 0.7rem;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+.tabContent .showTab .minName span:nth-child(2){
+    font-size: 0.5rem;
+    line-height: 0.7rem;
+}
 .tabContent .hideTab .retreat{
     background: url("../img/stop.png") no-repeat;
     background-size: 0.563rem 0.563rem;
