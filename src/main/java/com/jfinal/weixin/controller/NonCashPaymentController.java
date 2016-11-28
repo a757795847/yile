@@ -215,6 +215,21 @@ public class NonCashPaymentController extends ApiController {
             String stranid = data.get(n).get("stranid", "").toString();
             String rds = data.get(n).get("rds").toString();
 
+            String vmname = data.get(n).get("vmname", "").toString();
+            String vmnamet = data.get(n).get("vmnamet", "").toString();
+            String qvmname = data.get(n).get("qvmname", "").toString();
+
+            String noncashName = "";
+            if(StrKit.notBlank(vmname)){
+                noncashName = vmname;
+            }else if(StrKit.notBlank(vmnamet)){
+                noncashName = vmnamet;
+            }else if(StrKit.notBlank(qvmname)){
+                noncashName = qvmname;
+            }else{
+                noncashName = "未定义机器名";
+            }
+
 
             HashMap<String, String> item = new HashMap<String, String>();
 
@@ -227,6 +242,7 @@ public class NonCashPaymentController extends ApiController {
             item.put("trackno", trackno);
             item.put("stranid", stranid);// 数据存在显示'有'，否则显示'退款处理'
             item.put("rd", rds);
+            item.put("noncashName", noncashName);
 
             list.add(item);
 
