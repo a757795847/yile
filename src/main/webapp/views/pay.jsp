@@ -27,60 +27,6 @@
     <li>...</li>
 </ul>
 <section id="content">
-    <div class="tabContent">
-        <div class="showTab">
-            <ul>
-                <li class="minWord">102福鼎市盐城边防派出所F90813151281</li>
-                <li>07-20 08:20:03</li>
-                <li>2.0</li>
-                <li>微信—福建市丰大</li>
-                <li class="showBtn"><img src="../img/18.png" alt="下拉"></li>
-            </ul>
-        </div>
-        <div class="hideTab">
-            <ul>
-                <li>交易号(tranid)</li>
-                <li>支付者ID(openid)</li>
-                <li>轨道</li>
-                <li>实际销售</li>
-                <li></li>
-            </ul>
-            <ul>
-                <li class="minWord">400885200120160720935830169</li>
-                <li class="minWord">oQv75vr5SpLLf13e35mOB1fCsupk</li>
-                <li>32</li>
-                <li>有</li>
-                <li></li>
-            </ul>
-        </div>
-    </div>
-    <div class="tabContent">
-        <div class="showTab">
-            <ul>
-                <li class="minName">F90813151281</li>
-                <li>07-20 08:20:03</li>
-                <li>2.0</li>
-                <li>微信—福建市丰大</li>
-                <li class="showBtn"><img src="../img/18.png" alt="下拉"></li>
-            </ul>
-        </div>
-        <div class="hideTab">
-            <ul>
-                <li>交易号(tranid)</li>
-                <li>支付者ID(openid)</li>
-                <li>轨道</li>
-                <li>实际销售</li>
-                <li></li>
-            </ul>
-            <ul>
-                <li class="minWord">400885200120160720935830169</li>
-                <li class="minWord">oQv75vr5SpLLf13e35mOB1fCsupk</li>
-                <li>32</li>
-                <li class="retreat">销售处理</li>
-                <li></li>
-            </ul>
-        </div>
-    </div>
 
 </section>
 <div class="weui-infinite-scroll">

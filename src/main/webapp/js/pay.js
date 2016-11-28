@@ -19,19 +19,21 @@
         }
         $.ajax({
             type: 'GET',
-            url: '/integratedMachineData',
+            url: '/nonCashData',
             data:data,
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
                 console.log(data);
-                var pay = '';
+                var pay = '' , stranidState='',stranidClass='';
 
                 for(var i=0;i < data.length ; i++ ){
-                    pay += '<div class="tabContent"><div class="showTab"><ul><li class="minName">F90813151281</li><li>07-20 08:20:03</li><li>2.0</li><li>微信—福建市丰大</li>';
+                    stranidClass = data[i].stranid == ''? 'retreat':'';
+                    stranidState = data[i].stranid == ''? '退货处理':'有';
+                    pay += '<div class="tabContent"><div class="showTab"><ul><li class="minName">'+data[i].deviceid+'</li><li>'+data[i].saletime.slice(5)+'</li><li>'+data[i].price+'</li><li>'+wordNum(data[i].name)+'</li>';
                     pay += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>交易号(tranid)</li><li>支付者ID(openid)</li>';
-                    pay += '<li>轨道</li><li>实际销售</li><li></li></ul><ul><li class="minWord">400885200120160720935830169</li>';
-                    pay += '<li class="minWord">oQv75vr5SpLLf13e35mOB1fCsupk</li><li>32</li><li class="retreat">销售处理</li><li></li></ul></div></div>';
+                    pay += '<li>轨道</li><li>实际销售</li><li></li></ul><ul><li class="minWord">'+data[i].tranid+'</li>';
+                    pay += '<li class="minWord">'+data[i].openid+'</li><li>'+data[i].trackno+'</li><li class="'+stranidClass+'">'+stranidState+'</li><li></li></ul></div></div>';
 
                 }
                 if(on){
@@ -39,7 +41,7 @@
                 }else{
                     $('#content').append(pay);
                 }
-                if(data.length < 25){
+                if(data.length < 30){
                     $('.weui-infinite-scroll').css('display','none');
                     if(on){
                         $('.noContent').css('display','none');
@@ -65,8 +67,12 @@
         console.log('到底啦');
         if(loading) return;
         loading = true;
-        //payAjax(false);
+        payAjax(false);
     });
+    function saleTime(date){
+        return date.splice
+    }
+
     function wordNum(text){
         var a = 0;
         for(var i = 0;i < text.length;i++){

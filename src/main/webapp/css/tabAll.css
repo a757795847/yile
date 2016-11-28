@@ -103,6 +103,13 @@ html body .tabContent .minWord {
     line-height: 0.7rem!important;
     font-size: 0.5rem!important;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 html body .tabContent .ellipsisWord {
