@@ -15,7 +15,8 @@ public class UserAuthInterceptor implements Interceptor {
     @Override
     public void intercept(Invocation inv) {
         Controller controller = inv.getController();
-        BigInteger userId = controller.getSessionAttr("userId");
+//        BigInteger userId = controller.getSessionAttr("userId");
+        String userId = controller.getSessionAttr("userId");
         System.out.println("UserAuthInterceptor_intercept_userId: " + userId);
         if ("".equals(userId) || userId == null) {
             Boolean debug = true;

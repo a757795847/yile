@@ -109,7 +109,7 @@
                 }else{
                     loading = false;
                 }
-                synthesizeLastId = data[data.length-1].deviceid;
+                synthesizeLastId = data[data.length-1].rd;
                 onBeack(data,'#synthesize','.synthesize',on,synthesize)
                 //滚动加载
             },
@@ -164,7 +164,7 @@
                 }else{
                     loading = false;
                 }
-                drinkLastId = data[data.length-1].deviceid;
+                drinkLastId = data[data.length-1].rd;
                 onBeack(data,'#drink','.drink',on,drink);
             },
             error: function (jqXHR) {
@@ -214,7 +214,7 @@
                 }else{
                     loading = false;
                 }
-                coffeeLastId = data[data.length-1].deviceid;
+                coffeeLastId = data[data.length-1].rd;
                 onBeack(data,'#coffee','.coffee',on,coffee);
 
             },

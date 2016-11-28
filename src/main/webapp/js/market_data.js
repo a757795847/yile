@@ -63,7 +63,7 @@
                     }
                     loading = true;
                 }else{
-                    payId = data[data.length-1].deviceid;
+                    payId = data[data.length-1].rd;
                     $('.weui-infinite-scroll').css('display','block')
                     loading = false;
                 }

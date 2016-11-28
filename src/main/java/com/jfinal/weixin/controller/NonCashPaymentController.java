@@ -3,6 +3,7 @@ package com.jfinal.weixin.controller;
 import com.jfinal.kit.StrKit;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
+import com.jfinal.weixin.models.SysUserRoleMst;
 import com.jfinal.weixin.models.Vmmisuser;
 import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
@@ -68,7 +69,7 @@ public class NonCashPaymentController extends ApiController {
                 "AND p.yyyymmdd >= ?  " +
                 "AND p.yyyymmdd <= ?  " +
                 "AND proxy.slaveid = u.vmcustomerid  " +
-                "AND proxy.masterid = ?  " +
+                "AND proxy.masterid = 1  " +
                 "ORDER BY  " +
                 "  rds DESC  " +
                 "LIMIT 30";
@@ -130,63 +131,84 @@ public class NonCashPaymentController extends ApiController {
 
         String time = DateTime.now().toString("yyyy-MM-dd");
         Date time2 = null;
+        DateTime dt2_minusOneMonth = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern("yyyyMMdd");
         Date dt = null;
         Date dt1 = null;
+        DateTime dt_parsed = DateTime.now();
         Calendar specialDate = Calendar.getInstance();
         Calendar specialDate2 = Calendar.getInstance();
-        try {
+//        try {
             if (StrKit.notBlank(rd)) {
                 time = rd.substring(0, 8);
-                DateTime.parse(time, dateTimeFormatter).toDate();
-
+//                dt = DateTime.parse(time, dateTimeFormatter).toDate();
+                dt_parsed = DateTime.parse(time, dateTimeFormatter);
 //                dt = sdf.parse(time);
-                specialDate.setTime(dt);
-                specialDate.add(Calendar.DAY_OF_MONTH, -3);
-                dt1 = specialDate.getTime();
-            } else {
-                specialDate.setTime(sdf.parse(time));
-                specialDate.add(Calendar.DAY_OF_MONTH, -3);
-                dt1 = specialDate.getTime();
+//                specialDate.setTime(dt);
+//                specialDate.add(Calendar.DAY_OF_MONTH, -3);
+//                dt1 = specialDate.getTime();
+//            } else {
+//                dt = DateTime.parse(time, dateTimeFormatter).toDate();
+//                specialDate.setTime(sdf.parse(time));
+//                specialDate.add(Calendar.DAY_OF_MONTH, -3);
+//                dt1 = specialDate.getTime();
             }
-            specialDate2.setTime(sdf.parse(time));
-            specialDate2.add(Calendar.MONTH, -1);
-            time2 = specialDate2.getTime();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//            specialDate2.setTime(dt);
+//            specialDate2.add(Calendar.MONTH, -1);
+//            time2 = specialDate2.getTime();
+            dt2_minusOneMonth = dt_parsed.minusMonths(1).withDayOfMonth(1);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         System.out.println("time: " + time + ", dt: " + dt + ", dt1: " + dt1);
         System.out.println("rd: " + rd);
+        System.out.println("dt1: " + dt1);
+        System.out.println("time2: " + time2);
 
-        List<Record> data;
+        System.out.println("dt parse: " + dt_parsed);
+        System.out.println("dt minus one month : " + dt2_minusOneMonth);
+
+        List<Record> data = new ArrayList<Record>();
         if (StrKit.notBlank(rd) && StrKit.notBlank(time)) {
-            data = Db.find(sql1, dt1, dt, vmmisuser.getVmcustomerid(), rd);
-            while (data.size() < 30 && dt1.after(time2)) {
-                specialDate.setTime(dt1);
+//            data = Db.find(sql1, dt1, dt, vmmisuser.getVmcustomerid(), rd);
+            //data = Db.find(sql1, dt1, dt, 1, rd);
+
+            while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
+                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(3);
+//                data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
+                data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), 1, rd));
+                System.out.println("data1: " + data);
+                /*specialDate.setTime(dt1);
                 specialDate.add(Calendar.DAY_OF_MONTH, -3);
-                dt1 = specialDate.getTime();
-                data = Db.find(sql1, dt1, dt, vmmisuser.getVmcustomerid(), rd);
+                dt1 = specialDate.getTime();*/
+                dt_parsed = dt_parsed.minusDays(3);
             }
         } else {
 //            data = Db.find(sql, dt1, time, vmmisuser.getVmcustomerid());
-            data = Db.find(sql, dt1, time, 1);
-            while (data.size() < 30 && dt1.after(time2)) {
-                specialDate.setTime(dt1);
+//            data = Db.find(sql, dt1, time, 1);
+            while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
+                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(3);
+//                data = Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd);
+                data.addAll(Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate()));
+                System.out.println("data2: " + data);
+                /*specialDate.setTime(dt1);
                 specialDate.add(Calendar.DAY_OF_MONTH, -3);
-                dt1 = specialDate.getTime();
-//                data = Db.find(sql, dt1, time, vmmisuser.getVmcustomerid());
-                data = Db.find(sql, dt1, time, 1);
+                dt1 = specialDate.getTime();*/
+                dt_parsed = dt_parsed.minusDays(3);
             }
         }
+        data  = data.subList(0,30);
+        System.out.println("data: " + data);
 
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
             String deviceid = data.get(n).get("deviceid").toString();
-            String saletime = data.get(n).get("saletime").toString();
+            String saletime = data.get(n).get("saletime","").toString();
             String price = data.get(n).get("price").toString();
-            String name = data.get(n).get("name").toString();
+            String name = data.get(n).get("name","").toString();
+
             String tranid = data.get(n).get("tranid").toString();
             String openid = data.get(n).get("openid").toString();
             String trackno = data.get(n).get("trackno").toString();

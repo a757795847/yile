@@ -30,7 +30,7 @@
                 for(var i=0;i < data.length ; i++ ){
                     stranidClass = data[i].stranid == ''? 'retreat':'';
                     stranidState = data[i].stranid == ''? '退货处理':'有';
-                    pay += '<div class="tabContent"><div class="showTab"><ul><li class="minName">'+data[i].deviceid+'</li><li>'+data[i].saletime.slice(5)+'</li><li>'+data[i].price+'</li><li>'+wordNum(data[i].name)+'</li>';
+                    pay += '<div class="tabContent"><div class="showTab"><ul><li class="minName">'+data[i].deviceid+'</li><li>'+data[i].saletime.slice(5)+'</li><li>'+data[i].price+'</li><li>'+zhifuText(data[i].name)+'</li>';
                     pay += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>交易号(tranid)</li><li>支付者ID(openid)</li>';
                     pay += '<li>轨道</li><li>实际销售</li><li></li></ul><ul><li class="minWord">'+data[i].tranid+'</li>';
                     pay += '<li class="minWord">'+data[i].openid+'</li><li>'+data[i].trackno+'</li><li class="'+stranidClass+'">'+stranidState+'</li><li></li></ul></div></div>';
@@ -54,7 +54,7 @@
                     loading = false;
                 }
 
-                payId = data[data.length-1].deviceid;
+                payId = data[data.length-1].rd;
 
             },
             error: function (jqXHR) {
@@ -90,5 +90,12 @@
             return '<p class="ellipsisWord">'+text+'</p>'
         }
 
+    }
+    function zhifuText(text){
+        if(text.length < 9 ){
+            return text;
+        }else{
+            return '<p class="ellipsisWord">'+text+'</p>'
+        }
     }
 })(jQuery)
