@@ -15,8 +15,10 @@ public class WeChatAPIs extends ApiController {
     }
 
     @Before(WeChatOauth2Interceptor.class)
-    public void index(){
-        setAttr("test", "这里是测试WeChatAPIs_test");
+    public void index() {
+        /*String pwd = new StringBuilder("qweq1234123asda").reverse().toString();
+        System.out.println("pwd: " + pwd);*/
+        setAttr("test", "这里是WeChatAPIs_test");
         render("index.jsp");
     }
 }

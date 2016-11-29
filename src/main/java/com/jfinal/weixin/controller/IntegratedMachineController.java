@@ -141,7 +141,7 @@ public class IntegratedMachineController extends ApiController {
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
             String deviceid = data.get(n).get("deviceid", "").toString();
-            String vmname = data.get(n).get("vmname", "").toString();
+            String vmname = data.get(n).get("vmname", "未设定").toString();
             String lastnettime = data.get(n).get("lastnettime", "").toString();
 
             String coinstatus = data.get(n).get("coinstatus", "").toString();
