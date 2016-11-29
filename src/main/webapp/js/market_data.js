@@ -82,7 +82,7 @@
     $(document.body).infinite().on("infinite", function() {
         if(loading) return;
         loading = true;
-        //marketDataAjax(false)
+        marketDataAjax(false)
     });
 
     function wordNum(text){
