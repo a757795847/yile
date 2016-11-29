@@ -88,7 +88,6 @@
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
-                console.log(data);
                 var synthesize = '',internet = '', paper = '', metal = '',newDate;
                 for(var i=0;i<data.length;i++){
                     newDate = data[i].lastnettime.split('.')[0].substring(5);
@@ -97,6 +96,7 @@
                     metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
                     data[i].today = data[i].today == '/0'? '--/--':data[i].today;
                     data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '—':data[i]['guizi/liantiji'];
+                    data[i].vmname = data[i].vmname = ''?'未设定':data[i].vmname;
 
                     synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     synthesize += '<li class="'+internet+'">('+newDate+')</li><li><i class="'+paper+'"></i>/<i class="'+metal+'"></i>';
@@ -152,6 +152,7 @@
                     data[i].today = data[i].today == '/--' ? '— / —':data[i].today;
                     data[i].tempnow = data[i].tempnow == '-/-'? '—':data[i].tempnow;
                     data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '—':data[i]['guizi/liantiji'];
+                    data[i].vmname = data[i].vmname = ''?'未设定':data[i].vmname;
 
                     drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     drink += '<li class="'+internet+'">('+newData+')</li>';
@@ -203,6 +204,7 @@
                     data[i].errorstr = data[i].errorstr == ''? '无':data[i].errorstr;
                     data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '—':data[i]['guizi/liantiji'];
                     data[i].today = data[i].today == '/--' ? '0/0':data[i].today;
+                    data[i].vmname = data[i].vmname = ''?'未设定':data[i].vmname;
 
                     coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li><li class="'+internet+'">('+newData+')</li>';
                     coffee += '<li><i class="'+paper+'"></i>/<i class="'+metal+'"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
