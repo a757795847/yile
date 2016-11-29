@@ -43,6 +43,7 @@
     没有内容了
 </div>
 <p class="records">最近没有销售记录</p>
+<div class="zhanwei"></div>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
 <script type="text/javascript" src="../js/tab_data.js"></script>
