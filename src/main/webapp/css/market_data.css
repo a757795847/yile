@@ -60,3 +60,6 @@ html body .tabContent .ellipsisWord {
     color: #c8c8cd;
     font-size: 0.5rem;
 }
+.tabContent .showTab ul li:nth-child(3){
+    font-size: 0.57rem;
+}
