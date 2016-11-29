@@ -28,7 +28,6 @@
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
-                console.log(data);
                 var pay = '' , stranidState='',stranidClass='';
 
                 for(var i=0;i < data.length ; i++ ){
@@ -47,7 +46,7 @@
                 }
                 if(data.length < 30){
                     $('.weui-infinite-scroll').css('display','none');
-                    if(on){
+                    if(data.length < 20){
                         $('.noContent').css('display','none');
                     }else{
                         $('.noContent').css('display','block');
@@ -62,6 +61,7 @@
 
             },
             error: function (jqXHR) {
+                $.hideLoading();
                 $.toast("加载失败", "cancel");
             }
         })
@@ -74,40 +74,9 @@
     });
 
     var innerWidth = window.screen.availWidth;
-    function wordNum(text){
-        var a = 0;
-        for(var i = 0;i < text.length;i++){
-            if( 'z' >= text[i] ){
-                a++;
-            }
-        }
-        if(innerWidth < 375){
-            if(text.length <= 8){
-                return text;
-            }else if(a >= 11 && text.length < 14){
-                return text;
-            }else if(a > 5 && text.length < 10){
-                return text;
-            }else{
-                return '<p class="ellipsisWord">'+text+'</p>'
-            }
-        }else{
-            if(text.length < 10){
-                return text;
-            }else if(a >= 11 && text.length < 14){
-                return text;
-            }else if(a > 3 && text.length < 13){
-                return text;
-            }else{
-                return '<p class="ellipsisWord">'+text+'</p>'
-            }
-        }
-
-
-    }
     function zhifuText(text){
         if(innerWidth < 375){
-            if(text.length < 8 ){
+            if(text.length < 9 ){
                 return text;
             }else{
                 return '<p class="ellipsisWord">'+text+'</p>'
