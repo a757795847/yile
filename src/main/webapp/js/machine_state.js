@@ -88,7 +88,6 @@
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
-                console.log(data);
                 var synthesize = '',internet = '', paper = '', metal = '',newDate;
                 for(var i=0;i<data.length;i++){
                     newDate = data[i].lastnettime.split('.')[0].substring(5);
@@ -96,6 +95,7 @@
                     paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
                     metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
                     data[i].today = data[i].today == '/0'? '--/--':data[i].today;
+                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '—':data[i]['guizi/liantiji'];
 
                     synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     synthesize += '<li class="'+internet+'">('+newDate+')</li><li><i class="'+paper+'"></i>/<i class="'+metal+'"></i>';
@@ -119,6 +119,7 @@
             error: function (jqXHR) {
                 $('.weui-infinite-scroll').css('display','none');
                 synthesizeState = false
+                $.hideLoading();
                 $.toast("加载失败", "cancel");
                 // setTimeout(function(){
                 //     history.go(-1);
@@ -139,11 +140,9 @@
             type: 'GET',
             url: '/drinkMachineData',
             data:data,
-            data:data,
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
-                console.log(data);
                 var drink = '',internet = '',newDate;
                 for(var i=0;i<data.length;i++){
 
@@ -151,6 +150,7 @@
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
                     data[i].today = data[i].today == '/--' ? '— / —':data[i].today;
                     data[i].tempnow = data[i].tempnow == '-/-'? '—':data[i].tempnow;
+                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '—':data[i]['guizi/liantiji'];
 
                     drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     drink += '<li class="'+internet+'">('+newData+')</li>';
@@ -173,6 +173,7 @@
             error: function (jqXHR) {
                 $('.weui-infinite-scroll').css('display','none');
                 drinkState = false;
+                $.hideLoading();
                 $.toast("加载失败", "cancel");
             }
         })
@@ -192,7 +193,6 @@
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
-                console.log(data);
                 var coffee = '',internet = '', paper = '', metal = '',newDate='', errorData='';
                 for(var i=0;i<data.length;i++){
                     newData = data[i].lastnettime.split('.')[0].substring(5);
@@ -200,7 +200,7 @@
                     paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
                     metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
                     data[i].errorstr = data[i].errorstr == ''? '无':data[i].errorstr;
-                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--':data[i]['guizi/liantiji'];
+                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '—':data[i]['guizi/liantiji'];
                     data[i].today = data[i].today == '/--' ? '0/0':data[i].today;
 
                     coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li><li class="'+internet+'">('+newData+')</li>';
@@ -224,6 +224,7 @@
             error: function (jqXHR) {
                 $('.weui-infinite-scroll').css('display','none');
                 coffeeState = false;
+                $.hideLoading();
                 $.toast("加载失败", "cancel");
             }
         })
@@ -286,7 +287,7 @@
         }
         if(data.length < 25){
             $('.weui-infinite-scroll').css('display','none');
-            if(state){
+            if(data.length < 20){
                 $(id).find('.noContent').css('display','none');
             }else{
                 $(id).find('.noContent').css('display','block');

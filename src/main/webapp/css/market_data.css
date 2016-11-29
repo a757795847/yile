@@ -38,10 +38,10 @@
     display: none;
 }
 .weui-infinite-scroll , .noContent {
-    margin-bottom: 0.9rem;
+    margin-bottom: 1rem;
 }
 #content{
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 html body .tabContent .ellipsisWord {
     word-break: break-all;

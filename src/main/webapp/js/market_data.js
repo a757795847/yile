@@ -42,7 +42,6 @@
                 }
 
                 $.hideLoading();
-                console.log(data);
                 var market = '',a = '',b='';
                 for(var i=0;i<data.length;i++){
                     a = data[i].payway.split(':')[0];
@@ -59,7 +58,7 @@
                 }
                 if(data.length < 30){
                     $('.weui-infinite-scroll').css('display','none');
-                    if(on){
+                    if(data.length < 20){
                         $('.noContent').css('display','none');
                     }else{
                         $('.noContent').css('display','block');
@@ -74,6 +73,7 @@
 
             },
             error: function (jqXHR) {
+                $.hideLoading();
                 $.toast("加载失败", "cancel");
             }
         })

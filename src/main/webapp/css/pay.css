@@ -80,7 +80,7 @@
     white-space:nowrap;
     overflow:hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
+    display: block;
     -webkit-box-orient: vertical;
 }
 .tabContent .showTab .minName span:nth-child(2){
