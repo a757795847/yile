@@ -11,9 +11,6 @@ import com.jfinal.weixin.sdk.api.ApiConfig;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
 
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.SecretKey;
 import java.util.List;
 
 import static com.jfinal.others.Constant.*;
@@ -73,18 +70,10 @@ public class LoginController extends ApiController {
                     //正常登录
                     String RememberPwd = getPara("RememberPwd");
                     if (StrKit.notBlank(RememberPwd)) {
-
-                        Cipher cipher = Cipher.getInstance("AES");
-                        SecretKey key = KeyGenerator.getInstance("AES").generateKey();
-                        setSessionAttr("AESKEY", key);
-                        cipher.init(Cipher.ENCRYPT_MODE, key);
-                        byte[] result = cipher.doFinal(password.getBytes());
-                        logger.debug(new String(result));
-
+                        String pwd = new StringBuilder(password).reverse().toString();
                         //记住密码
                         setCookie("username", userName, 1209600);
-                        setCookie("password", password, 1209600);
-//                        setCookie("password", new String(result), 1209600);
+                        setCookie("password", pwd, 1209600);
                     }
                     String AutomaticLogin = getPara("AutomaticLogin");
                     System.out.println("AutomaticLogin: " + AutomaticLogin);
@@ -100,17 +89,9 @@ public class LoginController extends ApiController {
                             System.out.println("str: " + str);
                             i++;
                         } while (i < 3);
-
                     }
 
                     setSessionAttr("userId", users1.getUserid());
-//                    setSessionAttr("vmcustomerid", users1.getVmcustomerid());
-//                    setSessionAttr("realName", users1.getRealname());
-//                    setSessionAttr("username", userName);
-//                    System.out.println("userId: " + users1.getUserid());
-//                    System.out.println("vmcustomerid: " + users1.getVmcustomerid());
-//                    System.out.println("realName: " + users1.getRealname());
-//                    System.out.println("username: " + userName);
                     setSessionAttr("vmmisuser", users1);
                     System.out.println("vmmisuser: " + users1);
 
