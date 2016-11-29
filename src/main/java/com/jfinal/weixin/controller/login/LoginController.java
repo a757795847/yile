@@ -98,7 +98,6 @@ public class LoginController extends ApiController {
                     String requestPathA = getSessionAttr("requestPathA");
                     System.out.println("LoginController_determine_requestPathA: " + requestPathA);
 
-
                     if ("http://localhost:8088/login".equals(requestPathA) || "http://yile.izhuiyou.com/login".equals(requestPathA)) {
                         renderJson("requestPathA", "http://localhost:8088/home");
                     } else {
