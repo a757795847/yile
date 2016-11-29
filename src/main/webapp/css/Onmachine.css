@@ -145,7 +145,7 @@ h4{
 .weui-picker-modal{
     width: 100%;
     position: absolute;
-    bottom: 2.25rem;
+    bottom: 2.75rem;
     text-align: center;
     border-radius: 0;
     color: #3d4145;
@@ -368,6 +368,7 @@ i.icon.icon-next{
         left:0;
         right:0;
 
+
     }
     .nav li{
         width:25%;
@@ -414,4 +415,10 @@ i.icon.icon-next{
 }
 .weui_btn_dialog.primary {
     color: #49a1da;
+}
+.weui_cells_radio .weui_check:checked+.weui_icon_checked:before {
+    display: block;
+    content: '\EA08';
+    color: #10aeff;
+    font-size: 16px;
 }

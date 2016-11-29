@@ -9,7 +9,6 @@ console.log(remember);
                 $('#image1').show();
                 remember = true;
             }
-        console.log(remember);
     });
 
 $("#image1").click(function(){
@@ -20,28 +19,40 @@ $("#image1").click(function(){
         $('#image1').show();
         remember = true;
     }
-    console.log(remember);
 });
 
  var automatic = $("#checklogin").is(":checked");
 console.log(automatic);
-    $("#checklogin").click(function(){
+    $("#checklogin").click(function(event){
+        event.stopPropagation();
        if(automatic){
+           console.log('1');
+           remember = false;
+           $('#image1').hide();
            $('#image2').hide();
            automatic=false;
        }else{
+           console.log('2');
+           remember = true;
+           $('#image1').show();
            $('#image2').show();
            automatic = true;
        }
-
-        
+        console.log(automatic);
+        console.log(remember);
     });
-$("#image2").click(function(){
+
+$("#image2").click(function(event){
+    event.stopPropagation();
     if(automatic){
         $('#image2').hide();
+        remember = false;
+        $('#image1').hide();
         automatic=false;
     }else{
         $('#image2').show();
+        remember = true;
+        $('#image1').show();
         automatic = true;
     }
     console.log(automatic);
@@ -61,7 +72,7 @@ $("#image2").click(function(){
          $('#image1').show();
 
     }
-        $('#btn').on('click', function () {
+        $('#btn').on('click', function (){
         var username = $('#username').val();
         var password = $('#password').val();
         var code=$("#code").val();
