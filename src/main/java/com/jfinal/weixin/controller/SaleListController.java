@@ -7,9 +7,9 @@ import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
 
 /**
- * Created by zengriyong on 16/11/17.
+ * Created by zengriyong on 16/11/25.
  */
-public class NonCashController extends ApiController {
+public class SaleListController extends ApiController {
 
     public ApiConfig getApiConfig() {
         return WeixinUtil.getApiConfig();
@@ -17,7 +17,7 @@ public class NonCashController extends ApiController {
 
     @Before(UserAuthInterceptor.class)
     public void index() {
-        render("pay.jsp");
+        render("market_data.jsp");
     }
 
 }

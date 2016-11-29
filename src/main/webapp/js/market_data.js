@@ -1,27 +1,106 @@
 (function ($) {
-    tab('#content');
-    var market = '';
-    for(var i=0;i<22;i++){
-        market += '<div class="tabContent"><div class="showTab"><ul><li>EBFA2C161971</li><li>2016-07-20 08:20:03</li><li>轨道</li><li>62</li>';
-        market += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>名称</li><li>进价</li>';
-        market += '<li>价格</li><li>支付方式</li><li></li></ul><ul><li>雪碧330ml</li><li>1.92</li><li>3.0</li>';
-        market += '<li class="minWord">支付宝:4007762001<br/>201610086139752107</li><li></li></ul></div></div>';
+    var urlId = location.search.split('?')[1];
+    $.showLoading("正在加载...");
+    if(urlId == ''){
+        history.go(-1);
+    }
+    var loading = false;  //状态标记
+    tab('#content',2,0);
 
+    $('#Rightimg').on('touchstart',function(){
+        $("#Rightimg").addClass("transform");
+        $('.noContent').css('display','none');
+        $('.weui-infinite-scroll').css('display','none');
+        $('#content').empty();
+        $.showLoading("正在加载...");
+        setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
+        marketDataAjax(true);
+    });
+    $('#Leftimg').on('touchend',function(){
+        history.go(-1);
+    });
+    marketDataAjax(true)
+    function marketDataAjax(on){
+        if(on){
+            var data = {
+                'did':urlId
+            }
+        }else{
+            var data = {
+                'did':urlId,
+                'rd':payId
+            }
+        }
+        $.ajax({
+            type: 'GET',
+            url: '/saleDeviceData',
+            data:data,
+            dataType: 'json',
+            success: function (data) {
+                if(data.length == 0 && on){
+                    $('.records').css('display','block')
+                }
+
+                $.hideLoading();
+                var market = '',a = '',b='';
+                for(var i=0;i<data.length;i++){
+                    a = data[i].payway.split(':')[0];
+                    b = data[i].payway.split(':')[1];
+                    market += '<div class="tabContent"><div class="showTab"><ul><li>'+data[i].deviceid+'</li><li>'+data[i].saletime+'</li><li>'+data[i].outtype+'</li><li>'+data[i].trackno+'</li>';
+                    market += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>名称</li><li>进价</li>';
+                    market += '<li>价格</li><li>支付方式</li><li></li></ul><ul><li>'+wordNum(data[i].mingcheng)+'</li><li>'+data[i].buyprice+'</li><li>'+data[i].price+'</li>';
+                    market += '<li class="ellipsisWord">'+data[i].payway+'</li><li></li></ul></div></div>';
+                }
+                if(on){
+                    $('#content').html(market);
+                }else{
+                    $('#content').append(market);
+                }
+                if(data.length < 30){
+                    $('.weui-infinite-scroll').css('display','none');
+                    if(on && data.length < 20){
+                        $('.noContent').css('display','none');
+                    }else{
+                        $('.noContent').css('display','block');
+                    }
+                    loading = true;
+                }else{
+                    payId = data[data.length-1].rd;
+                    $('.weui-infinite-scroll').css('display','block')
+                    loading = false;
+                }
+
+
+            },
+            error: function (jqXHR) {
+                $.hideLoading();
+                $.toast("加载失败", "cancel");
+            }
+        })
     }
 
-    //$('.weui-infinite-scroll').before(market);
-
-    var loading = false;  //状态标记
-    $(document.body).infinite(60).on("infinite", function() {
-        console.log('到底啦');
+    $(document.body).infinite().on("infinite", function() {
         if(loading) return;
         loading = true;
-        setTimeout(function() {
-            $('.weui-infinite-scroll').before(market);
-
-            //$(document.body).destroyInfinite();
-            //$('.weui-infinite-scroll').css('display','none');
-            loading = false;
-        }, 1500);   //模拟延迟
+        marketDataAjax(false)
     });
+
+    function wordNum(text){
+        var a = 0;
+        for(var i = 0;i < text.length;i++){
+            if( 'z' >= text[i] ){
+                a++;
+            }
+        }
+        if(text.length <7){
+            return text;
+        }else if(a >= 11 && text.length < 14){
+            return text;
+        }else if(a > 5 && text.length < 10){
+            return text;
+        }else{
+            return '<p class="ellipsisWord">'+text+'</p>'
+        }
+
+    }
 })(jQuery)

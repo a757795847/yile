@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html lang="en">
+<html lang="zh">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -27,74 +27,21 @@
     <li>...</li>
 </ul>
 <section id="content">
-    <div class="tabContent">
-        <div class="showTab">
-            <ul>
-                <li class="minWord">102福鼎市盐城边防派出所F90813151281</li>
-                <li>07-20 08:20:03</li>
-                <li>2.0</li>
-                <li>微信—福建市丰大</li>
-                <li class="showBtn"><img src="../img/18.png" alt="下拉"></li>
-            </ul>
-        </div>
-        <div class="hideTab">
-            <ul>
-                <li>交易号(tranid)</li>
-                <li>支付者ID(openid)</li>
-                <li>轨道</li>
-                <li>实际销售</li>
-                <li></li>
-            </ul>
-            <ul>
-                <li class="minWord">400885200120160720935830169</li>
-                <li class="minWord">oQv75vr5SpLLf13e35mOB1fCsupk</li>
-                <li>32</li>
-                <li>有</li>
-                <li></li>
-            </ul>
-        </div>
-    </div>
-    <div class="tabContent">
-        <div class="showTab">
-            <ul>
-                <li class="minName">F90813151281</li>
-                <li>07-20 08:20:03</li>
-                <li>2.0</li>
-                <li>微信—福建市丰大</li>
-                <li class="showBtn"><img src="../img/18.png" alt="下拉"></li>
-            </ul>
-        </div>
-        <div class="hideTab">
-            <ul>
-                <li>交易号(tranid)</li>
-                <li>支付者ID(openid)</li>
-                <li>轨道</li>
-                <li>实际销售</li>
-                <li></li>
-            </ul>
-            <ul>
-                <li class="minWord">400885200120160720935830169</li>
-                <li class="minWord">oQv75vr5SpLLf13e35mOB1fCsupk</li>
-                <li>32</li>
-                <li class="retreat">销售处理</li>
-                <li></li>
-            </ul>
-        </div>
-    </div>
-    <div class="weui-infinite-scroll">
-        <div class="infinite-preloader"></div><!-- 菊花 -->
-        正在加载... <!-- 文案，可以自行修改 -->
-    </div>
-    <div class="noContent">
-        -----------<span>没有内容了</span>-----------
-    </div>
-</section>
 
+</section>
+<div class="weui-infinite-scroll">
+    <div class="infinite-preloader"></div><!-- 菊花 -->
+    正在加载... <!-- 文案，可以自行修改 -->
+</div>
+<div class="noContent">
+    没有内容了
+</div>
+<div class="zhanwei"></div>
 <ul class="nav">
-    <li><a href="/home"><img src="../img/09.png" class="img1"></a> <b></b></li>
-    <li><a href="/machine/integrated"><img src="../img/15.png" class="img2"></a> <b></b></li>
-    <li><a href="/device"><img src="../img/11.png" class="img3"></a> <b></b></li>
-    <li><a href="#"><img src="../img/12.png" class="img4"></a></li>
+    <li><a href="/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
+    <li><a href="/machine/integrated?123"><img src="../img/10.png" class="img2"></a> <b></b></li>
+    <li><a href="/device?123"><img src="../img/11.png" class="img3"></a> <b></b></li>
+    <li><a href="/nonCash?123"><img src="../img/13.png" class="img4"></a></li>
 </ul>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery-weui.min.js"></script>

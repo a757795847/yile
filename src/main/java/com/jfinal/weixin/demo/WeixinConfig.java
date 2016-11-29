@@ -61,10 +61,15 @@ public class WeixinConfig extends JFinalConfig {
         me.add("/device", DeviceController.class, "/views/pepsi");//上位机
         me.add("/addDevice", AddDeviceController.class);//上位机post
         me.add("/generalStatus", GeneralStatusController.class, "/views");//总体状态及销售记录
-        me.add("/nonCash", NonCashController.class);//非现金支付
+        me.add("/nonCash", NonCashController.class, "/views");//非现金支付
+        me.add("/saleList", SaleListController.class, "/views");//销售记录
 
 
         me.add("/integratedMachineData", IntegratedMachineController.class);//综合机数据
+        me.add("/drinkMachineData", DrinkMachinesController.class);//饮料机数据
+        me.add("/coffeeMachineData", CoffeeMachinesController.class);//咖啡机数据
+        me.add("/nonCashData", NonCashPaymentController.class);//非现金支付列表
+        me.add("/saleDeviceData", SaleDataController.class);//设备销售数据列表
 
 
 
@@ -105,6 +110,9 @@ public class WeixinConfig extends JFinalConfig {
         arp.addMapping("androidcabinetd", "deviceid", Androidcabinetd.class);
         arp.addMapping("androidcabinete", "deviceid", Androidcabinete.class);
         arp.addMapping("androidtrackdouble", "deviceid", Androidtrackdouble.class);
+        arp.addMapping("androidcoffee", "deviceid", Androidcoffee.class);
+        arp.addMapping("payok", "tranid, payway", Payok.class);
+
 
 
     }

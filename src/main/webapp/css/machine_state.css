@@ -65,6 +65,7 @@
     height: 0.45rem;
 }
 .weui_tab_bd{
+    margin-bottom: 0.5rem;
     height: initial;
 }
 .showTab li:nth-child(4) i:last-child {

@@ -23,12 +23,9 @@
 }
 
 .tabContent .hideTab ul:last-child li {
-    font-size: 0.506rem;
+    font-size: 0.43rem;
 }
 
-.tabContent .hideTab ul:last-child li:nth-child(4) {
-    line-height: 0.694rem;
-}
 @media (min-width: 320px) and (max-width:360px) {
     .tabContent li{
         font-size: 0.42rem;
@@ -37,4 +34,32 @@
         font-size: 0.59rem;
     }
 }
-
+.weui-infinite-scroll{
+    display: none;
+}
+.weui-infinite-scroll , .noContent {
+    margin-bottom: 1rem;
+}
+.zhanwei{
+    height: 0.3rem;
+}
+#content{
+    margin-bottom: 0.5rem;
+}
+html body .tabContent .ellipsisWord {
+    word-break: break-all;
+}
+.records{
+    display: none;
+    height: 3px;
+    line-height: 3px;
+    padding: 0 10px;
+    margin-top: 0.5rem;
+    text-align: center;
+    margin-bottom: 3.5rem;
+    color: #c8c8cd;
+    font-size: 0.5rem;
+}
+.tabContent .showTab ul li:nth-child(3){
+    font-size: 0.57rem;
+}
