@@ -177,7 +177,7 @@ public class NonCashPaymentController extends ApiController {
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
                 DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(3);
 //                data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
-                data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), 1, rd));
+                data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
                 System.out.println("data1: " + data);
                 /*specialDate.setTime(dt1);
                 specialDate.add(Calendar.DAY_OF_MONTH, -3);
