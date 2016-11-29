@@ -58,7 +58,7 @@
                 }
                 if(data.length < 30){
                     $('.weui-infinite-scroll').css('display','none');
-                    if(data.length < 20){
+                    if(on && data.length < 20){
                         $('.noContent').css('display','none');
                     }else{
                         $('.noContent').css('display','block');

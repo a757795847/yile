@@ -88,6 +88,7 @@
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
+                console.log(data);
                 var synthesize = '',internet = '', paper = '', metal = '',newDate;
                 for(var i=0;i<data.length;i++){
                     newDate = data[i].lastnettime.split('.')[0].substring(5);
@@ -287,7 +288,7 @@
         }
         if(data.length < 25){
             $('.weui-infinite-scroll').css('display','none');
-            if(data.length < 20){
+            if(state && data.length < 20){
                 $(id).find('.noContent').css('display','none');
             }else{
                 $(id).find('.noContent').css('display','block');
