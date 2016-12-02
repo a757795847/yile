@@ -33,6 +33,7 @@ public class HomePageController extends ApiController {
                 getRequest().getLocalAddr() + "\n" +
                 getRequest().getContextPath() + "\n"
         );*/
+//        System.out.println("http://" + getRequest().getServerName() + "/yile/oauth2");
         //根据userId 获取 vmmisuser 表中的 vmcustomerid 和 authority
         //根据vmcustomerid 获取 vmcustomerinfo 表中的 proxy
         // 如果authority != 4 并且 proxy = 1, 才可以添加上位机(往session中添加字段allowsAdd, true为允许,false为不允许)

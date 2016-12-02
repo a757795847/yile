@@ -39,7 +39,8 @@ public class RedirectUri extends ApiController {
         System.out.println("RedirectUri_code1: " + code);
         if (StrKit.isBlank(code)) {
 //            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://yile.izhuiyou.com/yile/oauth2", true));
-            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://" + getRequest().getPathInfo() + "/yile/oauth2", true));
+//            System.out.println("http://" + getRequest().getPathInfo() + "/yile/oauth2");
+            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://" + getRequest().getServerName() + "/yile/oauth2", true));
         } else {
             System.out.println("RedirectUri_code2: " + code);
             SnsAccessToken snsAccessToken = SnsAccessTokenApi.getSnsAccessToken(appId, secret, code);
@@ -58,7 +59,7 @@ public class RedirectUri extends ApiController {
             if (vmmisuser == null) {
                 setSessionAttr("openId", openId);
 
-                redirect("http://" + getRequest().getPathInfo() +  "/yile/login");
+                redirect("http://" + getRequest().getServerName() +  "/yile/login");
             } else {
                 setSessionAttr("userId", vmmisuser.getUserid());
                 setSessionAttr("vmmisuser", vmmisuser);

@@ -34,7 +34,7 @@ public class UserAuthInterceptor implements Interceptor {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
                 System.out.println("UserAuthInterceptor_else_requestPathA: " + requestPathA);
-                inv.getController().redirect("http://" + controller.getRequest().getPathInfo() + "/yile/oauth2") ;
+                inv.getController().redirect("http://" + controller.getRequest().getServerName() + "/yile/oauth2") ;
             }
         } else {
             inv.invoke();
