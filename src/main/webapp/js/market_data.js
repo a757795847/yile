@@ -33,7 +33,7 @@
         }
         $.ajax({
             type: 'GET',
-            url: '/saleDeviceData',
+            url: '/yile/saleDeviceData',
             data:data,
             dataType: 'json',
             success: function (data) {

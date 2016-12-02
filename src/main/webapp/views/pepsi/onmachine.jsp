@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <a href="/home?123"><img src="../../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <a href="/yile/home?123"><img src="../../img/07.png" class="img-responsive" id="Leftimg"></a>
         <p>新增上位机</p>
 </header>
     <div id="index">
@@ -42,10 +42,10 @@
         </div>
     </div>
 <ul class="nav">
-    <li><a href="/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
-    <li><a href="/machine/integrated?123"><img src="../img/10.png" class="img2"></a> <b></b></li>
-    <li><a href="/device?123"><img src="../img/14.png" class="img3"></a> <b></b></li>
-    <li><a href="/nonCash?123"><img src="../img/12.png" class="img4"></a></li>
+    <li><a href="/yile/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
+    <li><a href="/yile/machine/integrated?123"><img src="../img/10.png" class="img2"></a> <b></b></li>
+    <li><a href="/yile/device?123"><img src="../img/14.png" class="img3"></a> <b></b></li>
+    <li><a href="/yile/nonCash?123"><img src="../img/12.png" class="img4"></a></li>
 </ul>
 
 

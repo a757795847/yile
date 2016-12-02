@@ -23,7 +23,7 @@
         }
         $.ajax({
             type: 'GET',
-            url: '/nonCashData',
+            url: '/yile/nonCashData',
             data:data,
             dataType: 'json',
             success: function (data) {

@@ -32,7 +32,7 @@
 
     });
     $('#Leftimg').on('touchend',function(){
-        location.href = '/home?123';
+        location.href = '/yile/home?123';
     });
 
     tab('#synthesize',4,68);
@@ -83,7 +83,7 @@
         }
         $.ajax({
             type: 'GET',
-            url: '/integratedMachineData',
+            url: '/yile/integratedMachineData',
             data:data,
             dataType: 'json',
             success: function (data) {
@@ -139,7 +139,7 @@
         }
         $.ajax({
             type: 'GET',
-            url: '/drinkMachineData',
+            url: '/yile/drinkMachineData',
             data:data,
             dataType: 'json',
             success: function (data) {
@@ -191,7 +191,7 @@
         }
         $.ajax({
             type: 'GET',
-            url: '/coffeeMachineData',
+            url: '/yile/coffeeMachineData',
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();

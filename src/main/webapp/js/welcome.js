@@ -100,7 +100,7 @@ $("#image2").click(function(event){
             }else {
                 $.ajax({
                     type: 'POST',
-                    url: '/login/post',
+                    url: '/yile/login/post',
                     data: {
                         'username': username,
                         'password': password,
@@ -146,7 +146,7 @@ $("#yanzheng").on('touchstart','.Image',function(){
     console.log("2");
         $(".Image").remove();
     var date = Math.floor(Math.random()*20);
-    $("#yanzheng").append('<img src="/captcha?'+ date +'" class="Image">');
+    $("#yanzheng").append('<img src="/yile/captcha?'+ date +'" class="Image">');
    
 
    
