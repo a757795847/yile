@@ -50,7 +50,7 @@ public class RedirectUri extends ApiController {
 
             if (vmmisuser == null) {
                 setSessionAttr("openId", openId);
-                redirect("http://yile.izhuiyou.com/login");
+                redirect("http://yile.izhuiyou.com/yile/login");
             } else {
                 setSessionAttr("userId", vmmisuser.getUserid());
                 setSessionAttr("vmmisuser", vmmisuser);
@@ -66,7 +66,7 @@ public class RedirectUri extends ApiController {
     public void oauth() {
         System.out.println("oauth");
         String appId = getApiConfig().getAppId();
-        String redirectUri = WeixinUtil.urlEncodeUTF8(PropKit.get("domain") + "/oauth2");
+        String redirectUri = WeixinUtil.urlEncodeUTF8(PropKit.get("domain") + "/yile/oauth2");
         String state = System.currentTimeMillis() + "";
 
         String url = SnsAccessTokenApi.getAuthorizeURL(appId, redirectUri, state, false);
