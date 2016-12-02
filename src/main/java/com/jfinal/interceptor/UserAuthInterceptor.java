@@ -19,7 +19,7 @@ public class UserAuthInterceptor implements Interceptor {
 //        String userId = controller.getSessionAttr("userId");
         System.out.println("UserAuthInterceptor_intercept_userId: " + userId);
         if ("".equals(userId) || userId == null) {
-            Boolean debug = true;
+            Boolean debug = false;
             if (debug) {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
