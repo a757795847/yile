@@ -25,7 +25,7 @@ public class LoginController extends ApiController {
         return WeixinUtil.getApiConfig();
     }
 
-//    @Before(UserAuthInterceptor.class)
+    //    @Before(UserAuthInterceptor.class)
     public void index() {
         render("/views/pepsi/login.jsp");
     }
@@ -99,8 +99,9 @@ public class LoginController extends ApiController {
                     String requestPathA = getSessionAttr("requestPathA");
                     System.out.println("LoginController_determine_requestPathA: " + requestPathA);
 
-                    if ("http://localhost:8088/yile/login".equals(requestPathA) || "http://yile.izhuiyou.com/yile/login".equals(requestPathA)) {
-                        renderJson("requestPathA", "http://localhost:8088/yile/home");
+//                    getRequest().getContextPath();
+                    if ("/yile/login".equals(getRequest().getContextPath())) {
+                        renderJson("requestPathA", "/yile/home");
                     } else {
                         renderJson("requestPathA", getSessionAttr("requestPathA"));
                     }
