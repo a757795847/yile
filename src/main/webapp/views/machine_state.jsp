@@ -7,20 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no"/>
     <title>以勒运营商后台系统</title>
-    <link rel="stylesheet" type="text/css" href="../css/weui.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-weui.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/tabAll.css">
-    <link rel="stylesheet" type="text/css" href="../css/machine_state.css">
+    <link rel="stylesheet" type="text/css" href="/css/weui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/jquery-weui.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/tabAll.css">
+    <link rel="stylesheet" type="text/css" href="/css/machine_state.css">
 </head>
 <body>
 <header>
-    <img src="../img/07.png" class="img-responsive" id="Leftimg">
+    <img src="/img/07.png" class="img-responsive" id="Leftimg">
     <ul class="machineHeader">
         <li class="active borderLeft">综合机</li>
         <li class="borderLeft">饮料机</li>
         <li>咖啡机</li>
     </ul>
-    <img src="../img/08.png" data-machine="0" class="img-responsive" id="Rightimg">
+    <img src="/img/08.png" data-machine="0" class="img-responsive" id="Rightimg">
 </header>
 
 <div class="weui_tab_bd">
@@ -79,15 +79,15 @@
 </div>
 <div class="zhanwei"></div>
 <ul class="nav">
-    <li><a href="/yile/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
-    <li><a href="/yile/machine/integrated?123"><img src="../img/15.png" class="img2"></a> <b></b></li>
-    <li><a href="/yile/device?123"><img src="../img/11.png" class="img3"></a> <b></b></li>
-    <li><a href="/yile/nonCash?123"><img src="../img/12.png" class="img4"></a></li>
+    <li><a href="/yile/home?123"><img src="/img/09.png" class="img1"></a> <b></b></li>
+    <li><a href="/yile/machine/integrated?123"><img src="/img/15.png" class="img2"></a> <b></b></li>
+    <li><a href="/yile/device?123"><img src="/img/11.png" class="img3"></a> <b></b></li>
+    <li><a href="/yile/nonCash?123"><img src="/img/12.png" class="img4"></a></li>
 </ul>
 
-<script type="text/javascript" src="../js/jquery.min.js"></script>
-<script type="text/javascript" src="../js/jquery-weui.min.js"></script>
-<script type="text/javascript" src="../js/tab_data.js"></script>
-<script type="text/javascript" src="../js/machine_state.js"></script>
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/jquery-weui.min.js"></script>
+<script type="text/javascript" src="/js/tab_data.js"></script>
+<script type="text/javascript" src="/js/machine_state.js"></script>
 </body>
 </html>
