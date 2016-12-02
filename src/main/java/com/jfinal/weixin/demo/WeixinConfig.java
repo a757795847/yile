@@ -53,7 +53,7 @@ public class WeixinConfig extends JFinalConfig {
     }
 
     public void configRoute(Routes me) {
-        me.add("/", IndexController.class, "/index");
+        me.add("/", HomePageController.class, "/views/pepsi");
         me.add("/oauth2", RedirectUri.class);
         me.add("/login", LoginController.class, "/views/pepsi");
         me.add("/home", HomePageController.class, "/views/pepsi");
