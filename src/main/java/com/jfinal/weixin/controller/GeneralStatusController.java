@@ -23,19 +23,19 @@ public class GeneralStatusController extends ApiController {
     }
 
 
-    @ActionKey("/machine/integrated")
+    @ActionKey("/yile/machine/integrated")
     public void integrated(){
         render("machine_state.jsp");
     }
 
-    @ActionKey("/machine/drinks")
-    public void drinks(){
-        render("");
-    }
-
-    @ActionKey("/machine/coffee")
-    public void coffee(){
-        render("");
-    }
+//    @ActionKey("/machine/drinks")
+//    public void drinks(){
+//        render("");
+//    }
+//
+//    @ActionKey("/machine/coffee")
+//    public void coffee(){
+//        render("");
+//    }
 
 }
