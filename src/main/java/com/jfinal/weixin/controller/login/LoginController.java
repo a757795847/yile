@@ -25,6 +25,7 @@ public class LoginController extends ApiController {
         return WeixinUtil.getApiConfig();
     }
 
+    @Before(UserAuthInterceptor.class)
     public void index() {
         render("/views/pepsi/login.jsp");
     }

@@ -124,7 +124,8 @@ $("#image2").click(function(event){
                             $.alert('用户名或密码错误');
 
                         }else{
-                            location.href = data.requestPathA;
+                            console.log(data.requestPathA);
+                            // location.href = data.requestPathA;
                         }
                     },
                     error: function (jqXHR) {
