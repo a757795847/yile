@@ -25,17 +25,17 @@
 </div>
 
    <div class="index">
-        <div><a href="/machine/integrated?123">总体状况及销售记录</a></div>
+        <div><a href="/yile/machine/integrated?123">总体状况及销售记录</a></div>
         <div id="addtopLog"><a href="/device?123">新增上位机</a></div>
-        <div><a href="/nonCash?123">非现金支付</a></div>
+        <div><a href="/yile/nonCash?123">非现金支付</a></div>
     </div>
 
     <input type="hidden" value="${sessionScope.allowsAdd}" id="session">
     <ul class="nav">
-        <li><a href="/home?123"><img src="../../img/16.png" class="img1"></a> <b></b></li>
-        <li><a href="/machine/integrated?123"><img src="../../img/10.png" class="img2"></a> <b></b></li>
-        <li class="topLog"><a href="/device?123"><img src="../../img/11.png" class="img3"></a> <b></b></li>
-        <li><a href="/nonCash?123"><img src="../../img/12.png" class="img4"></a></li>
+        <li><a href="/yile/home?123"><img src="../../img/16.png" class="img1"></a> <b></b></li>
+        <li><a href="/yile/machine/integrated?123"><img src="../../img/10.png" class="img2"></a> <b></b></li>
+        <li class="topLog"><a href="/yile/device?123"><img src="../../img/11.png" class="img3"></a> <b></b></li>
+        <li><a href="/yile/nonCash?123"><img src="../../img/12.png" class="img4"></a></li>
     </ul>
 
 

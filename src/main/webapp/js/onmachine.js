@@ -40,7 +40,7 @@ $("#btn").click(function(){
     }else {
         $.ajax({
             type: 'POST',
-            url: '/addDevice',
+            url: '/yile/addDevice',
             data: {
                 'deviceId': deviceId,
                 'deviceModel': deviceModel,

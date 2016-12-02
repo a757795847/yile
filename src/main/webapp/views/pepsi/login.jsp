@@ -31,7 +31,7 @@
     </div>
     <div id="yanzheng">
         <input  id="code" type="text"class="form-control" placeholder="验证码"><b></b>
-        <img src="/captcha" class="Image">
+        <img src="/yile/captcha" class="Image">
     </div>
     <ul class="list">
         <li>

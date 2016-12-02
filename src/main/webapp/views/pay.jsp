@@ -15,9 +15,9 @@
 </head>
 <body>
 <header>
-    <a href="/home" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
+    <a href="/yile/home?123" class="clear"><img src="../img/07.png" class="img-responsive" id="Leftimg"></a>
     <strong>非现金支付记录</strong>
-    <a href="" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
+    <a href="#" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
 <ul class="tabHeader">
     <li>上机位</li>
@@ -38,10 +38,10 @@
 </div>
 <div class="zhanwei"></div>
 <ul class="nav">
-    <li><a href="/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
-    <li><a href="/machine/integrated?123"><img src="../img/10.png" class="img2"></a> <b></b></li>
-    <li><a href="/device?123"><img src="../img/11.png" class="img3"></a> <b></b></li>
-    <li><a href="/nonCash?123"><img src="../img/13.png" class="img4"></a></li>
+    <li><a href="/yile/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
+    <li><a href="/yile/machine/integrated?123"><img src="../img/10.png" class="img2"></a> <b></b></li>
+    <li><a href="/yile/device?123"><img src="../img/11.png" class="img3"></a> <b></b></li>
+    <li><a href="/yile/nonCash?123"><img src="../img/13.png" class="img4"></a></li>
 </ul>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/jquery-weui.min.js"></script>
