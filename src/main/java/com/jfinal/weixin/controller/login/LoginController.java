@@ -103,7 +103,8 @@ public class LoginController extends ApiController {
                     if ("/yile/login".equals(getRequest().getContextPath())) {
                         renderJson("requestPathA", "/yile/home");
                     } else {
-                        renderJson("requestPathA", getSessionAttr("requestPathA"));
+                        renderJson("requestPathA", "/yile/home");
+                        //renderJson("requestPathA", getSessionAttr("requestPathA"));
                     }
                 }
             }
