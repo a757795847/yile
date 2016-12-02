@@ -100,7 +100,7 @@
 
                     synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     synthesize += '<li class="'+internet+'">('+newDate+')</li><li><i class="'+paper+'"></i>/<i class="'+metal+'"></i>';
-                    synthesize += '</li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
+                    synthesize += '</li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
                     synthesize += '<ul><li>今日<span>(金额/次数)</span></li><li>故障轨道</li><li>缺货轨道</li><li>库存<span>(故障)</span></li><li>';
                     synthesize += '</li></ul><ul><li>'+data[i].today+'</li><li>'+data[i].guzhangguidaoNum+'</li><li>'+data[i].quehuoguidaoNum+'</li>';
                     synthesize += '<li>'+data[i].kucunNum+'('+data[i].guzhangguidaoNum+')</li><li></li></ul><ul><li>柜子/连体箱</li><li>版本</li>';
