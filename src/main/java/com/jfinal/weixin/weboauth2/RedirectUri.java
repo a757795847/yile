@@ -32,7 +32,7 @@ public class RedirectUri extends ApiController {
 
         System.out.println("RedirectUri_code1: " + code);
         if (StrKit.isBlank(code)) {
-            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://yile.izhuiyou.com/oauth2", true));
+            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://yile.izhuiyou.com/yile/oauth2", true));
         } else {
             System.out.println("RedirectUri_code2: " + code);
             SnsAccessToken snsAccessToken = SnsAccessTokenApi.getSnsAccessToken(appId, secret, code);

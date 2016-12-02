@@ -19,7 +19,7 @@ public class UserAuthInterceptor implements Interceptor {
 //        String userId = controller.getSessionAttr("userId");
         System.out.println("UserAuthInterceptor_intercept_userId: " + userId);
         if ("".equals(userId) || userId == null) {
-            Boolean debug = false;
+            Boolean debug = true;
             if (debug) {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
@@ -32,7 +32,7 @@ public class UserAuthInterceptor implements Interceptor {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
                 System.out.println("UserAuthInterceptor_else_requestPathA: " + requestPathA);
-                inv.getController().redirect("http://yile.izhuiyou.com/oauth2");
+                inv.getController().redirect("http://yile.izhuiyou.com/yile/oauth2");
             }
         } else {
             inv.invoke();
