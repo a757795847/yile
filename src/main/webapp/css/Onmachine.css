@@ -1,3 +1,4 @@
+body{-webkit-tap-highlight-color:rgba(255,255,255,0);}
 header{
     position:relative;
     height:2rem;
@@ -144,7 +145,7 @@ h4{
 .weui-picker-modal{
     width: 100%;
     position: absolute;
-    bottom: 2.25rem;
+    bottom: 2.75rem;
     text-align: center;
     border-radius: 0;
     color: #3d4145;
@@ -186,8 +187,7 @@ h4{
 
 }
 .weui-picker-modal.weui-picker-calendar.weui-picker-modal-visible{
-     padding-bottom:16%;
-
+     padding-bottom:2%;
 }
 i.icon.icon-prev{
     width:0.75rem;
@@ -196,7 +196,6 @@ i.icon.icon-prev{
 i.icon.icon-next{
     width:0.75rem;
     background-image:url('../img/131.png');
-
 }
 .toolbar a{
     margin-top:7%;
@@ -212,7 +211,6 @@ i.icon.icon-next{
 }
 
 @media screen and (max-width: 736px){
-
     #Leftimg {
         width: 5%;
         position: absolute;
@@ -304,6 +302,12 @@ i.icon.icon-next{
         background: url("../img/17.png") no-repeat;
         background-size: 19rem 25.25rem;
     }
+    #Leftimg {
+        width: 7%;
+        position: absolute;
+        top: 20%;
+        left: 3%;
+    }
     .nav{
         background-color:#fff;
         height:2.75rem;
@@ -364,6 +368,7 @@ i.icon.icon-next{
         left:0;
         right:0;
 
+
     }
     .nav li{
         width:25%;
@@ -410,4 +415,10 @@ i.icon.icon-next{
 }
 .weui_btn_dialog.primary {
     color: #49a1da;
+}
+.weui_cells_radio .weui_check:checked+.weui_icon_checked:before {
+    display: block;
+    content: '\EA08';
+    color: #10aeff;
+    font-size: 16px;
 }
