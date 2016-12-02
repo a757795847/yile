@@ -154,9 +154,9 @@
                     data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '—':data[i]['guizi/liantiji'];
                     data[i].vmname = data[i].vmname == ''?'未设定':data[i].vmname;
 
-                    drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
+                    drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="/yile/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li>';
                     drink += '<li class="'+internet+'">('+newData+')</li>';
-                    drink += '<li>'+data[i].guzhangguidaoNum+'</i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div>';
+                    drink += '<li>'+data[i].guzhangguidaoNum+'</i></li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div>';
                     drink += '<div class="hideTab"><ul><li>一元/5角个数</li><li>轨道数</li><li>缺货轨道</li><li>在库件数<span>(故障)</span></li><li></li></ul><ul>';
                     drink += '<li class="none">'+data[i].number+'/'+data[i].number+'</li><li>'+data[i].tracknum+'</li><li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].kucunNum+'</li>';
                     drink += '<li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>门状态</li><li class="minWord">温度模式/室内温度<br/>设置温度</li><li>左温度/右温度</li>';
@@ -206,8 +206,8 @@
                     data[i].today = data[i].today == '/--' ? '0/0':data[i].today;
                     data[i].vmname = data[i].vmname == ''?'未设定':data[i].vmname;
 
-                    coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li><li class="'+internet+'">('+newData+')</li>';
-                    coffee += '<li><i class="'+paper+'"></i>/<i class="'+metal+'"></i></li><li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
+                    coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="/yile/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li>'+data[i].vmname+'</li><li class="'+internet+'">('+newData+')</li>';
+                    coffee += '<li><i class="'+paper+'"></i>/<i class="'+metal+'"></i></li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
                     coffee += '<ul><li>一元/5角个数</li><li>机器类型</li><li>故障信息</li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li>'+data[i].types+'</li>';
                     coffee += '<li>'+wordNum(data[i].errorstr)+'</li><li>'+data[i].coffeeNum+'</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>料盒</li><li>咖啡温度/保持温度</li>';
                     coffee += '<li>柜子/连体机</li><li></li></ul><ul><li>'+data[i].today+'</li><li>'+wordNum(data[i].foldname)+'</li><li>'+data[i].temp+'</li><li>'+data[i]['guizi/liantiji']+'</li><li></li></ul><ul>';
