@@ -87,6 +87,7 @@
             data:data,
             dataType: 'json',
             success: function (data) {
+                
                 $.hideLoading();
                 var synthesize = '',internet = '', paper = '', metal = '',newDate;
                 for(var i=0;i<data.length;i++){
@@ -247,7 +248,7 @@
             dataDateyue = dateTime.getMonth()+1;
             dataDateyue = '0'+ dataDateyue;
         }else{
-            dataDateyue = dateTime.getMonth();
+            dataDateyue = dateTime.getMonth()+1;
         }
         var dataTimeYYYY = dateTime.getFullYear()+'-'+dataDateyue+'-'+dataDate;
         var datasYYYY = datas.split(' ')[0];
