@@ -194,9 +194,11 @@
             url: '/yile/coffeeMachineData',
             dataType: 'json',
             success: function (data) {
+                console.log(data)
                 $.hideLoading();
                 var coffee = '',internet = '', paper = '', metal = '',newDate='', errorData='';
                 for(var i=0;i<data.length;i++){
+
                     newData = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
                     paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
@@ -234,9 +236,15 @@
     }
 
     function dataTimeAjax(data){
+        var dataDate ;
         var dateTime = new Date();
         var datas = data.split('.')[0];
-        var dataTimeYYYY = dateTime.getFullYear()+'-'+(dateTime.getMonth()+1)+'-'+dateTime.getDate();
+        if(dateTime.getDate() <10){
+            dataDate = '0'+dateTime.getDate();
+        }else{
+            dataDate = dateTime.getDate();
+        }
+        var dataTimeYYYY = dateTime.getFullYear()+'-'+(dateTime.getMonth()+1)+'-'+dataDate;
         var datasYYYY = datas.split(' ')[0];
         var dateTimeshi = dateTime.getHours().toString();
         var datesshi = datas.substring(11,13);
@@ -259,6 +267,7 @@
         }else{
             return true;
         }
+
     }
 
     function wordNum(text){
