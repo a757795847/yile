@@ -9,6 +9,8 @@ import com.jfinal.weixin.sdk.api.SnsAccessTokenApi;
 import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
 
+import static java.lang.System.out;
+
 import java.util.List;
 
 /**
@@ -29,10 +31,16 @@ public class RedirectUri extends ApiController {
         String code = getPara("code");
         String appId = getApiConfig().getAppId();
         String secret = getApiConfig().getAppSecret();
+        out.println(
+                getRequest().getRemoteHost()
+        );
+
 
         System.out.println("RedirectUri_code1: " + code);
         if (StrKit.isBlank(code)) {
-            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://yile.izhuiyou.com/oauth2", true));
+//            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://yile.izhuiyou.com/yile/oauth2", true));
+//            System.out.println("http://" + getRequest().getPathInfo() + "/yile/oauth2");
+            redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://" + getRequest().getServerName() + "/yile/oauth2", true));
         } else {
             System.out.println("RedirectUri_code2: " + code);
             SnsAccessToken snsAccessToken = SnsAccessTokenApi.getSnsAccessToken(appId, secret, code);
@@ -50,7 +58,8 @@ public class RedirectUri extends ApiController {
 
             if (vmmisuser == null) {
                 setSessionAttr("openId", openId);
-                redirect("http://yile.izhuiyou.com/login");
+
+                redirect("http://" + getRequest().getServerName() +  "/yile/login");
             } else {
                 setSessionAttr("userId", vmmisuser.getUserid());
                 setSessionAttr("vmmisuser", vmmisuser);
@@ -66,7 +75,7 @@ public class RedirectUri extends ApiController {
     public void oauth() {
         System.out.println("oauth");
         String appId = getApiConfig().getAppId();
-        String redirectUri = WeixinUtil.urlEncodeUTF8(PropKit.get("domain") + "/oauth2");
+        String redirectUri = WeixinUtil.urlEncodeUTF8(PropKit.get("domain") + "/yile/oauth2");
         String state = System.currentTimeMillis() + "";
 
         String url = SnsAccessTokenApi.getAuthorizeURL(appId, redirectUri, state, false);

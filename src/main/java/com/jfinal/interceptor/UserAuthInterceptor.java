@@ -3,7 +3,9 @@ package com.jfinal.interceptor;
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
+import com.jfinal.kit.PropKit;
 import com.jfinal.kit.StrKit;
+import com.jfinal.weixin.util.WeixinUtil;
 
 import java.math.BigInteger;
 
@@ -32,7 +34,7 @@ public class UserAuthInterceptor implements Interceptor {
                 StringBuffer requestPathA = controller.getRequest().getRequestURL();
                 controller.setSessionAttr("requestPathA", requestPathA.toString());
                 System.out.println("UserAuthInterceptor_else_requestPathA: " + requestPathA);
-                inv.getController().redirect("http://yile.izhuiyou.com/oauth2");
+                inv.getController().redirect("http://" + controller.getRequest().getServerName() + "/yile/oauth2") ;
             }
         } else {
             inv.invoke();

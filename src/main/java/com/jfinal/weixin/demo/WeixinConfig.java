@@ -53,36 +53,36 @@ public class WeixinConfig extends JFinalConfig {
     }
 
     public void configRoute(Routes me) {
-        me.add("/", IndexController.class, "/index");
-        me.add("/oauth2", RedirectUri.class);
-        me.add("/login", LoginController.class, "/views/pepsi");
-        me.add("/home", HomePageController.class, "/views/pepsi");
-        me.add("/captcha", VerificationCodeController.class); //验证码
-        me.add("/device", DeviceController.class, "/views/pepsi");//上位机
-        me.add("/addDevice", AddDeviceController.class);//上位机post
-        me.add("/generalStatus", GeneralStatusController.class, "/views");//总体状态及销售记录
-        me.add("/nonCash", NonCashController.class, "/views");//非现金支付
-        me.add("/saleList", SaleListController.class, "/views");//销售记录
+        me.add("/", HomePageController.class, "/views/pepsi");
+        me.add("/yile/oauth2", RedirectUri.class);
+        me.add("/yile/login", LoginController.class, "/views/pepsi");
+        me.add("/yile/home", HomePageController.class, "/views/pepsi");
+        me.add("/yile/captcha", VerificationCodeController.class); //验证码
+        me.add("/yile/device", DeviceController.class, "/views/pepsi");//上位机
+        me.add("/yile/addDevice", AddDeviceController.class);//上位机post
+        me.add("/yile/generalStatus", GeneralStatusController.class, "/views");//总体状态及销售记录
+        me.add("/yile/nonCash", NonCashController.class, "/views");//非现金支付
+        me.add("/yile/saleList", SaleListController.class, "/views");//销售记录
 
 
-        me.add("/integratedMachineData", IntegratedMachineController.class);//综合机数据
-        me.add("/drinkMachineData", DrinkMachinesController.class);//饮料机数据
-        me.add("/coffeeMachineData", CoffeeMachinesController.class);//咖啡机数据
-        me.add("/nonCashData", NonCashPaymentController.class);//非现金支付列表
-        me.add("/saleDeviceData", SaleDataController.class);//设备销售数据列表
+        me.add("/yile/integratedMachineData", IntegratedMachineController.class);//综合机数据
+        me.add("/yile/drinkMachineData", DrinkMachinesController.class);//饮料机数据
+        me.add("/yile/coffeeMachineData", CoffeeMachinesController.class);//咖啡机数据
+        me.add("/yile/nonCashData", NonCashPaymentController.class);//非现金支付列表
+        me.add("/yile/saleDeviceData", SaleDataController.class);//设备销售数据列表
 
 
 
 
-        me.add("/anytest", TestController.class, "/index");
-        me.add("/market", MarketDataController.class, "/views");
+//        me.add("/anytest", TestController.class, "/index");
+//        me.add("/market", MarketDataController.class, "/views");
 
 
-        me.add("/test", WeChatAPIs.class, "/index");
-        me.add("/api", WeixinApiController.class, "/api");
-        me.add("/pay", WeixinPayController.class);
-        me.add("/user", UserController.class);
-        me.add("/jssdk", ShareController.class, "_front");
+//        me.add("/test", WeChatAPIs.class, "/index");
+//        me.add("/api", WeixinApiController.class, "/api");
+//        me.add("/pay", WeixinPayController.class);
+//        me.add("/user", UserController.class);
+//        me.add("/jssdk", ShareController.class, "_front");
     }
 
     public void configPlugin(Plugins me) {

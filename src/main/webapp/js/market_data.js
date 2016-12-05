@@ -49,7 +49,7 @@
                     market += '<div class="tabContent"><div class="showTab"><ul><li>'+data[i].deviceid+'</li><li>'+data[i].saletime+'</li><li>'+data[i].outtype+'</li><li>'+data[i].trackno+'</li>';
                     market += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>名称</li><li>进价</li>';
                     market += '<li>价格</li><li>支付方式</li><li></li></ul><ul><li>'+wordNum(data[i].mingcheng)+'</li><li>'+data[i].buyprice+'</li><li>'+data[i].price+'</li>';
-                    market += '<li class="ellipsisWord">'+data[i].payway+'</li><li></li></ul></div></div>';
+                    market += '<li>'+wordNum(data[i].payway)+'</li><li></li></ul></div></div>';
                 }
                 if(on){
                     $('#content').html(market);
@@ -92,11 +92,9 @@
                 a++;
             }
         }
-        if(text.length <7){
+        if(text.length < 10){
             return text;
-        }else if(a >= 11 && text.length < 14){
-            return text;
-        }else if(a > 5 && text.length < 10){
+        }else if(a <= 15 && text.length < 19){
             return text;
         }else{
             return '<p class="ellipsisWord">'+text+'</p>'
