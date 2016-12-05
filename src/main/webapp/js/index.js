@@ -2,7 +2,7 @@ $(document).ready(function () {
     var session = $("#session").val();
     console.log(session);
 
-   // if(session == 'false') {
+    if(session == 'false') {
         $(".topLog").remove();
         $("#addtopLog").remove();
         $(".nav li").css("width", "33%");
@@ -17,7 +17,7 @@ $(document).ready(function () {
             $(".nav").css("height", "3.5rem");
             $(".nav li b").css("marginTop", "14%");
         }
-    //}
+    }
 });
 $('#Rightimg').on('touchstart',function(){
     console.log("d");
@@ -25,7 +25,7 @@ $('#Rightimg').on('touchstart',function(){
 });
 
 window.onresize = function(){
-  //  if(session == 'false') {
+    if(session == 'false') {
         var sub = $(window).width();
         if (sub <= '320') {
             console.log('0');
@@ -63,5 +63,5 @@ window.onresize = function(){
             $(".img2").css({"width": "41%", "marginTop": "9%"});
 
         }
-  //  }
+    }
 }
