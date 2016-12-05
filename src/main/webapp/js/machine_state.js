@@ -194,7 +194,6 @@
             url: '/yile/coffeeMachineData',
             dataType: 'json',
             success: function (data) {
-                console.log(data)
                 $.hideLoading();
                 var coffee = '',internet = '', paper = '', metal = '',newDate='', errorData='';
                 for(var i=0;i<data.length;i++){
