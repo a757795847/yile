@@ -1,4 +1,5 @@
 (function ($) {
+    
     tab('#content',2,0);
     $.showLoading("正在加载...");
     payAjax(true);

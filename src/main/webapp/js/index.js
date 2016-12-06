@@ -20,7 +20,6 @@ $(document).ready(function () {
     }
 });
 $('#Rightimg').on('touchstart',function(){
-    console.log("d");
     $("#Rightimg").addClass("transform");
 });
 
