@@ -252,12 +252,7 @@
         }
         var dataTimeYYYY = dateTime.getFullYear()+'-'+dataDateyue+'-'+dataDate;
         var datasYYYY = datas.split(' ')[0];
-        if(dateTime.getMonth() <10){
-            dateTimeshi = dateTime.getHours();
-            dateTimeshi = '0'+ dateTimeshi;
-        }else{
-            dateTimeshi = dateTime.getHours();
-        }
+                               
         //dateTimeshi = dateTime.getHours().toString();
         var datesshi = datas.substring(11,13);
         if(dateTime.getHours() <10){
