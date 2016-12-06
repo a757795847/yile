@@ -236,7 +236,7 @@
     }
 
     function dataTimeAjax(data){
-        var dataDateri ,dataDateyue;
+        var dataDateri ,dataDateyue,dateTimeshi,dataTimefen;
         var dateTime = new Date();
         var datas = data.split('.')[0];
         if(dateTime.getDate() <10){
@@ -252,9 +252,27 @@
         }
         var dataTimeYYYY = dateTime.getFullYear()+'-'+dataDateyue+'-'+dataDate;
         var datasYYYY = datas.split(' ')[0];
-        var dateTimeshi = dateTime.getHours().toString();
+        if(dateTime.getMonth() <10){
+            dateTimeshi = dateTime.getHours();
+            dateTimeshi = '0'+ dateTimeshi;
+        }else{
+            dateTimeshi = dateTime.getHours();
+        }
+        //dateTimeshi = dateTime.getHours().toString();
         var datesshi = datas.substring(11,13);
-        var dataTimefen = dateTime.getMinutes().toString();
+        if(dateTime.getHours() <10){
+            dateTimeshi = dateTime.getHours();
+            dateTimeshi = '0'+ dateTimeshi;
+        }else{
+            dateTimeshi = dateTime.getHours();
+        }
+        if(dateTime.getMinutes() <10){
+            dataTimefen = dateTime.getHours();
+            dataTimefen = '0'+ dataTimefen;
+        }else{
+            dataTimefen = dateTime.getMinutes();
+        }
+        
         var datasfen = datas.substring(14,16);
         if(dataTimeYYYY > datasYYYY){
             return false;
