@@ -267,12 +267,12 @@
             dateTimeshi = dateTime.getHours();
         }
         if(dateTime.getMinutes() <10){
-            dataTimefen = dateTime.getHours();
+            dataTimefen = dateTime.getMinutes();
             dataTimefen = '0'+ dataTimefen;
         }else{
             dataTimefen = dateTime.getMinutes();
         }
-        
+
         var datasfen = datas.substring(14,16);
         if(dataTimeYYYY > datasYYYY){
             return false;
