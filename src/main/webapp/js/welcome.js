@@ -78,8 +78,8 @@ $("#image2").click(function(event){
         var code=$("#code").val();
 
         var automatic = $("#checklogin").is(":checked");
-
-        console.log(remember);
+            console.log(typeof(automatic));
+            console.log(typeof(remember));
 
         if(remember == true){//保存密码
             console.log(username);
