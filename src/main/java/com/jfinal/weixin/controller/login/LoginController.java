@@ -69,16 +69,18 @@ public class LoginController extends ApiController {
                 } else {
 
                     //正常登录
-                    String RememberPwd = getPara("RememberPwd");
-                    if (StrKit.notBlank(RememberPwd)) {
+                    Boolean RememberPwd = getParaToBoolean("RememberPwd");
+                    if (RememberPwd) {
+//                        System.out.println("RememberPwd: " + RememberPwd);
                         String pwd = new StringBuilder(password).reverse().toString();
                         //记住密码
                         setCookie("username", userName, 1209600);
                         setCookie("password", pwd, 1209600);
                     }
-                    String AutomaticLogin = getPara("AutomaticLogin");
-                    System.out.println("AutomaticLogin: " + AutomaticLogin);
-                    if (StrKit.notBlank(AutomaticLogin)) {
+                    Boolean AutomaticLogin = getParaToBoolean("AutomaticLogin");
+//                    System.out.println("AutomaticLogin: " + AutomaticLogin);
+                    if (AutomaticLogin) {
+//                        System.out.println("AutomaticLogin: " + AutomaticLogin);
                         //自动登录(1、session取openId; 2、调用接口存openId)
                         String openId = getSessionAttr("openId");
                         //2、调用接口存openId
