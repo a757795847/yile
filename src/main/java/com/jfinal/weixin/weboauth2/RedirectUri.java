@@ -35,6 +35,12 @@ public class RedirectUri extends ApiController {
                 getRequest().getRemoteHost()
         );
 
+        Boolean debug = true;
+        String openId = null;
+        if (debug) {
+            code = "123";
+            openId = "oLCXfwmSwiAfcgiEyJoy6RY3i24s";
+        }
 
         System.out.println("RedirectUri_code1: " + code);
         if (StrKit.isBlank(code)) {
@@ -42,15 +48,17 @@ public class RedirectUri extends ApiController {
 //            System.out.println("http://" + getRequest().getPathInfo() + "/yile/oauth2");
             redirect(SnsAccessTokenApi.getAuthorizeURL(appId, "http://" + getRequest().getServerName() + "/yile/oauth2", true));
         } else {
-            System.out.println("RedirectUri_code2: " + code);
-            SnsAccessToken snsAccessToken = SnsAccessTokenApi.getSnsAccessToken(appId, secret, code);
-            System.out.println("appId: " + appId + ", secret: " + secret + ", snsAccessToken: " + snsAccessToken);
+            if (StrKit.isBlank(openId)) {
+                System.out.println("RedirectUri_code2: " + code);
+                SnsAccessToken snsAccessToken = SnsAccessTokenApi.getSnsAccessToken(appId, secret, code);
+                System.out.println("appId: " + appId + ", secret: " + secret + ", snsAccessToken: " + snsAccessToken);
 
-            System.out.println("snsAccessToken: " + snsAccessToken);
-            String openId = snsAccessToken.getOpenid();
-            String token = snsAccessToken.getAccessToken();
-            System.out.println("openId: " + openId);
-            System.out.println("token: " + token);
+                System.out.println("snsAccessToken: " + snsAccessToken);
+                openId = snsAccessToken.getOpenid();
+                String token = snsAccessToken.getAccessToken();
+                System.out.println("openId: " + openId);
+                System.out.println("token: " + token);
+            }
 
             String sql = "select * from vmmisuser where fanopenid = ?";
             Vmmisuser vmmisuser = Vmmisuser.dao.findFirst(sql, openId);
