@@ -10,6 +10,7 @@ import com.jfinal.weixin.sdk.jfinal.ApiController;
 import com.jfinal.weixin.util.WeixinUtil;
 
 import static java.lang.System.out;
+import static com.jfinal.others.Constant.DEBUG;
 
 import java.util.List;
 
@@ -35,11 +36,11 @@ public class RedirectUri extends ApiController {
                 getRequest().getRemoteHost()
         );
 
-        Boolean debug = true;
+//        Boolean debug = false;
         String openId = null;
-        if (debug) {
+        if (DEBUG) {
             code = "123";
-            openId = "oLCXfwmSwiAfcgiEyJoy6RY3i24s";
+            openId = "oLCXfwmSwiAfcgiEyJoy6RY3i24sss";
         }
 
         System.out.println("RedirectUri_code1: " + code);
@@ -66,8 +67,14 @@ public class RedirectUri extends ApiController {
 
             if (vmmisuser == null) {
                 setSessionAttr("openId", openId);
+                System.out.println("getRequest().getServerName(): " + getRequest().getServerName());
+                if (DEBUG) {
+                    redirect("http://localhost:8088/yile/login");
 
-                redirect("http://" + getRequest().getServerName() +  "/yile/login");
+                } else {
+                    redirect("http://" + getRequest().getServerName() + "/yile/login");
+
+                }
             } else {
                 setSessionAttr("userId", vmmisuser.getUserid());
                 setSessionAttr("vmmisuser", vmmisuser);

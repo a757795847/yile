@@ -17,6 +17,10 @@ public class Constant {
 
     public final static String ADD_DEVICE = "1,新增上位机设备成功！";
 
+    public final static String PWD = "04b";
+
+    public final static Boolean DEBUG = false;
+
 
 
 
