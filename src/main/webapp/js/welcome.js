@@ -135,10 +135,7 @@ $("#image2").click(function(event){
                 })
             }
 
-    })
-
-
-    ;
+    });
 
 
         //验证码
