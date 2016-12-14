@@ -52,9 +52,9 @@ public class LoginController extends ApiController {
         if (StrKit.notBlank(userName, password, inputRandomCode)) {
             String sql1 = "select * from vmmisuser where loginname = ? and (`password` = PASSWORD(?) or `password` = PASSWORD(?)) and `status` != '1' and pwderrorcount < '4'";
             Vmmisuser users1 = Vmmisuser.dao.findFirst(sql1, userName, password, decryptionPWD);
-            if (StrKit.isBlank(users1.getLoginname())) {
+            if (users1 == null) {
                 renderJson("user_error", USER_ERROR);
-            } else if (validate == false) {
+            } else if (!validate) {
                 renderJson("msg_error", MSG_ERROR);
             } else {
                 String sql2 = "select * from vmmisuser where loginname = ? and (`password` = PASSWORD(?) or `password` = PASSWORD(?)) and pwderrorcount >= '4'";
