@@ -189,6 +189,8 @@ public class IntegratedMachineController extends ApiController {
                 }
             }
 
+            System.out.println("youxiaoguidao: " + youxiaoguidao);
+
             int guzhangguidaoNum = 0;
             int quehuoguidaoNum = 0;
             int kucunNum = 0;
