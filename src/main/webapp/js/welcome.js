@@ -95,14 +95,7 @@ $("#image2").click(function(event){
 
             var apos=username.indexOf("@");
             var dotpos=username.lastIndexOf(".");
-            if(apos<1||dotpos-apos<2){
-                $.alert(' 请输入有效的登录名(邮箱地址)');
-                $(".Image").remove();
-                var randome = Math.floor(Math.random()*20);
-                $("#yanzheng").append('<img src="/yile/captcha?'+ randome +'" class="Image">');
-
-            }
-            else if(username==""||password==""){
+            if(username==""||password==""){
                 $.alert(' 请输入用户名或密码');
                 $(".Image").remove();
                 var randomt = Math.floor(Math.random()*20);
@@ -112,7 +105,14 @@ $("#image2").click(function(event){
                 var randoma = Math.floor(Math.random()*20);
                 $(".Image").remove();
                 $("#yanzheng").append('<img src="/yile/captcha?'+ randoma +'" class="Image">');
-            }else {
+            }
+            else if(apos<1||dotpos-apos<2){
+                $.alert(' 请输入有效的登录名(邮箱地址)');
+                $(".Image").remove();
+                var randome = Math.floor(Math.random()*20);
+                $("#yanzheng").append('<img src="/yile/captcha?'+ randome +'" class="Image">');
+            }
+            else {
                 $.ajax({
                     type: 'POST',
                     url: '/yile/login/post',
@@ -126,17 +126,18 @@ $("#image2").click(function(event){
                     dataType: 'json',
                     success: function (data) {
                         console.log(data);
-                        if (data.msg_error == '验证码错误') {
-                            $.alert('验证码错误');
+                        if (data.msg_error != null) {
+                            $.alert(data.msg_error);
                             var randoms = Math.floor(Math.random()*20);
                             $(".Image").remove();
                             $("#yanzheng").append('<img src="/yile/captcha?'+ randoms +'" class="Image">');
-                        } else if (data.psd_beyond == '该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！') {
-                            $.alert('该用户连续输错4次密码，已被锁定！你可以到VM后台电脑端‘登录页面’【取回密码】来解锁和获取新的密码！');
-                        } else if (data.user_disable == '该用户已被停用!') {
-                            $.alert('该用户已被停用!');
-                        }else if(data.user_error == "用户名或密码错误"){
-                            $.alert('用户名或密码错误');
+                        }
+                        else if (data.psd_beyond != null) {
+                            $.alert(data.psd_beyond);
+                        } else if (data.user_disable != null) {
+                            $.alert(data.user_disable);
+                        }else if(data.user_error != null){
+                            $.alert(data.user_error);
                             var randomm = Math.floor(Math.random()*20);
                             $(".Image").remove();
                             $("#yanzheng").append('<img src="/yile/captcha?'+ randomm +'" class="Image">');
