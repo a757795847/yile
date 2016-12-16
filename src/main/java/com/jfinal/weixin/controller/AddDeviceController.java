@@ -48,9 +48,9 @@ public class AddDeviceController extends ApiController {
 
 //            Boolean flag = true;
             if ("1".equals(a[0])) {
-                renderJson("success", "添加成功");
+                renderJson("success", a[1]);
             } else {
-                renderJson("failed", "添加失败");
+                renderJson("failed", a[1]);
             }
         } else {
             renderJson("error", "请输入完整信息");

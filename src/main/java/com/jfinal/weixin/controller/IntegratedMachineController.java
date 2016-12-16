@@ -195,7 +195,9 @@ public class IntegratedMachineController extends ApiController {
             int quehuoguidaoNum = 0;
             int kucunNum = 0;
             for (String it : youxiaoguidao) {
+                System.out.println("iT: " + it);
                 String i = data.get(n).get("trackstatus" + it).toString();
+                System.out.println("i: " + i);
 
                 int now = data.get(n).get("numnow" + it);
                 int max = data.get(n).get("nummax" + it);
