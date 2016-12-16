@@ -23,10 +23,7 @@
 <ul class="tabHeader">
     <li>上机位</li>
     <li>销售时间(VM)</li>
-    <li>
-        <span>类</span>
-        <span>别</span>
-    </li>
+    <li>类别</li>
     <li>轨道编号</li>
     <li>...</li>
 </ul>

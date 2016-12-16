@@ -30,9 +30,6 @@
     .tabContent li{
         font-size: 0.42rem;
     }
-    .tabContent .hideTab ul:nth-child(odd) li:nth-child(3) {
-        font-size: 0.56rem;
-    }
 }
 .weui-infinite-scroll{
     display: none;
@@ -61,5 +58,8 @@ html body .tabContent .ellipsisWord {
     font-size: 0.5rem;
 }
 .tabContent .showTab ul li:nth-child(3){
-    font-size: 0.57rem;
+    font-size: 0.5rem;
+}
+.tabContent .hideTab ul:nth-child(odd) li {
+    font-size: 0.5rem;
 }
