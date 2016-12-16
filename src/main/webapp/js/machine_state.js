@@ -223,8 +223,8 @@
                     coffee += '<li>'+data[i].types+'</li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
                     coffee += '<ul><li>一元/5角个数</li><li>纸币/硬币找零</li><li>柜子/连体机</li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li><i class="'+paper+'"></i>/<i class="'+metal+'"></i></li>';
                     coffee += '<li>'+data[i]['guizi/liantiji']+'</li><li>'+data[i].coffeeNum+'</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>咖啡温度/保持温度</li><li>料盒</li>';
-                    coffee += '<li></li></ul><ul><li>'+data[i].today+'</li><li>'+data[i].temp+'</li><li class="liCenter"><p class="ellipsisWord">'+wordNum(data[i].foldname)+'</p></li><li></li></ul><ul>';
-                    coffee += '<li>版本</li><li>故障信息</li><li></li></ul><ul><li>'+data[i].version+'</li><li class="liCenter"><p class="ellipsisWord">'+wordNum(data[i].errorstr)+'</p></li><li></li></ul></div></div>';
+                    coffee += '<li></li></ul><ul><li>'+data[i].today+'</li><li>'+data[i].temp+'</li><li class="liCenter"><p class="ellipsisWord">'+data[i].foldname+'</p></li><li></li></ul><ul>';
+                    coffee += '<li>版本</li><li>故障信息</li><li></li></ul><ul><li>'+data[i].version+'</li><li class="liCenter"><p class="ellipsisWord">'+data[i].errorstr+'</p></li><li></li></ul></div></div>';
 
                 }
 
