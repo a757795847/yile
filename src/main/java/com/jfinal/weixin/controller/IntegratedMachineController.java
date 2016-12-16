@@ -176,6 +176,8 @@ public class IntegratedMachineController extends ApiController {
             Long count2 = data.get(n).get("count2", "");
 
             int trackfloor = data.get(n).getInt("trackfloor");
+            System.out.println("deviceid: " + deviceid);
+            System.out.println("trackfloor: " + trackfloor);
             Set<String> youxiaoguidao = new HashSet<String>();
             if (trackfloor != 0) {
                 int z = 0;
@@ -190,25 +192,31 @@ public class IntegratedMachineController extends ApiController {
             }
 
             System.out.println("youxiaoguidao: " + youxiaoguidao);
+            System.out.println("youxiaoguidao.size: " + youxiaoguidao.size());
 
             int guzhangguidaoNum = 0;
             int quehuoguidaoNum = 0;
             int kucunNum = 0;
             for (String it : youxiaoguidao) {
-                System.out.println("iT: " + it);
+               // System.out.println("iT: " + it);
                 String i = data.get(n).get("trackstatus" + it).toString();
-                System.out.println("i: " + i);
+                //System.out.println("i: " + i);
 
                 int now = data.get(n).get("numnow" + it);
+                System.out.println("numnow: " + now);
                 int max = data.get(n).get("nummax" + it);
                 kucunNum += now;
 
                 if ("0".equals(i)) {
                     guzhangguidaoNum++;
-                } else if ("1".equals(i) && now < max) {
+                } /*else if ("1".equals(i) && now < max) {
+                    quehuoguidaoNum++;
+                }*/
+                if(now == 0){
                     quehuoguidaoNum++;
                 }
             }
+            System.out.println("quehuoguidaoNum: " + quehuoguidaoNum);
 
             String apkversionStr = "";
             if (StrKit.notBlank(apkversion)) {
