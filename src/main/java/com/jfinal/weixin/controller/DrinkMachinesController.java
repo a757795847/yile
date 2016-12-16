@@ -152,20 +152,29 @@ public class DrinkMachinesController extends ApiController {
                 String trackstatus = "";
                 int now = 0;
                 int max = 0;
+                int havenow = 0;
                 if (i < 10) {
                     trackstatus = data.get(n).get("trackstatus0" + i).toString();
                     now = data.get(n).get("now0" + i);
                     max = data.get(n).get("max0" + i);
+                    havenow = data.get(n).get("havenow0" + i);
                 } else {
                     trackstatus = data.get(n).get("trackstatus" + i).toString();
                     now = data.get(n).get("now" + i);
                     max = data.get(n).get("max" + i);
+                    havenow = data.get(n).get("havenow" + i);
                 }
-                kucunNum += now;
+                //kucunNum += now;
                 if ("0".equals(trackstatus)) {
                     guzhangguidaoNum++;
-                } else if ("1".equals(trackstatus) && now < max) {
+                } /*else if ("1".equals(trackstatus) && now < max) {
                     quehuoguidaoNum++;
+                }*/
+
+                if(havenow == 0){
+                    quehuoguidaoNum++;
+                }else{
+                    kucunNum += now;
                 }
 
             }
