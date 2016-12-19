@@ -41,6 +41,7 @@
         $('.machineHeader li').removeClass('active');
         $(this).addClass('active');
         var index = $(this).index();
+        console.log(index);
         $('.weui_tab_bd').find('.weui_tab_bd_item').removeClass('weui_tab_bd_item_active')
         $('.weui_tab_bd .weui_tab_bd_item').eq(index).addClass('weui_tab_bd_item_active')
         $('#Rightimg').attr('data-machine',index);
@@ -166,7 +167,7 @@
                     drink += '<li class="'+internet+'">('+newData+')</li>';
                     drink += '<li>'+data[i].doorstatus+'</i></li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div>';
                     drink += '<div class="hideTab"><ul><li>一元/5角个数</li><li>在库件数<span>(故障)</span></li><li>缺货轨道</li><li>轨道数</li><li></li></ul><ul>';
-                    drink += '<li>'+data[i].number+'/'+data[i].number+'</li><li>'+data[i].kucunNum+'</li><li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].tracknum+'</li>';
+                    drink += '<li>'+data[i].number+'</li><li>'+data[i].kucunNum+'</li><li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].tracknum+'</li>';
                     drink += '<li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>柜子/连体机</li><li>温度模式/室内温度/设置温度</li>';
                     drink += '<li></li></ul><ul><li>'+data[i].today+'</li><li>'+data[i]['guizi/liantiji']+'</li><li>'+data[i].tempstatus+'</li><li></li></ul>';
                     drink += '<ul><li>版本</li><li>左温度/右温度</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li>';
@@ -396,7 +397,6 @@
                 if(coffeeState){
                     coffeeAjax(false)
                 }
-
         }
     });
 
