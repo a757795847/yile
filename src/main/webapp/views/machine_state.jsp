@@ -16,9 +16,9 @@
 <header>
     <img src="/img/07.png" class="img-responsive" id="Leftimg">
     <ul class="machineHeader">
-        <li class=" borderLeft none" data-name="synthesize">综合机</li>
-        <li class="borderLeft none" data-name="drink">饮料机</li>
-        <li class="none" data-name="coffee">咖啡机</li>
+        <li class=" borderLeft none" data-name="synthesize" data-session="${sessionScope.zongheji}">综合机</li>
+        <li class="borderLeft none" data-name="drink" data-session="${sessionScope.yinliaoji}">饮料机</li>
+        <li class="none" data-name="coffee" data-session="${sessionScope.kafeiji}">咖啡机</li>
     </ul>
     <img src="/img/08.png" data-machine="0" class="img-responsive" id="Rightimg">
 </header>

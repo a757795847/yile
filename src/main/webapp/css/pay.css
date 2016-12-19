@@ -60,7 +60,7 @@
 }
 
 .tabContent .hideTab ul:last-child li {
-    font-size: 0.51rem;
+    font-size: 0.5rem;
 }
 .tabContent .hideTab ul:last-child li:first-child,.tabContent .hideTab ul:last-child li:nth-child(2){
     line-height: 0.72rem;
@@ -92,7 +92,7 @@
     background-size: 0.563rem 0.563rem;
     background-position: 0.66rem;
 }
-@media (min-width: 320px) and (max-width: 320px) {
+@media screen and (max-width: 320px) {
     .tabContent .hideTab ul:first-child li {
         font-size: 0.45rem;
     }
@@ -103,6 +103,9 @@
         background: url("../img/stop.png") no-repeat;
         background-size: 0.563rem 0.563rem;
         background-position: 0.3rem;
+    }
+    .tabHeader li:nth-child(3), .tabContent li:nth-child(3) {
+        font-size: 0.45rem;
     }
 }
 .ellipsisWord{
