@@ -119,11 +119,6 @@
                 }
                 synthesizeLastId = data[data.length-1].rd;
                 onBeack(data,'#synthesize','.synthesize',on,synthesize);
-                if(on){
-                    tabs.push('synthesize')
-                    tabsList();
-                }
-
             },
             error: function (jqXHR) {
                 $('.weui-infinite-scroll').css('display','none');
@@ -180,10 +175,6 @@
                 }
                 drinkLastId = data[data.length-1].rd;
                 onBeack(data,'#drink','.drink',on,drink);
-                if(on){
-                    tabs.push('drink')
-                    tabsList();
-                }
             },
             error: function (jqXHR) {
                 $('.weui-infinite-scroll').css('display','none');
@@ -236,10 +227,6 @@
                 }
                 coffeeLastId = data[data.length-1].rd;
                 onBeack(data,'#coffee','.coffee',on,coffee);
-                if(on){
-                    tabs.push('coffee')
-                    tabsList();
-                }
             },
             error: function (jqXHR) {
                 $('.weui-infinite-scroll').css('display','none');
@@ -324,7 +311,14 @@
         }
 
     }
-
+    for (var i=0;i<$('.machineHeader li').length;i++){
+        var data = $('.machineHeader li').eq(i).attr('data-session')
+        var key = $('.machineHeader li').eq(i).attr('data-name')
+        if(data == 'true'){
+            tabs.push(key);
+        }
+    }
+    tabsList();
     function tabsList() {
         var aLi = $('.machineHeader').find('li');
         for (var i=0;i<tabs.length;i++){
