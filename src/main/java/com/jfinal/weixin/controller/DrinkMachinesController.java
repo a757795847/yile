@@ -192,10 +192,11 @@ public class DrinkMachinesController extends ApiController {
                 insidetempnow = "-";
                 insidetempset = "-";
                 //一元五角的个数
-                number = coininstatus;
+                number = coininstatus + "/" + coininstatus;
             } else {
                 number = oneyuannum + "/" + fivejiaonum;
             }
+            System.out.println("number: " + number);
 
             if ("0".equals(doorstatus)) {
                 doorstatus = "关";

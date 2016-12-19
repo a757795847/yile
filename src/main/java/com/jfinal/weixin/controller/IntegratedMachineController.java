@@ -176,6 +176,8 @@ public class IntegratedMachineController extends ApiController {
             Long count2 = data.get(n).get("count2", "");
 
             int trackfloor = data.get(n).getInt("trackfloor");
+            System.out.println("deviceid: " + deviceid);
+            System.out.println("trackfloor: " + trackfloor);
             Set<String> youxiaoguidao = new HashSet<String>();
             if (trackfloor != 0) {
                 int z = 0;
@@ -190,25 +192,32 @@ public class IntegratedMachineController extends ApiController {
             }
 
             System.out.println("youxiaoguidao: " + youxiaoguidao);
+            System.out.println("youxiaoguidao.size: " + youxiaoguidao.size());
 
             int guzhangguidaoNum = 0;
             int quehuoguidaoNum = 0;
             int kucunNum = 0;
             for (String it : youxiaoguidao) {
-                System.out.println("iT: " + it);
+               // System.out.println("iT: " + it);
                 String i = data.get(n).get("trackstatus" + it).toString();
-                System.out.println("i: " + i);
+                //System.out.println("i: " + i);
 
                 int now = data.get(n).get("numnow" + it);
+                System.out.println("numnow: " + now);
                 int max = data.get(n).get("nummax" + it);
                 kucunNum += now;
 
                 if ("0".equals(i)) {
                     guzhangguidaoNum++;
-                } else if ("1".equals(i) && now < max) {
+                } /*else if ("1".equals(i) && now < max) {
+                    quehuoguidaoNum++;
+                }*/
+                if(now == 0){
                     quehuoguidaoNum++;
                 }
             }
+            System.out.println("quehuoguidaoNum: " + quehuoguidaoNum);
+            System.out.println("kucunNum: " + kucunNum);
 
             String apkversionStr = "";
             if (StrKit.notBlank(apkversion)) {
@@ -269,23 +278,24 @@ public class IntegratedMachineController extends ApiController {
 
     public static String transformVM(String str) {
         String myversion = "";
-        if ("VMSelf206".equals(str)) {
+        String strtoLowerCase = str.toUpperCase();
+        if ("VMSELF206".equals(strtoLowerCase)) {
             myversion = "饮料206";
-        } else if ("VMAVSelf".equals(str)) {
+        } else if ("VMAVSELF".equals(strtoLowerCase)) {
             myversion = "成人7寸";
-        } else if ("vmselfav".equals(str)) {
+        } else if ("VMSELFAV".equals(strtoLowerCase)) {
             myversion = "成人7寸";
-        } else if ("VMAVHDSelf".equals(str)) {
+        } else if ("VMAVHDSELF".equals(strtoLowerCase)) {
             myversion = "成人32寸";
-        } else if ("vmguangone".equals(str)) {
+        } else if ("VMGUANGONE".equals(strtoLowerCase)) {
             myversion = "光脚一号";
-        } else if ("VMHDSelf".equals(str)) {
+        } else if ("VMHDSELF".equals(strtoLowerCase)) {
             myversion = "大屏综合";
-        } else if ("vmcoffee308c".equals(str)) {
+        } else if ("VMCOFFEE308C".equals(strtoLowerCase)) {
             myversion = "308-C咖啡机";
-        } else if ("vmcoffee308b".equals(str)) {
+        } else if ("VMCOFFEE308B".equals(strtoLowerCase)) {
             myversion = "308-B咖啡机";
-        } else if ("vmcoffee307".equals(str)) {
+        } else if ("VMCOFFEE307".equals(strtoLowerCase)) {
             myversion = "307咖啡机";
         } else {
             myversion = "7寸综合";
