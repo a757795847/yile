@@ -217,6 +217,7 @@ public class IntegratedMachineController extends ApiController {
                 }
             }
             System.out.println("quehuoguidaoNum: " + quehuoguidaoNum);
+            System.out.println("kucunNum: " + kucunNum);
 
             String apkversionStr = "";
             if (StrKit.notBlank(apkversion)) {
@@ -277,23 +278,24 @@ public class IntegratedMachineController extends ApiController {
 
     public static String transformVM(String str) {
         String myversion = "";
-        if ("VMSelf206".equals(str)) {
+        String strtoLowerCase = str.toUpperCase();
+        if ("VMSELF206".equals(strtoLowerCase)) {
             myversion = "饮料206";
-        } else if ("VMAVSelf".equals(str)) {
+        } else if ("VMAVSELF".equals(strtoLowerCase)) {
             myversion = "成人7寸";
-        } else if ("vmselfav".equals(str)) {
+        } else if ("VMSELFAV".equals(strtoLowerCase)) {
             myversion = "成人7寸";
-        } else if ("VMAVHDSelf".equals(str)) {
+        } else if ("VMAVHDSELF".equals(strtoLowerCase)) {
             myversion = "成人32寸";
-        } else if ("vmguangone".equals(str)) {
+        } else if ("VMGUANGONE".equals(strtoLowerCase)) {
             myversion = "光脚一号";
-        } else if ("VMHDSelf".equals(str)) {
+        } else if ("VMHDSELF".equals(strtoLowerCase)) {
             myversion = "大屏综合";
-        } else if ("vmcoffee308c".equals(str)) {
+        } else if ("VMCOFFEE308C".equals(strtoLowerCase)) {
             myversion = "308-C咖啡机";
-        } else if ("vmcoffee308b".equals(str)) {
+        } else if ("VMCOFFEE308B".equals(strtoLowerCase)) {
             myversion = "308-B咖啡机";
-        } else if ("vmcoffee307".equals(str)) {
+        } else if ("VMCOFFEE307".equals(strtoLowerCase)) {
             myversion = "307咖啡机";
         } else {
             myversion = "7寸综合";

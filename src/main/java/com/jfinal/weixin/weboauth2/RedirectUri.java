@@ -40,7 +40,7 @@ public class RedirectUri extends ApiController {
         String openId = null;
         if (DEBUG) {
             code = "123";
-            openId = "oLCXfwmSwiAfcgiEyJoy6RY3i24sss";
+            openId = "oLCXfwmSwiAfcgiEyJoy6RY3i24";
         }
 
         System.out.println("RedirectUri_code1: " + code);
