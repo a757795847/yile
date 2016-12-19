@@ -41,7 +41,6 @@
         $('.machineHeader li').removeClass('active');
         $(this).addClass('active');
         var index = $(this).index();
-        console.log(index);
         $('.weui_tab_bd').find('.weui_tab_bd_item').removeClass('weui_tab_bd_item_active')
         $('.weui_tab_bd .weui_tab_bd_item').eq(index).addClass('weui_tab_bd_item_active')
         $('#Rightimg').attr('data-machine',index);
