@@ -116,7 +116,10 @@
                 }else{
                     loading = false;
                 }
-                synthesizeLastId = data[data.length-1].rd;
+                if(data.length != 0 ){
+                    synthesizeLastId = data[data.length-1].rd;
+                }
+
                 onBeack(data,'#synthesize','.synthesize',on,synthesize);
             },
             error: function (jqXHR) {
@@ -172,7 +175,9 @@
                 }else{
                     loading = false;
                 }
-                drinkLastId = data[data.length-1].rd;
+                if(data.length != 0 ) {
+                    drinkLastId = data[data.length - 1].rd;
+                }
                 onBeack(data,'#drink','.drink',on,drink);
             },
             error: function (jqXHR) {
@@ -224,7 +229,9 @@
                 }else{
                     loading = false;
                 }
-                coffeeLastId = data[data.length-1].rd;
+                if(data.length != 0 ) {
+                    coffeeLastId = data[data.length - 1].rd;
+                }
                 onBeack(data,'#coffee','.coffee',on,coffee);
             },
             error: function (jqXHR) {
