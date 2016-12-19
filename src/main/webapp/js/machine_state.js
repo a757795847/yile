@@ -90,6 +90,7 @@
             data:data,
             dataType: 'json',
             success: function (data) {
+                console.log(data)
                 $.hideLoading();
                 var synthesize = '',internet = '', paper = '', metal = '',newDate='',guzhan;
                 for(var i=0;i<data.length;i++){
