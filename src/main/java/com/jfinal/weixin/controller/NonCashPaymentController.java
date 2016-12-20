@@ -157,26 +157,35 @@ public class NonCashPaymentController extends ApiController {
         System.out.println("dt parse: " + dt_parsed);
         System.out.println("dt minus one month : " + dt2_minusOneMonth);
 
+        System.out.println("1:::" + new Date());
+        int searchInterval = 3;
         List<Record> data = new ArrayList<Record>();
         if (StrKit.notBlank(rd) && StrKit.notBlank(time)) {
 
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
-                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(3);
+                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
                 data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
                 System.out.println("data1: " + data);
-                dt_parsed = dt_parsed.minusDays(3);
+                dt_parsed = dt_parsed.minusDays(searchInterval);
+                if (data.size() == 0) {
+                    searchInterval += 3;
+                }
             }
         } else {
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
-                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(3);
+                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
                 data.addAll(Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid()));
                 System.out.println("data2: " + data);
 
-                dt_parsed = dt_parsed.minusDays(3);
+                dt_parsed = dt_parsed.minusDays(searchInterval);
+                if (data.size() == 0) {
+                    searchInterval += 3;
+                }
             }
         }
         data = data.subList(0, Math.min(30, data.size()));
         System.out.println("data: " + data);
+        System.out.println("2:::" + new Date());
 
         for (Record r : data) {
             System.out.println("r: " + r);
