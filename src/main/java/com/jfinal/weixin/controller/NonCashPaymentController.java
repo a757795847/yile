@@ -175,10 +175,10 @@ public class NonCashPaymentController extends ApiController {
                 dt_parsed = dt_parsed.minusDays(3);
             }
         }
-        data = data.subList(0, 30);
+        data = data.subList(0, Math.min(30, data.size()));
         System.out.println("data: " + data);
 
-        for(Record r: data){
+        for (Record r : data) {
             System.out.println("r: " + r);
         }
 
@@ -201,18 +201,18 @@ public class NonCashPaymentController extends ApiController {
             String vmnamet = data.get(n).get("vmnamet", "").toString();
             String qvmname = data.get(n).get("qvmname", "").toString();
 
-            if(StrKit.isBlank(name)){
+            if (StrKit.isBlank(name)) {
                 name = owner;
             }
 
             String noncashName = "";
-            if(StrKit.notBlank(vmname)){
+            if (StrKit.notBlank(vmname)) {
                 noncashName = vmname;
-            }else if(StrKit.notBlank(vmnamet)){
+            } else if (StrKit.notBlank(vmnamet)) {
                 noncashName = vmnamet;
-            }else if(StrKit.notBlank(qvmname)){
+            } else if (StrKit.notBlank(qvmname)) {
                 noncashName = qvmname;
-            }else{
+            } else {
                 noncashName = "未定义机器名";
             }
 

@@ -320,6 +320,7 @@
     }
     for (var i=0;i<$('.machineHeader li').length;i++){
         var data = $('.machineHeader li').eq(i).attr('data-session')
+        console.log(data)
         var key = $('.machineHeader li').eq(i).attr('data-name')
         if(data == 'true'){
             tabs.push(key);
