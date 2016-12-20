@@ -58,7 +58,12 @@
                     loading = false;
                 }
 
-                payId = data[data.length-1].rd;
+                if(data.length == 0){
+                    $('.noContent').css('display','block');
+                    $('.noContent').text('无现金支付记录');
+                }else{
+                    payId = data[data.length-1].rd;
+                }
 
             },
             error: function (jqXHR) {

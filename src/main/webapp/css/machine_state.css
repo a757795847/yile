@@ -123,14 +123,6 @@
     height: 0.45rem;
     margin: 0 0.2rem;
 }
-#synthesize .hideTab li .paperOff, #synthesize .hideTab li .metalOff {
-    background: black;
-    background-size: 0.45rem 0.45rem;
-    display: inline-block;
-    width: 0.45rem;
-    height: 0.45rem;
-    margin: 0 0.17rem;
-}
 #synthesize .hideTab li:nth-child(4) i:last-child {
     margin-left: 0.15rem;
 }
