@@ -3,7 +3,7 @@ var noTop = $('.noContent').css('margin-top');
 function tab(tab,rem,pbX) {
     var paX = 0,paY=0;
     var remHeight = 1.35 * rem + 'rem';
-    var nomarginTop = '1rem'
+    var nomarginTop = '0.8rem'
     $(tab).on('touchstart','.tabContent',function(event){
         var touch = event.originalEvent.targetTouches[0];
         paX = touch.pageX;
