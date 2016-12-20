@@ -89,14 +89,33 @@
             data:data,
             dataType: 'json',
             success: function (data) {
-                console.log(data)
                 $.hideLoading();
-                var synthesize = '',internet = '', paper = '', metal = '',newDate='',guzhan;
+                var synthesize = '',internet = '', paper = '', metal = '',newDate='',guzhan,zhaoling;
                 for(var i=0;i<data.length;i++){
                     newDate = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
-                    paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
-                    metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
+                    if( data[i].billstatus.toUpperCase() == ''){
+                        paper = ''
+                    }else if(data[i].billstatus.toUpperCase() == 'OK'){
+                        paper = 'paperOn';
+                    }else{
+                        paper = 'paperOff';
+                    }
+                    if( data[i].coinstatus.toUpperCase() == ''){
+                        metal = ''
+                    }else if(data[i].coinstatus.toUpperCase() == 'OK'){
+                        metal = 'paperOn';
+                    }else{
+                        metal = 'paperOff';
+                    }
+                    if( data[i].coinoutstatus.toUpperCase() == ''){
+                        zhaoling = ''
+                    }else if(data[i].coinoutstatus.toUpperCase() == 'OK'){
+                        zhaoling = 'paperOn';
+                    }else{
+                        zhaoling = 'paperOff';
+                    }
+
                     data[i].today = data[i].today == '/0'? '--/--':data[i].today;
                     data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--':data[i]['guizi/liantiji'];
                     data[i].vmname = data[i].vmname == ''?'未设定':data[i].vmname;
@@ -106,7 +125,7 @@
                     synthesize += '<li class="'+internet+'">('+newDate+')</li><li>'+data[i].kucunNum+guzhan+'</li>';
                     synthesize += '<li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
                     synthesize += '<ul><li>今日<span>(金额/次数)</span></li><li>纸币/硬币/硬币找零</li><li>缺货轨道</li><li>故障轨道</li><li>';
-                    synthesize += '</li></ul><ul><li>'+data[i].today+'</li><li><i class="'+paper+'"></i>/<i class="'+paper+'"></i>/<i class="'+metal+'"></i></li><li>'+data[i].quehuoguidaoNum+'</li>';
+                    synthesize += '</li></ul><ul><li>'+data[i].today+'</li><li><i class="'+paper+'"></i>'+ (data[i].coinstatus.toUpperCase() == ''? '':'/') +'<i class="'+metal+'"></i>'+(data[i].coinoutstatus.toUpperCase() == ''? '':'/') +'<i class="'+zhaoling+'"></i></li><li>'+data[i].quehuoguidaoNum+'</li>';
                     synthesize += '<li>'+data[i].guzhangguidaoNum+'</li><li></li></ul><ul><li>版本</li><li>柜子/连体机</li>';
                     synthesize += '<li></li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li><li>'+data[i]['guizi/liantiji']+'</li>';
                     synthesize += '<li></li><li></li></ul></div></div>';
@@ -150,7 +169,7 @@
             dataType: 'json',
             success: function (data) {
                 $.hideLoading();
-                var drink = '',internet = '',newDate;
+                var drink = '',internet = '',newDate,guzhan;
                 for(var i=0;i<data.length;i++){
 
                     newData = data[i].lastnettime.split('.')[0].substring(5);
@@ -160,12 +179,13 @@
                     data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--/--':data[i]['guizi/liantiji'];
                     data[i].vmname = data[i].vmname == ''?'未设定':data[i].vmname;
                     data[i].tempstatus = data[i].tempstatus.replace(/-/g,'--');
+                    guzhan = data[i].guzhangguidaoNum == 0? '':'('+data[i].guzhangguidaoNum+')';
 
                     drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="/yile/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li class="liCenter"><p class="ellipsisWord">'+data[i].vmname+'</p></li>';
                     drink += '<li class="'+internet+'">('+newData+')</li>';
                     drink += '<li>'+data[i].doorstatus+'</i></li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div>';
                     drink += '<div class="hideTab"><ul><li>一元/5角个数</li><li>在库件数<span>(故障)</span></li><li>缺货轨道</li><li>轨道数</li><li></li></ul><ul>';
-                    drink += '<li>'+data[i].number+'</li><li>'+data[i].kucunNum+'</li><li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].tracknum+'</li>';
+                    drink += '<li>'+data[i].number+'</li><li>'+data[i].kucunNum+guzhan+'</li><li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].tracknum+'</li>';
                     drink += '<li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>柜子/连体机</li><li>温度模式/室内温度/设置温度</li>';
                     drink += '<li></li></ul><ul><li>'+data[i].today+'</li><li>'+data[i]['guizi/liantiji']+'</li><li>'+data[i].tempstatus+'</li><li></li></ul>';
                     drink += '<ul><li>版本</li><li>左温度/右温度</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li>';
@@ -209,8 +229,11 @@
 
                     newData = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
-                    paper = data[i].billstatus == 'OK'? 'paperOn':'paperOff';
-                    metal = data[i].coinstatus == 'OK'? 'metalOn':'metalOff';
+                    if( data[i].billstatus.toUpperCase() == ''){
+
+                    }
+                    paper = data[i].billstatus.toUpperCase() == 'OK'? 'paperOn':'paperOff';
+                    metal = data[i].coinstatus.toUpperCase() == 'OK'? 'metalOn':'metalOff';
                     data[i].errorstr = data[i].errorstr == ''? '无':data[i].errorstr;
                     data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--/--':data[i]['guizi/liantiji'];
                     data[i].today = data[i].today == '/--' ? '0/0':data[i].today;
@@ -320,7 +343,6 @@
     }
     for (var i=0;i<$('.machineHeader li').length;i++){
         var data = $('.machineHeader li').eq(i).attr('data-session')
-        console.log(data)
         var key = $('.machineHeader li').eq(i).attr('data-name')
         if(data == 'true'){
             tabs.push(key);
