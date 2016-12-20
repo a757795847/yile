@@ -183,10 +183,10 @@ public class IntegratedMachineController extends ApiController {
                 int z = 0;
                 int num = 0;
                 for (int i = 1; i < trackfloor; i++) {
-                    z = i - 1;
+
                     num = data.get(n).get("everyfloortracknum" + i);
                     for (int y = num - 1; y >= 0; y--) {
-                        youxiaoguidao.add(z + "" + y);
+                        youxiaoguidao.add(i + "" + y);
                     }
                 }
             }
@@ -260,7 +260,8 @@ public class IntegratedMachineController extends ApiController {
             item.put("vmname", vmname); //机器名称
             item.put("lastnettime", data.get(n).get("lastnettime", "").toString()); //联网状态
             item.put("billstatus", billstatus); //纸币
-            item.put("coinstatus", coinstatus); //硬币找零
+            item.put("coinstatus", coinstatus); //硬币
+            item.put("coinoutstatus", coinoutstatus); //硬币找零
             item.put("coin1yuan", coin1yuan); //钱箱(1元)
             item.put("coin5jiao", coin5jiao); //钱箱(五角)
             item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
