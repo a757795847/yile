@@ -49,10 +49,10 @@ $("#btn").click(function(){
             },
             dataType: 'json',
             success: function (data) {
-                if (data.success == '添加成功') {
-                    $.alert('添加成功');
+                if (data.success != null) {
+                    $.alert(data.success);
                 } else {
-                    $.alert('添加失败');
+                    $.alert(data.failed);
                 }
 
 

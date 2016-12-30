@@ -26,7 +26,7 @@
 
    <div class="index">
         <div><a href="/yile/machine/integrated?123">总体状况及销售记录</a></div>
-        <div id="addtopLog"><a href="/device?123">新增上位机</a></div>
+        <div id="addtopLog"><a href="/yile/device?123">新增上位机</a></div>
         <div><a href="/yile/nonCash?123">非现金支付</a></div>
     </div>
 

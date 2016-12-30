@@ -172,10 +172,19 @@ public class CoffeeMachinesController extends ApiController {
 
             String foldname = "";
             for (int i = 1; i <= 5; i++) {
-                if (i == 5) {
-                    foldname += data.get(n).get("fold" + i + "name");
+                String fold = data.get(n).get("fold" + i + "name");
+                if (StrKit.notBlank(fold)) {
+                    if (i == 5) {
+                        foldname += fold;
+                    } else {
+                        foldname += fold + "/";
+                    }
                 } else {
-                    foldname += data.get(n).get("fold" + i + "name") + "/";
+                    if (i == 5) {
+                        foldname += "-";
+                    } else {
+                        foldname += "-/";
+                    }
                 }
             }
 

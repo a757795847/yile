@@ -139,28 +139,16 @@ public class NonCashPaymentController extends ApiController {
         DateTime dt_parsed = DateTime.now();
         Calendar specialDate = Calendar.getInstance();
         Calendar specialDate2 = Calendar.getInstance();
-//        try {
+
         if (StrKit.notBlank(rd)) {
             time = rd.substring(0, 8);
-//                dt = DateTime.parse(time, dateTimeFormatter).toDate();
+
             dt_parsed = DateTime.parse(time, dateTimeFormatter);
-//                dt = sdf.parse(time);
-//                specialDate.setTime(dt);
-//                specialDate.add(Calendar.DAY_OF_MONTH, -3);
-//                dt1 = specialDate.getTime();
-//            } else {
-//                dt = DateTime.parse(time, dateTimeFormatter).toDate();
-//                specialDate.setTime(sdf.parse(time));
-//                specialDate.add(Calendar.DAY_OF_MONTH, -3);
-//                dt1 = specialDate.getTime();
+
         }
-//            specialDate2.setTime(dt);
-//            specialDate2.add(Calendar.MONTH, -1);
-//            time2 = specialDate2.getTime();
+
         dt2_minusOneMonth = dt_parsed.minusMonths(1).withDayOfMonth(1);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+
         System.out.println("time: " + time + ", dt: " + dt + ", dt1: " + dt1);
         System.out.println("rd: " + rd);
         System.out.println("dt1: " + dt1);
@@ -169,45 +157,48 @@ public class NonCashPaymentController extends ApiController {
         System.out.println("dt parse: " + dt_parsed);
         System.out.println("dt minus one month : " + dt2_minusOneMonth);
 
+        System.out.println("1:::" + new Date());
+        int searchInterval = 3;
         List<Record> data = new ArrayList<Record>();
         if (StrKit.notBlank(rd) && StrKit.notBlank(time)) {
-//            data = Db.find(sql1, dt1, dt, vmmisuser.getVmcustomerid(), rd);
-            //data = Db.find(sql1, dt1, dt, 1, rd);
 
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
-                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(3);
-//                data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
+                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
                 data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
                 System.out.println("data1: " + data);
-                /*specialDate.setTime(dt1);
-                specialDate.add(Calendar.DAY_OF_MONTH, -3);
-                dt1 = specialDate.getTime();*/
-                dt_parsed = dt_parsed.minusDays(3);
+                dt_parsed = dt_parsed.minusDays(searchInterval);
+                if (data.size() == 0) {
+                    searchInterval += 3;
+                }
             }
         } else {
-//            data = Db.find(sql, dt1, time, vmmisuser.getVmcustomerid());
-//            data = Db.find(sql, dt1, time, 1);
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
-                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(3);
-//                data = Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd);
+                DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
                 data.addAll(Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid()));
                 System.out.println("data2: " + data);
-                /*specialDate.setTime(dt1);
-                specialDate.add(Calendar.DAY_OF_MONTH, -3);
-                dt1 = specialDate.getTime();*/
-                dt_parsed = dt_parsed.minusDays(3);
+
+                dt_parsed = dt_parsed.minusDays(searchInterval);
+                if (data.size() == 0) {
+                    searchInterval += 3;
+                }
             }
         }
-        data = data.subList(0, 30);
+        data = data.subList(0, Math.min(30, data.size()));
         System.out.println("data: " + data);
+        System.out.println("2:::" + new Date());
+
+        for (Record r : data) {
+            System.out.println("r: " + r);
+        }
 
 
         ArrayList<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
         for (int n = 0; n < data.size(); n++) {
             String deviceid = data.get(n).get("deviceid", "").toString();
-            String saletime = data.get(n).get("saletime", "").toString();
+            String inserttime = data.get(n).get("inserttime", "").toString();
             String price = data.get(n).get("price", "").toString();
             String name = data.get(n).get("name", "").toString();
+            String owner = data.get(n).get("owner", "").toString();
 
             String tranid = data.get(n).get("tranid", "").toString();
             String openid = data.get(n).get("openid", "").toString();
@@ -219,14 +210,18 @@ public class NonCashPaymentController extends ApiController {
             String vmnamet = data.get(n).get("vmnamet", "").toString();
             String qvmname = data.get(n).get("qvmname", "").toString();
 
+            if (StrKit.isBlank(name)) {
+                name = owner;
+            }
+
             String noncashName = "";
-            if(StrKit.notBlank(vmname)){
+            if (StrKit.notBlank(vmname)) {
                 noncashName = vmname;
-            }else if(StrKit.notBlank(vmnamet)){
+            } else if (StrKit.notBlank(vmnamet)) {
                 noncashName = vmnamet;
-            }else if(StrKit.notBlank(qvmname)){
+            } else if (StrKit.notBlank(qvmname)) {
                 noncashName = qvmname;
-            }else{
+            } else {
                 noncashName = "未定义机器名";
             }
 
@@ -234,7 +229,7 @@ public class NonCashPaymentController extends ApiController {
             HashMap<String, String> item = new HashMap<String, String>();
 
             item.put("deviceid", deviceid);
-            item.put("saletime", saletime);
+            item.put("saletime", inserttime);
             item.put("price", price);
             item.put("name", name);
             item.put("tranid", tranid);

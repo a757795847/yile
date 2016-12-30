@@ -176,35 +176,48 @@ public class IntegratedMachineController extends ApiController {
             Long count2 = data.get(n).get("count2", "");
 
             int trackfloor = data.get(n).getInt("trackfloor");
+            System.out.println("deviceid: " + deviceid);
+            System.out.println("trackfloor: " + trackfloor);
             Set<String> youxiaoguidao = new HashSet<String>();
             if (trackfloor != 0) {
                 int z = 0;
                 int num = 0;
                 for (int i = 1; i < trackfloor; i++) {
-                    z = i - 1;
+
                     num = data.get(n).get("everyfloortracknum" + i);
                     for (int y = num - 1; y >= 0; y--) {
-                        youxiaoguidao.add(z + "" + y);
+                        youxiaoguidao.add(i + "" + y);
                     }
                 }
             }
+
+            System.out.println("youxiaoguidao: " + youxiaoguidao);
+            System.out.println("youxiaoguidao.size: " + youxiaoguidao.size());
 
             int guzhangguidaoNum = 0;
             int quehuoguidaoNum = 0;
             int kucunNum = 0;
             for (String it : youxiaoguidao) {
+               // System.out.println("iT: " + it);
                 String i = data.get(n).get("trackstatus" + it).toString();
+                //System.out.println("i: " + i);
 
                 int now = data.get(n).get("numnow" + it);
+                System.out.println("numnow: " + now);
                 int max = data.get(n).get("nummax" + it);
                 kucunNum += now;
 
                 if ("0".equals(i)) {
                     guzhangguidaoNum++;
-                } else if ("1".equals(i) && now < max) {
+                } /*else if ("1".equals(i) && now < max) {
+                    quehuoguidaoNum++;
+                }*/
+                if(now == 0){
                     quehuoguidaoNum++;
                 }
             }
+            System.out.println("quehuoguidaoNum: " + quehuoguidaoNum);
+            System.out.println("kucunNum: " + kucunNum);
 
             String apkversionStr = "";
             if (StrKit.notBlank(apkversion)) {
@@ -247,7 +260,8 @@ public class IntegratedMachineController extends ApiController {
             item.put("vmname", vmname); //机器名称
             item.put("lastnettime", data.get(n).get("lastnettime", "").toString()); //联网状态
             item.put("billstatus", billstatus); //纸币
-            item.put("coinstatus", coinstatus); //硬币找零
+            item.put("coinstatus", coinstatus); //硬币
+            item.put("coinoutstatus", coinoutstatus); //硬币找零
             item.put("coin1yuan", coin1yuan); //钱箱(1元)
             item.put("coin5jiao", coin5jiao); //钱箱(五角)
             item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
@@ -265,23 +279,24 @@ public class IntegratedMachineController extends ApiController {
 
     public static String transformVM(String str) {
         String myversion = "";
-        if ("VMSelf206".equals(str)) {
+        String strtoLowerCase = str.toUpperCase();
+        if ("VMSELF206".equals(strtoLowerCase)) {
             myversion = "饮料206";
-        } else if ("VMAVSelf".equals(str)) {
+        } else if ("VMAVSELF".equals(strtoLowerCase)) {
             myversion = "成人7寸";
-        } else if ("vmselfav".equals(str)) {
+        } else if ("VMSELFAV".equals(strtoLowerCase)) {
             myversion = "成人7寸";
-        } else if ("VMAVHDSelf".equals(str)) {
+        } else if ("VMAVHDSELF".equals(strtoLowerCase)) {
             myversion = "成人32寸";
-        } else if ("vmguangone".equals(str)) {
+        } else if ("VMGUANGONE".equals(strtoLowerCase)) {
             myversion = "光脚一号";
-        } else if ("VMHDSelf".equals(str)) {
+        } else if ("VMHDSELF".equals(strtoLowerCase)) {
             myversion = "大屏综合";
-        } else if ("vmcoffee308c".equals(str)) {
+        } else if ("VMCOFFEE308C".equals(strtoLowerCase)) {
             myversion = "308-C咖啡机";
-        } else if ("vmcoffee308b".equals(str)) {
+        } else if ("VMCOFFEE308B".equals(strtoLowerCase)) {
             myversion = "308-B咖啡机";
-        } else if ("vmcoffee307".equals(str)) {
+        } else if ("VMCOFFEE307".equals(strtoLowerCase)) {
             myversion = "307咖啡机";
         } else {
             myversion = "7寸综合";

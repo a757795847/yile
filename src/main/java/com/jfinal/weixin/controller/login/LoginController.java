@@ -25,17 +25,17 @@ public class LoginController extends ApiController {
         return WeixinUtil.getApiConfig();
     }
 
-//    @Before(UserAuthInterceptor.class)
     public void index() {
         render("/views/pepsi/login.jsp");
     }
 
     @ActionKey("/yile/login/post")
-//    @Before(UserAuthInterceptor.class)
     public void determine() throws Exception {
         String userName = getPara("username");
         String password = getPara("password");
         String inputRandomCode = getPara("captcha");
+        String decryptionPWD = password.substring(3);
+        System.out.println("decryptionPWD: " + decryptionPWD);
         boolean validate = MyCaptchaRender.validate(this, inputRandomCode);
 
         logger.debug("userName: " + userName + " , password: " + password + ", captcha: " + inputRandomCode);
@@ -50,17 +50,17 @@ public class LoginController extends ApiController {
          */
 
         if (StrKit.notBlank(userName, password, inputRandomCode)) {
-            String sql1 = "select * from vmmisuser where loginname = ? and `password` = PASSWORD(?) and `status` != '1' and pwderrorcount < '4'";
-            Vmmisuser users1 = Vmmisuser.dao.findFirst(sql1, userName, password);
-            if (StrKit.isBlank(users1.getLoginname())) {
+            String sql1 = "select * from vmmisuser where loginname = ? and (`password` = PASSWORD(?) or `password` = PASSWORD(?)) and `status` != '1' and pwderrorcount < '4'";
+            Vmmisuser users1 = Vmmisuser.dao.findFirst(sql1, userName, password, decryptionPWD);
+            if (users1 == null) {
                 renderJson("user_error", USER_ERROR);
-            } else if (validate == false) {
+            } else if (!validate) {
                 renderJson("msg_error", MSG_ERROR);
             } else {
-                String sql2 = "select * from vmmisuser where loginname = ? and `password` = PASSWORD(?) and pwderrorcount >= '4'";
-                List<Vmmisuser> users2 = Vmmisuser.dao.find(sql2, userName, password);
-                String sql3 = "select * from vmmisuser where loginname = ? and `password` = PASSWORD(?) and `status` = '1'";
-                List<Vmmisuser> users3 = Vmmisuser.dao.find(sql3, userName, password);
+                String sql2 = "select * from vmmisuser where loginname = ? and (`password` = PASSWORD(?) or `password` = PASSWORD(?)) and pwderrorcount >= '4'";
+                List<Vmmisuser> users2 = Vmmisuser.dao.find(sql2, userName, password, decryptionPWD);
+                String sql3 = "select * from vmmisuser where loginname = ? and (`password` = PASSWORD(?) or `password` = PASSWORD(?)) and `status` = '1'";
+                List<Vmmisuser> users3 = Vmmisuser.dao.find(sql3, userName, password, decryptionPWD);
 
                 if (users2.size() > 0) {
                     renderJson("psd_beyond", PSD_BEYONG);
@@ -69,16 +69,20 @@ public class LoginController extends ApiController {
                 } else {
 
                     //正常登录
-                    String RememberPwd = getPara("RememberPwd");
-                    if (StrKit.notBlank(RememberPwd)) {
-                        String pwd = new StringBuilder(password).reverse().toString();
+                    Boolean RememberPwd = getParaToBoolean("RememberPwd");
+                    if (RememberPwd) {
+//                        System.out.println("RememberPwd: " + RememberPwd);
+//                        String pwd = new StringBuilder(password).reverse().toString();
+                        String pwd = PWD + password;
+                        System.out.println("pwd: " + pwd);
                         //记住密码
                         setCookie("username", userName, 1209600);
                         setCookie("password", pwd, 1209600);
                     }
-                    String AutomaticLogin = getPara("AutomaticLogin");
-                    System.out.println("AutomaticLogin: " + AutomaticLogin);
-                    if (StrKit.notBlank(AutomaticLogin)) {
+                    Boolean AutomaticLogin = getParaToBoolean("AutomaticLogin");
+//                    System.out.println("AutomaticLogin: " + AutomaticLogin);
+                    if (AutomaticLogin) {
+//                        System.out.println("AutomaticLogin: " + AutomaticLogin);
                         //自动登录(1、session取openId; 2、调用接口存openId)
                         String openId = getSessionAttr("openId");
                         //2、调用接口存openId
@@ -99,10 +103,12 @@ public class LoginController extends ApiController {
                     String requestPathA = getSessionAttr("requestPathA");
                     System.out.println("LoginController_determine_requestPathA: " + requestPathA);
 
-                    if ("http://localhost:8088/yile/login".equals(requestPathA) || "http://yile.izhuiyou.com/yile/login".equals(requestPathA)) {
-                        renderJson("requestPathA", "http://localhost:8088/yile/home");
+//                    getRequest().getContextPath();
+                    if ("/yile/login".equals(getRequest().getContextPath())) {
+                        renderJson("requestPathA", "/yile/home");
                     } else {
-                        renderJson("requestPathA", getSessionAttr("requestPathA"));
+                        renderJson("requestPathA", "/yile/home");
+                        //renderJson("requestPathA", getSessionAttr("requestPathA"));
                     }
                 }
             }

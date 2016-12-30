@@ -12,6 +12,8 @@ import com.jfinal.weixin.util.WeixinUtil;
 import java.math.BigInteger;
 import java.util.List;
 
+import static java.lang.System.out;
+
 /**
  * Created by zengriyong on 16/11/15.
  */
@@ -23,6 +25,15 @@ public class HomePageController extends ApiController {
 
     @Before(UserAuthInterceptor.class)
     public void index() {
+        /*out.println("getRequest(): " +
+                getRequest().getContextPath() + "\n" +
+                getRequest().getRequestURI() + "\n" +
+                getRequest().getPathInfo() + "\n" +
+                getRequest().getServerName() + "\n" +
+                getRequest().getLocalAddr() + "\n" +
+                getRequest().getContextPath() + "\n"
+        );*/
+//        System.out.println("http://" + getRequest().getServerName() + "/yile/oauth2");
         //根据userId 获取 vmmisuser 表中的 vmcustomerid 和 authority
         //根据vmcustomerid 获取 vmcustomerinfo 表中的 proxy
         // 如果authority != 4 并且 proxy = 1, 才可以添加上位机(往session中添加字段allowsAdd, true为允许,false为不允许)

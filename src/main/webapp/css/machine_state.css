@@ -1,8 +1,10 @@
 
 .tabHeader li {
-    font-size: 0.56rem;
+    font-size: 0.5rem;
 }
-
+.none {
+    display: none;
+}
 
 .tabHeader li:first-child, .tabContent li:first-child {
     width: 20%;
@@ -14,7 +16,8 @@
 
 .tabHeader li:nth-child(3), .tabContent li:nth-child(3),
 #coffee .hideTab ul:nth-child(5) li:nth-child(2),
-#coffee .hideTab ul:last-child li:nth-child(2)  {
+#coffee .hideTab ul:last-child li:nth-child(2),#synthesize .tabContent ul:nth-child(3) li:nth-child(2) ,
+#synthesize .tabContent ul:nth-child(4) li:nth-child(2)  {
     width: 29%;
 }
 
@@ -24,8 +27,60 @@
     width: 25%;
 }
 
-.tabHeader li:last-child, .tabContent li:last-child {
+.tabHeader li:last-child, .tabContent li:last-child ,
+#synthesize .tabContent ul:nth-child(3) li:last-child , #synthesize .tabContent ul:nth-child(4) li:last-child,
+#drink .tabContent ul:nth-child(3) li:last-child, #drink .tabContent ul:nth-child(4) li:last-child,
+#drink .tabContent ul:nth-child(5) li:last-child, #drink .tabContent ul:nth-child(6) li:last-child,
+#coffee .tabContent ul:nth-child(3) li:last-child,#coffee .tabContent ul:nth-child(4) li:last-child,
+#coffee .tabContent ul:nth-child(5) li:last-child,#coffee .tabContent ul:nth-child(6) li:last-child
+{
     width: 5%;
+}
+
+#synthesize .tabHeader li:first-child, #synthesize .tabContent li:first-child {
+    width: 22%;
+}
+#synthesize .tabHeader li:nth-child(2), #synthesize .tabContent li:nth-child(2) {
+    width: 30%;
+}
+#synthesize .tabHeader li:nth-child(4), #synthesize .tabContent li:nth-child(4),
+#synthesize .tabContent ul:nth-child(3) li:nth-child(3) , #synthesize .tabContent ul:nth-child(4) li:nth-child(3){
+    width: 14%;
+}
+#synthesize .tabContent ul:nth-child(3) li:first-child , #synthesize .tabContent ul:nth-child(4) li:first-child{
+    width: 52%;
+}
+
+#drink .tabHeader li:first-child, #drink .tabContent li:first-child {
+    width: 22%;
+}
+#drink .tabHeader li:nth-child(2), #drink .tabContent li:nth-child(2) {
+    width: 30%;
+}
+#drink .tabHeader li:nth-child(4), #drink .tabContent li:nth-child(4){
+    width: 14%;
+}
+#drink .tabContent ul:nth-child(3) li:nth-child(3), #drink .tabContent ul:nth-child(4) li:nth-child(3),
+#drink .tabContent ul:nth-child(5) li:nth-child(2), #drink .tabContent ul:nth-child(6) li:nth-child(2){
+    width: 43%;
+}
+#drink .tabContent ul:nth-child(5) li:first-child, #drink .tabContent ul:nth-child(6) li:first-child{
+    width: 52%;
+}
+
+#coffee .tabHeader  li:nth-child(4),#coffee .tabContent li:nth-child(4){
+    width: 16%;
+}
+#coffee .tabHeader  li:nth-child(2),#coffee .tabContent li:nth-child(2){
+    width: 30%;
+}
+#coffee .tabContent ul:nth-child(3) li:nth-child(3),#coffee .tabContent ul:nth-child(4) li:nth-child(3),
+#coffee .tabContent ul:nth-child(5) li:nth-child(2),#coffee .tabContent ul:nth-child(6) li:nth-child(2)
+{
+    width: 45%;
+}
+#coffee .hideTab ul:nth-child(5) li:first-child , #coffee .hideTab ul:last-child li:first-child{
+    width: 50%;
 }
 
 .showTab li {
@@ -48,7 +103,7 @@
     background-position: 0.56rem 0.375rem;
 }
 
-.showTab li .paperOn, .showTab li .metalOn {
+.hideTab li .paperOn, .hideTab li .metalOn {
     background: url(../img/greenline.png) no-repeat;
     background-size: 0.5rem 0.35rem;
     display: inline-block;
@@ -56,13 +111,20 @@
     height: 0.36rem;
     margin-right: 0.3rem;
 }
+#synthesize .hideTab li .paperOn,#synthesize  .hideTab li .metalOn {
+    margin: 0 0.15rem;
+}
 
-.showTab li .paperOff, .showTab li .metalOff {
+.hideTab li .paperOff, .hideTab li .metalOff {
     background: url(../img/stop.png) no-repeat;
     background-size: 0.45rem 0.45rem;
     display: inline-block;
-    width: 0.81rem;
+    width: 0.5rem;
     height: 0.45rem;
+    margin: 0 0.2rem;
+}
+#synthesize .hideTab li:nth-child(4) i:last-child {
+    margin-left: 0.15rem;
 }
 .weui_tab_bd{
     margin-bottom: 0.5rem;
@@ -71,7 +133,6 @@
 .showTab li:nth-child(4) i:last-child {
     margin-left: 0.375rem;
 }
-
 .tabContent ul:first-child li:first-child a {
     text-decoration: underline !important;
 }
@@ -93,9 +154,6 @@
     font-size: 0.45rem;
 }
 
-#synthesize .tabContent .hideTab ul:nth-child(3) li:nth-child(3), #synthesize .tabContent .hideTab ul:nth-child(4) li:nth-child(3) {
-    width: 54%;
-}
 
 .allFalse .showTab li:nth-child(4) .metal {
     background: url(../img/stop.png) no-repeat;
@@ -110,15 +168,13 @@
 
 /*drink*/
 .tabContent .hideTab ul:nth-child(odd) li {
-    font-size: 0.56rem;
+    font-size: 0.5rem;
 }
 /*coffee*/
-#coffee .hideTab ul:nth-child(5) li:first-child , #coffee .hideTab ul:last-child li:first-child{
-    width: 41%;
-}
+
 @media screen and (max-width: 360px) {
     .tabHeader li {
-        font-size: 0.5rem;
+        font-size: 0.45rem;
     }
     .showTab .internetOn ,.showTab .internetOff{
         padding-left: 1.2rem;
@@ -130,7 +186,7 @@
     .tabContent .hideTab ul:nth-child(odd) li {
         font-size: 0.45rem;
     }
-    html body .tabContent .minWord ,html body .tabContent .ellipsisWord{
+    html body .tabContent .minWord {
         font-size: 0.4rem!important;
     }
     .showTab li {
@@ -194,4 +250,5 @@
         height: 0.77rem;
     }
 }
+
 

@@ -16,7 +16,7 @@ appSecret=0288ce3dfc1d4da74aaf4a75707f9e19
 
 #####业务逻辑中的华丽的分割线#########
 #授权域名
-domain=xxxx
+domain=http://yile.izhuiyou.com
 #百度翻译 http://api.fanyi.baidu.com/api/trans/product/index
 bt_appId=xxxx
 bt_appKey=xxxx
