@@ -235,7 +235,7 @@
     }
 
     function dataTimeAjax(data){
-        var dataDate ;
+        var dataDateri ,dataDateyue;
         var dateTime = new Date();
         var datas = data.split('.')[0];
         if(dateTime.getDate() <10){
@@ -243,7 +243,13 @@
         }else{
             dataDate = dateTime.getDate();
         }
-        var dataTimeYYYY = dateTime.getFullYear()+'-'+(dateTime.getMonth()+1)+'-'+dataDate;
+        if(dateTime.getMonth() <10){
+            dataDateyue = dateTime.getMonth()+1;
+            dataDateyue = '0'+ dataDateyue;
+        }else{
+            dataDateyue = dateTime.getMonth();
+        }
+        var dataTimeYYYY = dateTime.getFullYear()+'-'+dataDateyue+'-'+dataDate;
         var datasYYYY = datas.split(' ')[0];
         var dateTimeshi = dateTime.getHours().toString();
         var datesshi = datas.substring(11,13);
