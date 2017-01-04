@@ -100,13 +100,13 @@ public class CoffeeMachinesController extends ApiController {
                 "LEFT JOIN androidtrackdouble ON androidtrackdouble.deviceid = androidcoffee.deviceid " +
                 "LEFT JOIN androidsalelist ON androidsalelist.deviceid = androidcoffee.deviceid " +
                 "AND androidsalelist.yyyymmdd = ? " +
-                "WHERE concat( \" + " +
-                "                \"  DATE_FORMAT( \" + " +
-                "                \"   androidvmuserinfo.registdate , \" + " +
-                "                \"   '%Y%m%d' \" + " +
-                "                \"  ) , \" + " +
-                "                \"  androidvmuserinfo.deviceid \" + " +
-                "                \" ) < ?" +
+                "WHERE concat(  + " +
+                "                  DATE_FORMAT(   " +
+                "                   androidvmuserinfo.registdate ,   " +
+                "                   '%Y%m%d'   " +
+                "                  ) ,  " +
+                "                  androidvmuserinfo.deviceid   " +
+                "                 ) < ?" +
                 "GROUP BY " +
                 " androidcoffee.deviceid , " +
                 " androidsalelist.yyyymmdd " +
