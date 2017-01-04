@@ -171,9 +171,9 @@ public class DrinkMachinesController extends ApiController {
                     quehuoguidaoNum++;
                 }*/
 
-                if(havenow == 0){
+                if (havenow == 0) {
                     quehuoguidaoNum++;
-                }else{
+                } else {
                     kucunNum += now;
                 }
 
@@ -188,15 +188,21 @@ public class DrinkMachinesController extends ApiController {
             if ("0".equals(types)) {
                 lefttempnow = "-";
                 righttempnow = "-";
-                tempstatus = "-";
-                insidetempnow = "-";
-                insidetempset = "-";
+                if ("0".equals(tempstatus)) {
+                    tempstatus = "冷";
+                } else {
+                    tempstatus = "热";
+                }
                 //一元五角的个数
                 number = coininstatus + "/" + coininstatus;
             } else {
+                tempstatus = "-";
+                insidetempnow = "-";
+                insidetempset = "-";
                 number = oneyuannum + "/" + fivejiaonum;
             }
             System.out.println("number: " + number);
+            System.out.println("tempstatus: " + tempstatus + "/" + insidetempnow + "/" + insidetempset);
 
             if ("0".equals(doorstatus)) {
                 doorstatus = "关";
