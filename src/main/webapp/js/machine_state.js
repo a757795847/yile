@@ -13,19 +13,24 @@
     indexState();
     $('#Rightimg').on('touchend',function(){
         $("#Rightimg").addClass("transform");
+        $(".noContent").hide();
+        $(".weui-infinite-scroll").hide();
         var index = $(this).attr('data-machine');
         setTimeout(function(){$("#Rightimg").removeClass("transform");},300)
         $.showLoading("正在加载...");
         switch(index){
             case '0':
+                synthesizeState = true
                 $('.synthesize').empty();
                 synthesizeAjax(true);
                 break;
             case '1':
+                drinkState = true;
                 $('.drink').empty();
                 drinkAjax(true);
                 break;
             default:
+                coffeeState = true;
                 $('.coffee').empty();
                 coffeeAjax(true);
         }
@@ -89,31 +94,47 @@
             data:data,
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $.hideLoading();
-                var synthesize = '',internet = '', paper = '', metal = '',newDate='',guzhan,zhaoling;
+                var synthesize = '',internet = '', paper = '', metal = '',newDate='',guzhan,zhaoling,bianliang='',BIANLIANG='',liangbian='';
                 for(var i=0;i<data.length;i++){
                     newDate = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
-                    if( data[i].billstatus.toUpperCase() == ''){
-                        paper = ''
-                    }else if(data[i].billstatus.toUpperCase() == 'OK'){
-                        paper = 'paperOn';
+                    if(data[i].billstatus.toUpperCase()=='OK'){
+                        paper='paperOn';
+                        bianliang='';
+
+                    }else if(data[i].billstatus.toUpperCase()=='NONE'){
+                        paper='';
+                        bianliang='--';
+
                     }else{
-                        paper = 'paperOff';
+                        paper='paperOff';
+                        bianliang='';
                     }
-                    if( data[i].coinstatus.toUpperCase() == ''){
-                        metal = ''
-                    }else if(data[i].coinstatus.toUpperCase() == 'OK'){
-                        metal = 'paperOn';
+                    if(data[i].coinstatus.toUpperCase()=='OK'){
+                        metal='metalOn';
+                        liangbian='';
+
+                    }else if(data[i].coinstatus.toUpperCase()=='NONE'){
+                        metal='';
+                        liangbian='--';
+
                     }else{
-                        metal = 'paperOff';
-                    }
-                    if( data[i].coinoutstatus.toUpperCase() == ''){
-                        zhaoling = ''
-                    }else if(data[i].coinoutstatus.toUpperCase() == 'OK'){
-                        zhaoling = 'paperOn';
+                        metal='metalOff';
+                        liangbian='';
+
+                    }if(data[i].coinoutstatus.toUpperCase()=='OK'){
+                        BIANLIANG='';
+                        zhaoling='paperOn';
+
+                    }else if(data[i].coinoutstatus.toUpperCase()=='NG'){
+                        BIANLIANG='';
+                        zhaoling='paperOff';
+
                     }else{
-                        zhaoling = 'paperOff';
+                        BIANLIANG='--';
+                        zhaoling='';
                     }
 
                     data[i].today = data[i].today == '/0'? '--/--':data[i].today;
@@ -122,13 +143,13 @@
                     guzhan = data[i].guzhangguidaoNum == 0? '':'('+data[i].guzhangguidaoNum+')';
 
                     synthesize += '<div class="tabContent"><div class="showTab"><ul><li><a href="/yile/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li class="liCenter"><p class="ellipsisWord">'+data[i].vmname+'</p></li>';
-                    synthesize += '<li class="'+internet+'">('+newDate+')</li><li>'+data[i].kucunNum+guzhan+'</li>';
+                    synthesize += '<li class="'+internet+'">('+newDate+')</li>';
                     synthesize += '<li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
-                    synthesize += '<ul><li>今日<span>(金额/次数)</span></li><li>纸币/硬币/硬币找零</li><li>缺货轨道</li><li>故障轨道</li><li>';
-                    synthesize += '</li></ul><ul><li>'+data[i].today+'</li><li><i class="'+paper+'"></i>'+ (data[i].coinstatus.toUpperCase() == ''? '':'/') +'<i class="'+metal+'"></i>'+(data[i].coinoutstatus.toUpperCase() == ''? '':'/') +'<i class="'+zhaoling+'"></i></li><li>'+data[i].quehuoguidaoNum+'</li>';
-                    synthesize += '<li>'+data[i].guzhangguidaoNum+'</li><li></li></ul><ul><li>版本</li><li>柜子/连体机</li>';
-                    synthesize += '<li></li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li><li>'+data[i]['guizi/liantiji']+'</li>';
-                    synthesize += '<li></li><li></li></ul></div></div>';
+                    synthesize += '<ul><li>故障轨道</li><li>纸币/硬币/找零</li><li>缺货轨道</li><li>库存(故障)</li><li>';
+                    synthesize += '</li></ul><ul><li>'+data[i].guzhangguidaoNum+'</li><li><i class="'+paper+'">'+bianliang+'</i>/<i class="'+metal+'">'+liangbian+'</i>/<i class="'+zhaoling+'">'+BIANLIANG+'</i></li>';
+                    synthesize += '<li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].kucunNum+guzhan+'</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>版本</li>';
+                    synthesize += '<li>柜子/连体机</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].today+'</p></li><li>'+data[i].version+'</li>';
+                    synthesize += '<li>'+data[i]['guizi/liantiji']+'</li><li></li></ul></div></div>';
                     //data[i].version
                 }
                 if(data.length < 25){
@@ -168,6 +189,7 @@
             data:data,
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $.hideLoading();
                 var drink = '',internet = '',newDate,guzhan;
                 for(var i=0;i<data.length;i++){
@@ -176,7 +198,7 @@
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
                     data[i].today = data[i].today == '/--' ? '--/--':data[i].today;
                     data[i].tempnow = data[i].tempnow.replace(/-/g,'--')
-                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--/--':data[i]['guizi/liantiji'];
+                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--':data[i]['guizi/liantiji'];
                     data[i].vmname = data[i].vmname == ''?'未设定':data[i].vmname;
                     data[i].tempstatus = data[i].tempstatus.replace(/-/g,'--');
                     guzhan = data[i].guzhangguidaoNum == 0? '':'('+data[i].guzhangguidaoNum+')';
@@ -184,12 +206,12 @@
                     drink += '<div class="tabContent"><div class="showTab"><ul><li><a href="/yile/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li class="liCenter"><p class="ellipsisWord">'+data[i].vmname+'</p></li>';
                     drink += '<li class="'+internet+'">('+newData+')</li>';
                     drink += '<li>'+data[i].doorstatus+'</i></li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div>';
-                    drink += '<div class="hideTab"><ul><li>一元/5角个数</li><li>在库件数<span>(故障)</span></li><li>缺货轨道</li><li>轨道数</li><li></li></ul><ul>';
-                    drink += '<li>'+data[i].number+'</li><li>'+data[i].kucunNum+guzhan+'</li><li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].tracknum+'</li>';
-                    drink += '<li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>柜子/连体机</li><li>温度模式/室内温度/设置温度</li>';
-                    drink += '<li></li></ul><ul><li>'+data[i].today+'</li><li>'+data[i]['guizi/liantiji']+'</li><li>'+data[i].tempstatus+'</li><li></li></ul>';
-                    drink += '<ul><li>版本</li><li>左温度/右温度</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li>';
-                    drink += '<li>'+data[i].tempnow+'</li><li></li></ul></div></div>';
+                    drink += '<div class="hideTab"><ul><li>一元/5角个数</li><li>库存</li><li>缺货轨道</li><li>轨道数</li><li></li></ul><ul>';
+                    drink += '<li>'+data[i].number+'</li><li>'+data[i].kucunNum+'</li><li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].tracknum+'</li>';
+                    drink += '<li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>左温度/右温度</li><li>温度模式/室内温度/设置温度</li>';
+                    drink += '<li></li></ul><ul><li>'+data[i].today+'</li><li>'+data[i].tempnow+'</li><li>'+data[i].tempstatus+'</li><li></li></ul>';
+                    drink += '<ul><li>版本</li><li>柜子/连体机</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li>';
+                    drink += '<li>'+data[i]['guizi/liantiji']+'</li><li></li></ul></div></div>';
                 }
                 if(data.length < 25){
                     drinkState = false;
@@ -223,27 +245,49 @@
             url: '/yile/coffeeMachineData',
             dataType: 'json',
             success: function (data) {
+                console.log(data);
                 $.hideLoading();
-                var coffee = '',internet = '', paper = '', metal = '',newDate='', errorData='';
+                var coffee = '',internet = '', paper = '', metal = '',newDate='', errorData='',bianliang='' ,BIANLIANG='';
                 for(var i=0;i<data.length;i++){
 
                     newData = data[i].lastnettime.split('.')[0].substring(5);
                     internet = dataTimeAjax(data[i].lastnettime) ? 'internetOn':'internetOff';
-                    if( data[i].billstatus.toUpperCase() == ''){
+                   /* paper = data[i].billstatus.toUpperCase() == 'OK'? 'paperOn':'paperOff';
+                    metal = data[i].coinstatus.toUpperCase() == 'OK'? 'metalOn':'metalOff';*/
+                    if(data[i].billstatus.toUpperCase()=='OK'){
+                        paper='paperOn';
+                        bianliang='';
+
+                    }else if(data[i].billstatus.toUpperCase()=='NONE'){
+                        paper='';
+                        bianliang='--';
+
+                    }else{
+                        paper='paperOff';
+                        bianliang='';
+                    }
+                    if(data[i].coinstatus.toUpperCase()=='OK'){
+                        metal='metalOn';
+                       BIANLIANG='';
+
+                    }else if(data[i].coinstatus.toUpperCase()=='NONE'){
+                        metal='';
+                        BIANLIANG='--';
+
+                    }else{
+                        metal='metalOff';
+                        BIANLIANG='';
 
                     }
-                    paper = data[i].billstatus.toUpperCase() == 'OK'? 'paperOn':'paperOff';
-                    metal = data[i].coinstatus.toUpperCase() == 'OK'? 'metalOn':'metalOff';
                     data[i].errorstr = data[i].errorstr == ''? '无':data[i].errorstr;
                     data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--/--':data[i]['guizi/liantiji'];
                     data[i].today = data[i].today == '/--' ? '0/0':data[i].today;
                     data[i].vmname = data[i].vmname == ''?'未设定':data[i].vmname;
-
                     coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="/yile/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li class="liCenter"><p class="ellipsisWord">'+data[i].vmname+'</p></li><li class="'+internet+'">('+newData+')</li>';
                     coffee += '<li>'+data[i].types+'</li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
-                    coffee += '<ul><li>一元/5角个数</li><li>纸币/硬币找零</li><li>柜子/连体机</li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li><i class="'+paper+'"></i>/<i class="'+metal+'"></i></li>';
-                    coffee += '<li>'+data[i]['guizi/liantiji']+'</li><li>'+data[i].coffeeNum+'</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>咖啡温度/保持温度</li><li>料盒</li>';
-                    coffee += '<li></li></ul><ul><li>'+data[i].today+'</li><li>'+data[i].temp+'</li><li class="liCenter"><p class="ellipsisWord">'+data[i].foldname+'</p></li><li></li></ul><ul>';
+                    coffee += '<ul><li>一元/5角个数</li><li>纸币/硬币找零</li><li>今日<span>(金额/次数)</span></li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li><i class="'+paper+'">'+bianliang+'</i>/<i class="'+metal+'">'+BIANLIANG+'</i></li>';
+                    coffee += '<li>'+data[i].today+'</li><li>'+data[i].coffeeNum+'</li><li></li></ul><ul><li>柜子/连体机</li><li>咖啡温度/保持温度</li><li>料盒</li>';
+                    coffee += '<li></li></ul><ul><li>'+data[i]['guizi/liantiji']+'</li><li>'+data[i].temp+'</li><li class="liCenter"><p class="ellipsisWord">'+data[i].foldname+'</p></li><li></li></ul><ul>';
                     coffee += '<li>版本</li><li>故障信息</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li><li class="liCenter"><p class="ellipsisWord">'+data[i].errorstr+'</p></li><li></li></ul></div></div>';
 
                 }

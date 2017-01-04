@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no"/>
-    <title>以勒运营商后台系统</title>
+    <title>杭州以勒自动售货机后台</title>
     <link rel="stylesheet" type="text/css" href="/css/weui.min.css">
     <link rel="stylesheet" type="text/css" href="/css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="/css/tabAll.css">
@@ -28,9 +28,9 @@
     <div id="synthesize" class=" weui_tab_bd_item">
         <ul class="tabHeader">
             <li>上位机ID</li>
-            <li>机器名称</li>
+            <li>机器名</li>
             <li>联网状态(最近联网)</li>
-            <li>库存<span>(故障)</span></li>
+           <!-- <li>库存<span>(故障)</span></li>-->
             <li>...</li>
         </ul>
 

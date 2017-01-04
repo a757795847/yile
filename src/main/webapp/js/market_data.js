@@ -47,9 +47,9 @@
                 for(var i=0;i<data.length;i++){
                     a = data[i].payway.split(':')[0];
                     b = data[i].payway.split(':')[1];
-                    market += '<div class="tabContent"><div class="showTab"><ul><li >'+data[i].deviceid+'</li><li>'+data[i].saletime+'</li><li>'+data[i].outtype+'</li><li>'+data[i].trackno+'</li>';
-                    market += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>名称</li><li>进价</li>';
-                    market += '<li>价格</li><li>支付方式</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].mingcheng+'</p></li><li>'+data[i].buyprice+'</li><li>'+data[i].price+'</li>';
+                    market += '<div class="tabContent"><div class="showTab"><ul><li >'+data[i].deviceid+'</li><li>'+data[i].saletime+'</li><li>'+data[i].outtype+'</li><li class="liCenter"><p class="ellipsisWord">'+data[i].mingcheng+'</p></li>';
+                    market += '<li class="showBtn"><img src="../img/18.png" alt="下拉"></li></ul></div><div class="hideTab"><ul><li>轨道编号</li><li>进价</li>';
+                    market += '<li>价格</li><li>支付方式</li><li></li></ul><ul><li>'+data[i].trackno+'</li><li>'+data[i].buyprice+'</li><li>'+data[i].price+'</li>';
                     market += '<li class="liCenter"><p class="ellipsisWord">'+data[i].payway+'</p></li><li></li></ul></div></div>';
                 }
                 if(on){

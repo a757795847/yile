@@ -6,22 +6,23 @@
     display: none;
 }
 
-.tabHeader li:first-child, .tabContent li:first-child {
-    width: 20%;
+/*.tabHeader li:first-child, .tabContent li:first-child {
+    width: 22%;
 }
 
 .tabHeader li:nth-child(2), .tabContent li:nth-child(2) {
-    width: 21%;
+    width: 44%;
 }
-
-.tabHeader li:nth-child(3), .tabContent li:nth-child(3),
+.tabHeader li:nth-child(3), .tabContent li:nth-child(3) {
+    width: 28%;
+}*/
 #coffee .hideTab ul:nth-child(5) li:nth-child(2),
-#coffee .hideTab ul:last-child li:nth-child(2),#synthesize .tabContent ul:nth-child(3) li:nth-child(2) ,
-#synthesize .tabContent ul:nth-child(4) li:nth-child(2)  {
+#coffee .hideTab ul:last-child li:nth-child(2),
+/*#synthesize .tabContent ul:nth-child(4) li:nth-child(2)  {
     width: 29%;
-}
+}*/
 
-.tabHeader li:nth-child(4), .tabContent li:nth-child(4),
+
 #coffee .hideTab ul:nth-child(5) li:nth-child(3),
 #coffee .hideTab ul:last-child li:nth-child(3)  {
     width: 25%;
@@ -37,25 +38,48 @@
     width: 5%;
 }
 
+
 #synthesize .tabHeader li:first-child, #synthesize .tabContent li:first-child {
     width: 22%;
 }
 #synthesize .tabHeader li:nth-child(2), #synthesize .tabContent li:nth-child(2) {
-    width: 30%;
+    width: 44%;
 }
-#synthesize .tabHeader li:nth-child(4), #synthesize .tabContent li:nth-child(4),
-#synthesize .tabContent ul:nth-child(3) li:nth-child(3) , #synthesize .tabContent ul:nth-child(4) li:nth-child(3){
-    width: 14%;
+#synthesize .tabHeader li:nth-child(3), #synthesize .tabContent li:nth-child(3){
+    width:28%;
+
 }
-#synthesize .tabContent ul:nth-child(3) li:first-child , #synthesize .tabContent ul:nth-child(4) li:first-child{
+#synthesize .tabHeader li:nth-child(4), #synthesize .tabContent li:nth-child(4){
+    width:6%;
+
+}
+#synthesize .hideTab ul:nth-child(1) li:nth-child(2) , #synthesize .hideTab ul:nth-child(1) li:nth-child(3){
+    width: 22%;
+}
+#synthesize .hideTab ul:nth-child(1) li:nth-child(4) {
+    width: 28%;
+}
+#synthesize .hideTab ul:nth-child(2) li:nth-child(2) , #synthesize .hideTab ul:nth-child(2) li:nth-child(3){
+    width: 22%;
+}
+#synthesize .hideTab ul:nth-child(2) li:nth-child(4) {
+    width: 28%;
+}
+#synthesize .hideTab ul:nth-child(2) li:nth-child(5) {
+    width: 6%;
+}
+/*#synthesize .tabContent ul:nth-child(3) li:first-child , #synthesize .tabContent ul:nth-child(4) li:first-child{
     width: 52%;
-}
+}*/
 
 #drink .tabHeader li:first-child, #drink .tabContent li:first-child {
     width: 22%;
 }
 #drink .tabHeader li:nth-child(2), #drink .tabContent li:nth-child(2) {
     width: 30%;
+}
+#drink .tabHeader li:nth-child(3), #drink .tabContent li:nth-child(3){
+    width: 29%;
 }
 #drink .tabHeader li:nth-child(4), #drink .tabContent li:nth-child(4){
     width: 14%;
@@ -69,9 +93,15 @@
 }
 
 #coffee .tabHeader  li:nth-child(4),#coffee .tabContent li:nth-child(4){
-    width: 16%;
+    width: 15%;
 }
 #coffee .tabHeader  li:nth-child(2),#coffee .tabContent li:nth-child(2){
+    width: 30%;
+}
+#coffee .tabHeader  li:nth-child(1),#coffee .tabContent li:nth-child(1){
+    width: 20%;
+}
+#coffee .tabHeader  li:nth-child(3),#coffee .tabContent li:nth-child(3){
     width: 30%;
 }
 #coffee .tabContent ul:nth-child(3) li:nth-child(3),#coffee .tabContent ul:nth-child(4) li:nth-child(3),

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 
     <meta name="format-detection" content="telephone=no"/>
-    <title>以勒运营商后台系统</title>
+    <title>杭州以勒自动售货机后台</title>
     <link rel="stylesheet" type="text/css" href="../css/weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/tabAll.css">
@@ -21,10 +21,10 @@
     <a href="javascript:;" class="clear"><img src="../img/08.png" class="img-responsive" id="Rightimg"></a>
 </header>
 <ul class="tabHeader">
-    <li>上机位</li>
+    <li>上位机</li>
     <li>销售时间(VM)</li>
     <li>类别</li>
-    <li>轨道编号</li>
+    <li>名称</li>
     <li>...</li>
 </ul>
 <section id="content">
