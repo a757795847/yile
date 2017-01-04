@@ -160,7 +160,6 @@
                 if(data.length != 0 ){
                     synthesizeLastId = data[data.length-1].rd;
                 }
-
                 onBeack(data,'#synthesize','.synthesize',on,synthesize);
             },
             error: function (jqXHR) {
@@ -243,6 +242,7 @@
         $.ajax({
             type: 'GET',
             url: '/yile/coffeeMachineData',
+            data:data,
             dataType: 'json',
             success: function (data) {
                 console.log(data);
