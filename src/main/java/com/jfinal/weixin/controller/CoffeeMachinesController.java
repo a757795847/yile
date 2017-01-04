@@ -153,6 +153,7 @@ public class CoffeeMachinesController extends ApiController {
             String fivejiaonum = data.get(n).get("fivejiaonum", "").toString();
             String rds = data.get(n).get("rds").toString();
 
+            System.out.println("deviceid: " + deviceid);
             if (StrKit.isBlank(vmname)) {
                 vmname = "未设定";
             }
