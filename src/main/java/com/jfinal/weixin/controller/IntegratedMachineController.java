@@ -200,7 +200,7 @@ public class IntegratedMachineController extends ApiController {
             for (String it : youxiaoguidao) {
                // System.out.println("iT: " + it);
                 String i = data.get(n).get("trackstatus" + it).toString();
-                //System.out.println("i: " + i);
+                System.out.println("i: " + i);
 
                 int now = data.get(n).get("numnow" + it);
                 System.out.println("numnow: " + now);
@@ -208,10 +208,8 @@ public class IntegratedMachineController extends ApiController {
                 kucunNum += now;
 
                 if ("0".equals(i)) {
-                    guzhangguidaoNum++;
-                } /*else if ("1".equals(i) && now < max) {
-                    quehuoguidaoNum++;
-                }*/
+                    guzhangguidaoNum += now;
+                }
                 if(now == 0){
                     quehuoguidaoNum++;
                 }
