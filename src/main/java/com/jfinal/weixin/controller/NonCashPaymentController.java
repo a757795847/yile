@@ -38,7 +38,7 @@ public class NonCashPaymentController extends ApiController {
                 "    '%Y-%m-%d %H:%i:%s'  " +
                 "  ) AS inserttime ,  " +
                 "  concat(  " +
-                "    DATE_FORMAT(p.inserttime , '%Y%c%d%H%i%s') ,  " +
+                "    DATE_FORMAT(p.inserttime , '%Y%m%d%H%i%s') ,  " +
                 "    p.tranid  " +
                 "  ) AS rds ,  " +
                 "  p.deviceid ,  " +
@@ -56,7 +56,6 @@ public class NonCashPaymentController extends ApiController {
                 "FROM  " +
                 "  androidvmuserinfo u ,  " +
                 "  vmcustomerinfo i ,  " +
-                "  vmcustomerproxy proxy ,  " +
                 "  payok p  " +
                 "LEFT JOIN androidsalelist s ON p.tranid = s.tranid  " +
                 "LEFT JOIN androidsetpara a ON p.deviceid = a.deviceid  " +
@@ -68,8 +67,7 @@ public class NonCashPaymentController extends ApiController {
                 "AND u.vmcustomerid = i.id  " +
                 "AND p.yyyymmdd >= ?  " +
                 "AND p.yyyymmdd <= ?  " +
-                "AND proxy.slaveid = u.vmcustomerid  " +
-                "AND proxy.masterid = ?  " +
+                "AND u.vmcustomerid = ?  " +
                 "ORDER BY  " +
                 "  rds DESC  " +
                 "LIMIT 30";
@@ -85,7 +83,7 @@ public class NonCashPaymentController extends ApiController {
                 "    '%Y-%m-%d %H:%i:%s'  " +
                 "  ) AS inserttime ,  " +
                 "  concat(  " +
-                "    DATE_FORMAT(p.inserttime , '%Y%c%d%H%i%s') ,  " +
+                "    DATE_FORMAT(p.inserttime , '%Y%m%d%H%i%s') ,  " +
                 "    p.tranid  " +
                 "  ) AS rds ,  " +
                 "  p.deviceid ,  " +
@@ -103,7 +101,6 @@ public class NonCashPaymentController extends ApiController {
                 "FROM  " +
                 "  androidvmuserinfo u ,  " +
                 "  vmcustomerinfo i ,  " +
-                "  vmcustomerproxy proxy ,  " +
                 "  payok p  " +
                 "LEFT JOIN androidsalelist s ON p.tranid = s.tranid  " +
                 "LEFT JOIN androidsetpara a ON p.deviceid = a.deviceid  " +
@@ -115,8 +112,7 @@ public class NonCashPaymentController extends ApiController {
                 "AND u.vmcustomerid = i.id  " +
                 "AND p.yyyymmdd >= ?  " +
                 "AND p.yyyymmdd <= ?  " +
-                "AND proxy.slaveid = u.vmcustomerid  " +
-                "AND proxy.masterid = ?  " +
+                "AND u.vmcustomerid = ?  " +
                 "AND concat(  " +
                 "    DATE_FORMAT(p.inserttime , '%Y%c%d') ,  " +
                 "    p.tranid  " +
