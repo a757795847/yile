@@ -264,7 +264,8 @@ public class IntegratedMachineController extends ApiController {
             item.put("coinoutstatus", coinoutstatus); //硬币找零
             item.put("coin1yuan", coin1yuan); //钱箱(1元)
             item.put("coin5jiao", coin5jiao); //钱箱(五角)
-            item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道
+            item.put("guzhangguidao",String.valueOf(guzhangguidao));//故障轨道
+            item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道存货数量
             item.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
             item.put("kucunNum", kucunNum + ""); //库存(故障)
             item.put("today", prices + "/" + count1); //今日(金额/次数)
