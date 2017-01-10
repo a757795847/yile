@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/tabAll.css">
     <link rel="stylesheet" type="text/css" href="../css/pay.css">
+    <link rel="stylesheet" type="text/css" href="/css/machine_state.css">
 </head>
 <body>
 <header>
