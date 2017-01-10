@@ -52,7 +52,7 @@ public class NonCashPaymentController extends ApiController {
                 "  p.price ,  " +
                 "  p.realname ,  " +
                 "  t.vmname vmnamet ,  " +
-                "  q.vmname qvmname  " +
+                "  q.vmname qvmname " +
                 "FROM  " +
                 "  androidvmuserinfo u ,  " +
                 "  vmcustomerinfo i ,  " +
@@ -67,7 +67,7 @@ public class NonCashPaymentController extends ApiController {
                 "AND u.vmcustomerid = i.id  " +
                 "AND p.yyyymmdd >= ?  " +
                 "AND p.yyyymmdd <= ?  " +
-                "AND u.vmcustomerid = ?  " +
+               "AND u.vmcustomerid = ?  " +
                 "ORDER BY  " +
                 "  rds DESC  " +
                 "LIMIT 30";
@@ -97,7 +97,7 @@ public class NonCashPaymentController extends ApiController {
                 "  p.price ,  " +
                 "  p.realname ,  " +
                 "  t.vmname vmnamet ,  " +
-                "  q.vmname qvmname  " +
+                "  q.vmname qvmname " +
                 "FROM  " +
                 "  androidvmuserinfo u ,  " +
                 "  vmcustomerinfo i ,  " +
@@ -114,7 +114,7 @@ public class NonCashPaymentController extends ApiController {
                 "AND p.yyyymmdd <= ?  " +
                 "AND u.vmcustomerid = ?  " +
                 "AND concat(  " +
-                "    DATE_FORMAT(p.inserttime , '%Y%c%d') ,  " +
+                "    DATE_FORMAT(p.inserttime , '%Y%m%d') ,  " +
                 "    p.tranid  " +
                 "  ) < ?  " +
                 "ORDER BY  " +
@@ -133,13 +133,13 @@ public class NonCashPaymentController extends ApiController {
         Date dt = null;
         Date dt1 = null;
         DateTime dt_parsed = DateTime.now();
-        Calendar specialDate = Calendar.getInstance();
-        Calendar specialDate2 = Calendar.getInstance();
+        /*Calendar specialDate = Calendar.getInstance();
+        Calendar specialDate2 = Calendar.getInstance();*/
 
         if (StrKit.notBlank(rd)) {
             time = rd.substring(0, 8);
 
-            dt_parsed = DateTime.parse(time, dateTimeFormatter);
+            dt_parsed = DateTime.parse(time, dateTimeFormatter).plusDays(1);
 
         }
 
@@ -160,7 +160,9 @@ public class NonCashPaymentController extends ApiController {
 
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
                 DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
-                data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
+                    data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
+
+
                 System.out.println("data1: " + data);
                 dt_parsed = dt_parsed.minusDays(searchInterval);
                 if (data.size() == 0) {
@@ -170,7 +172,7 @@ public class NonCashPaymentController extends ApiController {
         } else {
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
                 DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
-                data.addAll(Db.find(sql, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid()));
+                data.addAll(Db.find(sql, dt_parse_minusThreeDay.toDate(),dt_parsed.toDate(),vmmisuser.getVmcustomerid()));
                 System.out.println("data2: " + data);
 
                 dt_parsed = dt_parsed.minusDays(searchInterval);
@@ -199,8 +201,19 @@ public class NonCashPaymentController extends ApiController {
             String tranid = data.get(n).get("tranid", "").toString();
             String openid = data.get(n).get("openid", "").toString();
             String trackno = data.get(n).get("trackno", "").toString();
-            String stranid = data.get(n).get("stranid", "").toString();
             String rds = data.get(n).get("rds").toString();
+            String saletime = data.get(n).get("saletime","").toString();
+            String realname = data.get(n).get("realname","").toString();
+            String flag = "有";
+            if(saletime .equals("")){
+                if (realname==null||realname.equals(""))
+                    flag ="退款处理";
+                else if(realname.substring(0,4).equals("直接退款"))
+                    flag = "无(已系统退款)";
+                else
+                    flag ="无(已手动退款)";
+            }
+
 
             String vmname = data.get(n).get("vmname", "").toString();
             String vmnamet = data.get(n).get("vmnamet", "").toString();
@@ -221,7 +234,7 @@ public class NonCashPaymentController extends ApiController {
                 noncashName = "未定义机器名";
             }
 
-
+            System.err.println(flag);
             HashMap<String, String> item = new HashMap<String, String>();
 
             item.put("deviceid", deviceid);
@@ -231,7 +244,7 @@ public class NonCashPaymentController extends ApiController {
             item.put("tranid", tranid);
             item.put("openid", openid);
             item.put("trackno", trackno);
-            item.put("stranid", stranid);// 数据存在显示'有'，否则显示'退款处理'
+            item.put("flag", flag);// 数据存在显示'有'，否则显示'退款处理'
             item.put("rd", rds);
             item.put("noncashName", noncashName);
 

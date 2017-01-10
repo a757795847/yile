@@ -195,6 +195,7 @@ public class IntegratedMachineController extends ApiController {
             System.out.println("youxiaoguidao.size: " + youxiaoguidao.size());
 
             int guzhangguidaoNum = 0;
+            int guzhangguidao = 0;
             int quehuoguidaoNum = 0;
             int kucunNum = 0;
             for (String it : youxiaoguidao) {
@@ -208,6 +209,7 @@ public class IntegratedMachineController extends ApiController {
                 kucunNum += now;
 
                 if ("0".equals(i)) {
+                    guzhangguidao++;
                     guzhangguidaoNum += now;
                 }
                 if(now == 0){
