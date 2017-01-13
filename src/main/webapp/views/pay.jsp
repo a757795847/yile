@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../css/jquery-weui.min.css">
     <link rel="stylesheet" type="text/css" href="../css/tabAll.css">
     <link rel="stylesheet" type="text/css" href="../css/pay.css">
+    <link rel="stylesheet" type="text/css" href="/css/machine_state.css">
 </head>
 <body>
 <header>
@@ -40,8 +41,8 @@
 <input type="hidden" value="${sessionScope.allowsAdd}" id="session">
 <ul class="nav">
     <li><a href="/yile/home?123"><img src="../img/09.png" class="img1"></a> <b></b></li>
-    <li><a href="/yile/machine/integrated?123"><img src="../img/10.png" class="img2"></a> <b></b></li>
-    <li class="topLog"><a href="/yile/device?123"><img src="../img/11.png" class="img3"></a> <b></b></li>
+    <li><a href="/yile/machine/integrated?123"><img src="../img/10.png" class="img2"></a><b></b></li>
+    <li class="topLog"><a href="/yile/device?123"><img src="../img/11.png" class="img3"></a><b></b></li>
     <li><a href="/yile/nonCash?123"><img src="../img/13.png" class="img4"></a></li>
 </ul>
 <script type="text/javascript" src="../js/jquery.min.js"></script>

@@ -267,7 +267,7 @@ public class IntegratedMachineController extends ApiController {
             item.put("guzhangguidao",String.valueOf(guzhangguidao));//故障轨道
             item.put("guzhangguidaoNum", guzhangguidaoNum + ""); //故障轨道存货数量
             item.put("quehuoguidaoNum", quehuoguidaoNum + ""); //缺货轨道
-            item.put("kucunNum", kucunNum + ""); //库存(故障)
+            item.put("kucunNum", kucunNum + ""); //库存(故障guzhangguidaoNum)
             item.put("today", prices + "/" + count1); //今日(金额/次数)
             item.put("version", transformVM(pkgname) + "/" + apkversionStr); //版本
             item.put("guizi/liantiji", guizi + liantiji); //柜子/连体机

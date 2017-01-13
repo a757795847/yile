@@ -118,7 +118,6 @@ ul li:last-child {
 /*}*/
 
 html body .tabContent .ellipsisWord {
-    line-height: initial;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;

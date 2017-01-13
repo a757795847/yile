@@ -146,15 +146,18 @@
                     synthesize += '<li class="'+internet+'">('+newDate+')</li>';
                     synthesize += '<li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
                     synthesize += '<ul><li>故障轨道</li><li>纸币/硬币/找零</li><li>缺货轨道</li><li>库存(故障)</li><li>';
-                    synthesize += '</li></ul><ul><li>'+data[i].guzhangguidaoNum+'</li><li><i class="'+paper+'">'+bianliang+'</i>/<i class="'+metal+'">'+liangbian+'</i>/<i class="'+zhaoling+'">'+BIANLIANG+'</i></li>';
+                    synthesize += '</li></ul><ul><li>'+data[i].guzhangguidao+'</li><li><i class="'+paper+'">'+bianliang+'</i>/<i class="'+metal+'">'+liangbian+'</i>/<i class="'+zhaoling+'">'+BIANLIANG+'</i></li>';
                     synthesize += '<li>'+data[i].quehuoguidaoNum+'</li><li>'+data[i].kucunNum+guzhan+'</li><li></li></ul><ul><li>今日<span>(金额/次数)</span></li><li>版本</li>';
                     synthesize += '<li>柜子/连体机</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].today+'</p></li><li>'+data[i].version+'</li>';
                     synthesize += '<li>'+data[i]['guizi/liantiji']+'</li><li></li></ul></div></div>';
                     //data[i].version
                 }
                 if(data.length < 25){
+                    $(".noContent").show();
+                    $(".weui-infinite-scroll").hide();
                     synthesizeState = false;
                 }else{
+                    synthesizeState = true;
                     loading = false;
                 }
                 if(data.length != 0 ){
@@ -213,8 +216,11 @@
                     drink += '<li>'+data[i]['guizi/liantiji']+'</li><li></li></ul></div></div>';
                 }
                 if(data.length < 25){
+                    $(".noContent").show();
+                    $(".weui-infinite-scroll").hide();
                     drinkState = false;
                 }else{
+                    drinkState = true;
                     loading = false;
                 }
                 if(data.length != 0 ) {
@@ -280,12 +286,12 @@
 
                     }
                     data[i].errorstr = data[i].errorstr == ''? '无':data[i].errorstr;
-                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--/--':data[i]['guizi/liantiji'];
+                    data[i]['guizi/liantiji'] = data[i]['guizi/liantiji'] == ''? '--':data[i]['guizi/liantiji'];
                     data[i].today = data[i].today == '/--' ? '0/0':data[i].today;
                     data[i].vmname = data[i].vmname == ''?'未设定':data[i].vmname;
                     coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="/yile/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li class="liCenter"><p class="ellipsisWord">'+data[i].vmname+'</p></li><li class="'+internet+'">('+newData+')</li>';
                     coffee += '<li>'+data[i].types+'</li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
-                    coffee += '<ul><li>一元/5角个数</li><li>纸币/硬币找零</li><li>今日<span>(金额/次数)</span></li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li><i class="'+paper+'">'+bianliang+'</i>/<i class="'+metal+'">'+BIANLIANG+'</i></li>';
+                    coffee += '<ul><li>一元/5角个数</li><li>纸币器/硬币器状态</li><li>今日<span>(金额/次数)</span></li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li><i class="'+paper+'">'+bianliang+'</i>/<i class="'+metal+'">'+BIANLIANG+'</i></li>';
                     coffee += '<li>'+data[i].today+'</li><li>'+data[i].coffeeNum+'</li><li></li></ul><ul><li>柜子/连体机</li><li>咖啡温度/保持温度</li><li>料盒</li>';
                     coffee += '<li></li></ul><ul><li>'+data[i]['guizi/liantiji']+'</li><li>'+data[i].temp+'</li><li class="liCenter"><p class="ellipsisWord">'+data[i].foldname+'</p></li><li></li></ul><ul>';
                     coffee += '<li>版本</li><li>故障信息</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li><li class="liCenter"><p class="ellipsisWord">'+data[i].errorstr+'</p></li><li></li></ul></div></div>';
@@ -293,8 +299,11 @@
                 }
 
                 if(data.length < 25){
+                    $(".noContent").show();
+                    $(".weui-infinite-scroll").hide();
                     coffeeState = false;
                 }else{
+                    coffeeState = true;
                     loading = false;
                 }
                 if(data.length != 0 ) {
