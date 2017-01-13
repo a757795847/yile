@@ -291,7 +291,7 @@
                     data[i].vmname = data[i].vmname == ''?'未设定':data[i].vmname;
                     coffee += '<div class="tabContent"><div class="showTab"><ul><li><a href="/yile/saleList?'+data[i].deviceid+'">'+data[i].deviceid+'</a></li><li class="liCenter"><p class="ellipsisWord">'+data[i].vmname+'</p></li><li class="'+internet+'">('+newData+')</li>';
                     coffee += '<li>'+data[i].types+'</li><li class="showBtn"><img src="/img/18.png" alt="下拉"></li></ul></div><div class="hideTab">';
-                    coffee += '<ul><li>一元/5角个数</li><li>纸币/硬币找零</li><li>今日<span>(金额/次数)</span></li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li><i class="'+paper+'">'+bianliang+'</i>/<i class="'+metal+'">'+BIANLIANG+'</i></li>';
+                    coffee += '<ul><li>一元/5角个数</li><li>纸币器/硬币器状态</li><li>今日<span>(金额/次数)</span></li><li>咖啡品种</li><li></li></ul><ul><li>'+data[i].number+'</li><li><i class="'+paper+'">'+bianliang+'</i>/<i class="'+metal+'">'+BIANLIANG+'</i></li>';
                     coffee += '<li>'+data[i].today+'</li><li>'+data[i].coffeeNum+'</li><li></li></ul><ul><li>柜子/连体机</li><li>咖啡温度/保持温度</li><li>料盒</li>';
                     coffee += '<li></li></ul><ul><li>'+data[i]['guizi/liantiji']+'</li><li>'+data[i].temp+'</li><li class="liCenter"><p class="ellipsisWord">'+data[i].foldname+'</p></li><li></li></ul><ul>';
                     coffee += '<li>版本</li><li>故障信息</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li><li class="liCenter"><p class="ellipsisWord">'+data[i].errorstr+'</p></li><li></li></ul></div></div>';
