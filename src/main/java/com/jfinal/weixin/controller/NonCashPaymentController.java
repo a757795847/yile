@@ -163,7 +163,7 @@ public class NonCashPaymentController extends ApiController {
                 DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
                 String pare = simpleDateFormat.format(dt_parse_minusThreeDay.toDate());
                 String after =  simpleDateFormat.format(dt_parsed.toDate());
-                    data.addAll(Db.find(sql1, pare, after, vmmisuser.getUserid(), rd));
+                    data.addAll(Db.find(sql1, pare, after, vmmisuser.getVmcustomerid(), rd));
 
 
                 System.out.println("data1: " + data);
@@ -177,7 +177,7 @@ public class NonCashPaymentController extends ApiController {
                 DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
                 String pare = simpleDateFormat.format(dt_parse_minusThreeDay.toDate());
                 String after =  simpleDateFormat.format(dt_parsed.toDate());
-                data.addAll(Db.find(sql,pare,after,vmmisuser.getUserid()));
+                data.addAll(Db.find(sql,pare,after,vmmisuser.getVmcustomerid()));
                 System.out.println("data2: " + data);
 
                 dt_parsed = dt_parsed.minusDays(searchInterval);
