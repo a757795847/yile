@@ -114,7 +114,7 @@ public class NonCashPaymentController extends ApiController {
                 "AND p.yyyymmdd <= ?  " +
                 "AND u.vmcustomerid = ?  " +
                 "AND concat(  " +
-                "    DATE_FORMAT(p.inserttime , '%Y%m%d') ,  " +
+                "    DATE_FORMAT(p.inserttime , '%Y%m%d%H%i%s') ,  " +
                 "    p.tranid  " +
                 "  ) < ?  " +
                 "ORDER BY  " +
@@ -138,9 +138,8 @@ public class NonCashPaymentController extends ApiController {
 
         if (StrKit.notBlank(rd)) {
             time = rd.substring(0, 8);
-
+            Calendar calendar = Calendar.getInstance();
             dt_parsed = DateTime.parse(time, dateTimeFormatter).plusDays(1);
-
         }
 
         dt2_minusOneMonth = dt_parsed.minusMonths(1).withDayOfMonth(1);
@@ -156,11 +155,15 @@ public class NonCashPaymentController extends ApiController {
         System.out.println("1:::" + new Date());
         int searchInterval = 3;
         List<Record> data = new ArrayList<Record>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
         if (StrKit.notBlank(rd) && StrKit.notBlank(time)) {
 
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
                 DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
-                    data.addAll(Db.find(sql1, dt_parse_minusThreeDay.toDate(), dt_parsed.toDate(), vmmisuser.getVmcustomerid(), rd));
+                String pare = simpleDateFormat.format(dt_parse_minusThreeDay.toDate());
+                String after =  simpleDateFormat.format(dt_parsed.toDate());
+                    data.addAll(Db.find(sql1, pare, after, vmmisuser.getVmcustomerid(), rd));
 
 
                 System.out.println("data1: " + data);
@@ -172,7 +175,9 @@ public class NonCashPaymentController extends ApiController {
         } else {
             while (data.size() < 30 && dt_parsed.isAfter(dt2_minusOneMonth)) {
                 DateTime dt_parse_minusThreeDay = dt_parsed.minusDays(searchInterval);
-                data.addAll(Db.find(sql, dt_parse_minusThreeDay.toDate(),dt_parsed.toDate(),vmmisuser.getVmcustomerid()));
+                String pare = simpleDateFormat.format(dt_parse_minusThreeDay.toDate());
+                String after =  simpleDateFormat.format(dt_parsed.toDate());
+                data.addAll(Db.find(sql,pare,after,vmmisuser.getVmcustomerid()));
                 System.out.println("data2: " + data);
 
                 dt_parsed = dt_parsed.minusDays(searchInterval);

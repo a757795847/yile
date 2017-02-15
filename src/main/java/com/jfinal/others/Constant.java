@@ -19,7 +19,7 @@ public class Constant {
 
     public final static String PWD = "04b";
 
-    public final static Boolean DEBUG = true;
+    public final static Boolean DEBUG = false;
 
 
 
