@@ -17,6 +17,9 @@
 .tabHeader li:nth-child(4), .tabContent li:nth-child(4) {
     width: 36%;
 }
+.tabContent .contextCenter{
+    line-height: normal;
+}
 
 .tabHeader li:last-child, .tabContent li:last-child {
     width: 5%;
