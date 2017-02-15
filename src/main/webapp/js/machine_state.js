@@ -42,6 +42,9 @@
     tab('#synthesize',4,70);
     tab('#drink',6,70);
     tab('#coffee',6,68);
+    var synthesizeStateNum = 0;
+    var drinkStateNum = 0;
+    var coffeeStateNum = 0;
     $('.machineHeader').on('touchstart','li',function(){
         $('.machineHeader li').removeClass('active');
         $(this).addClass('active');
@@ -152,11 +155,14 @@
                     synthesize += '<li>'+data[i]['guizi/liantiji']+'</li><li></li></ul></div></div>';
                     //data[i].version
                 }
+                synthesizeStateNum = data.length;
                 if(data.length < 25){
-                    $(".noContent").show();
+                    $("#synthesize .noContent").show();
                     $(".weui-infinite-scroll").hide();
                     synthesizeState = false;
                 }else{
+                    $("#synthesize .noContent").hide();
+                    $(".weui-infinite-scroll").show();
                     synthesizeState = true;
                     loading = false;
                 }
@@ -215,11 +221,14 @@
                     drink += '<ul><li>版本</li><li>柜子/连体机</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li>';
                     drink += '<li>'+data[i]['guizi/liantiji']+'</li><li></li></ul></div></div>';
                 }
+                drinkStateNum = data.length
                 if(data.length < 25){
-                    $(".noContent").show();
+                    $("#drink .noContent").show();
                     $(".weui-infinite-scroll").hide();
                     drinkState = false;
                 }else{
+                    $("#drink .noContent").hide();
+                    $(".weui-infinite-scroll").show();
                     drinkState = true;
                     loading = false;
                 }
@@ -297,12 +306,14 @@
                     coffee += '<li>版本</li><li>故障信息</li><li></li></ul><ul><li class="liCenter"><p class="ellipsisWord">'+data[i].version+'</p></li><li class="liCenter"><p class="ellipsisWord">'+data[i].errorstr+'</p></li><li></li></ul></div></div>';
 
                 }
-
+                coffeeStateNum = data.length;
                 if(data.length < 25){
-                    $(".noContent").show();
+                    $("#coffee .noContent").show();
                     $(".weui-infinite-scroll").hide();
                     coffeeState = false;
                 }else{
+                    $("#coffee .noContent").hide();
+                    $(".weui-infinite-scroll").show();
                     coffeeState = true;
                     loading = false;
                 }
